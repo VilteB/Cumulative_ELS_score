@@ -1,38 +1,9 @@
 ## Life Events Interview (9 yr)
-# some of the tot 26 items are used mainly for lE domain but also for IR, DV, CR. 
-LE_interview <- readquick("MOTHERTRAUMAINTERVIEW9_24112016.sav") # 5862 obs of 96 columns
+
+LE_interview <- readquick("insert ALSPAC data") # 5862 obs of 96 columns
 
 # Exclude unreliable interviews
-LE_interview <- subset(LE_interview, LE_interview$unreliable == 0) # 5570 obs of 96 columns
-
-
-
-p2000_rec,
-p2001_rec,
-p2002_rec,
-p2003_rec,
-p2004_rec,
-p2005_rec,
-p2006_rec,
-p2010_rec,
-p2011_rec,
-p2012_rec,
-p2013_rec,
-p2014_rec,
-p2021_rec,
-p2030_rec,
-p2031_rec,
-p2032_rec,
-p2033_rec,
-p2035_rec,
-p2039_rec,
-p2041_rec,
-p2042_rec,
-p2043_rec,
-p2044_rec). 
-
-
-
+LE_interview <- subset(LE_interview, LE_interview$unreliable == 0) # need to see ALSPAC data for the corresponding code here
 
 # Select the necessary item 
 life_events <- 
