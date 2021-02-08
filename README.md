@@ -6,9 +6,9 @@ The scripts are adapted from Cecil et al. (2014) cumulative environmental risk s
 
 Upon completion it will have the following 6 sections:
 
-  1. Recoding_Items
-  2. DichotomizingEnvRiskVars
-  3. CreatingEnvRiskCumScores_Prenatal
-  4. CreatingEnvRiskCumScores_0_7
-  5. CreatingEnvRiskCumScores_8-9
-  6. CFA_Env
+  1. Recoding Items
+  2. Dichotomising Environmental Risk Variables
+  3. Creating Environmental Risk Cumulative Scores for the prenatal period
+  4. Creating Environmental Risk Cumulative Scores for 0-7 years 
+  5. Creating Environmental Risk Cumulative Scores for 8-9 years
+  6. CFA of envirobmental risk variables
