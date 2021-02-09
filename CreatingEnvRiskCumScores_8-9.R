@@ -1,6 +1,10 @@
-#This script replicates Cecil et al. (2014) cumulative environmental risk scores, adapting it from SPSS to R
+
+####################################################################################################################################################
 
 # POSTNATAL 8-9Y 
+
+####################################################################################################################################################
+
 
 # 1. LIFE EVENTS
 LE_interview <- readquick("insert ALSPAC data") # insert nr of obs and nr of columns
