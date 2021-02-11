@@ -8,6 +8,9 @@
 
 # 1. LIFE EVENTS
 
+# depending on the format of the data, you may want to write "attach(nameofdataframe)" and then use the code below. 
+# This will permit the variables to be accessed directly without having to use the dollar sign, as here: 'nameofdata$variablename'
+
 CS_Prenatal_LifeEvents <- data.frame(b570a_rec, # PTNR died since PREG
                                      b571a_rec, # CH died since PREG
                                      b572a_rec, # Friend or relative died since PREG
@@ -40,15 +43,15 @@ CS_Prenatal_LifeEvents <- data.frame(b570a_rec, # PTNR died since PREG
 CS_Prenatal_ContextualRisks  <- data.frame(b588a_rec, # Income reduced since PREG
                                            b593a_rec, # Became homeless since PREG
                                            b594a_rec, # Major financial PROB since PREG
-                                           p2,
-                                           p3,
-                                           p4,
-                                           p6)
+                                           p2, # Housing adequacy 
+                                           p3, # Housing Basic Living 
+                                           p4, # Housing Defects
+                                           p6) # Financial difficulties 
                                                   
 
 ####################################################################################################################################################
 
-3. MH/LIFESTYLE RISKS
+# 3. PARENTAL RISKS
 
 
 
@@ -57,26 +60,27 @@ CS_Prenatal_MH_LifestyleRisks  <- data.frame(b577a_rec, # In trouble with the la
                                              b597a_rec, # Attempted suicide since PREG
                                              b598a_rec, # Convicted of an offence since PREG
                                              b605a_rec, # Tried to have abortion
-                                             p1,
-                                             p5,
-                                             p12,
-                                             p13,
-                                             p14,
-                                             p15)
-                                                      
+                                             p1, # Early parenthood
+                                             p5, # Maternal education 
+                                             p12, # Psychopathology of mother
+                                             p13, # Substance abuse 
+                                             p14, # Crime trouble with police 
+                                             p15) # Crime convictions   
+                                            # This first version appears in CumRisk_Instructions&Information.xlsx, 
+                                            # likely suggesting from the three version, this one was selected to form the cumulative score)
 
 CS_Prenatal_Parental_NoSubUse <- data.frame(b577a_rec, # In trouble with the law since PREG
                                             b586a_rec, # PTNR in trouble with law since PREG
                                             b597a_rec, # Attempted suicide since PREG
                                             b598a_rec, # Convicted of an offence since PREG
                                             b605a_rec, # Tried to have abortion
-                                            p1,
-                                            p5,
-                                            p12,
-                                            p14,
-                                            p15) 
+                                            p1, # Early parenthood
+                                            p5, # Maternal education 
+                                            p12, # Psychopathology of mother
+                                            p14, # Crime trouble with police 
+                                            p15) # Crime convictions   
 
-# The difference between CS_Prenatal_MH_LifestyleRisks and CS_Prenatal_Parental_NoSubUse is that the latter excludes p13 
+# The difference between CS_Prenatal_MH_LifestyleRisks and CS_Prenatal_Parental_NoSubUse is that the latter excludes substance abuse (p13) 
 
 
 CS_Prenatal_MH_LifestyleRisks_NoMI <- data.frame(b577a_rec, # In trouble with the law since PREG
@@ -84,16 +88,18 @@ CS_Prenatal_MH_LifestyleRisks_NoMI <- data.frame(b577a_rec, # In trouble with th
                                                  b597a_rec, # Attempted suicide since PREG
                                                  b598a_rec, # Convicted of an offence since PREG
                                                  b605a_rec, # Tried to have abortion
-                                                 p1,
-                                                 p5,
-                                                 p13,
-                                                 p14,
-                                                 p15)
+                                                 p1, # Early parenthood
+                                                 p5, # Maternal education 
+                                                 p13, # Substance abuse 
+                                                 p14, # Crime trouble with police 
+                                                 p15) # Crime convictions   
+
+# The difference between CS_Prenatal_MH_LifestyleRisks and CS_Prenatal_MH_LifestyleRisks_NoMI is that the latter excludes psychopathology of mother (p12) 
 
 ####################################################################################################################################################
 
 
-# 4. FAMILY RISKS/DIS
+# 4. INTERPERSONAL RISKS
 
 
 CS_Prenatal_DIS_FamilyRisks <- data.frame(b578a_rec, # Divorced since PREG
@@ -107,14 +113,15 @@ CS_Prenatal_DIS_FamilyRisks <- data.frame(b578a_rec, # Divorced since PREG
                                           b596a_rec, # PTNR hurt CH since PREG	
                                           b607a_rec, # PTNR was EMOT cruel to mum since PREG
                                           b608a_rec, # PTNR was EMOT cruel to CH since PREG
-                                          p7,
-                                          p8,
-                                          p9,
-                                          p10,
-                                          p11,
-                                          p16,
-                                          p17,
-                                          p18)
+                                          p7, #Partner Status 
+                                          p8, # Partner Affection 
+                                          p9, # Partner cruelty 
+                                          p10, # Family Size
+                                          p11, # Family Major problems 
+                                          p16, # Partner Support
+                                          p17, # Social Network - Emotional 
+                                          p18) # Social Network - Practical 
+
 
 ####################################################################################################################################################
 
