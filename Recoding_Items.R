@@ -13,10 +13,10 @@
 # Originally, variables have been coded as:
 
       # 1 = affected a lot
-      # 2	= fairly affected
-      # 3	= mildly affected
-      # 4	= not effected at all
-      # 5	= didn't happen
+      # 2 = fairly affected
+      # 3 = mildly affected
+      # 4 = not effected at all
+      # 5 = didn't happen
       # for total number of options inlcuded need to check the dataset 
 
 # Below script recodes them into: 
