@@ -716,37 +716,3 @@ corbetw2mat(IR_prenatal_continuous, IR_prenatal_binary, what = "paired")
 
 ####################################################################################################################################################
 
-
-# THIS SECTION WILL BE DELETED 
-
-# Below would have been a much shorter version, very similar to what Serena used, but did not work for 3 categories. 
-# Any ideas how to make it work for more than two categories?
-
-# remember to change the 'data' and 'idm' (ID number of mother)
-
-
-# this one won't work because it lacks categories: 
-LE_prenatal <- data.frame(data$idm,
-                          b570a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # PTNR died since PREG
-                          b571a_rec = ifelse(data$b571 <= 4, yes = 1, no = 0), # CH died since PREG
-                          b572a_rec = ifelse(data$b572 <= 4, yes = 1, no = 0), # Friend or relative died since PREG
-                          b573a_rec = ifelse(data$b573 <= 4, yes = 1, no = 0), # CH was ill since PREG	
-                          b574a_rec = ifelse(data$b574 <= 4, yes = 1, no = 0), # PTNR was ill since PREG	
-                          b575a_rec = ifelse(data$b575 <= 4, yes = 1, no = 0), # Friend or relative was ill since PREG
-                          b576a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Admitted to hospital since PREG
-                          b580a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # V ill since PREG
-                          b581a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # PTNR lost job since PREG
-                          b582a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # PTNR had PROBS at work since PREG	
-                          b583a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # PROBS at work since PREG
-                          b584a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Lost job since PREG
-                          b591a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Moved house since PREG
-                          b599a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Bled & thought might miscarry	
-                          b600a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Started new job since PREG
-                          b601a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Test to see if baby abnormal
-                          b602a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Test result suggesting POSS abnormality
-                          b603a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Told having twins
-                          b604a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # POSS harm to baby
-                          b606a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # Took an exam since PREG
-                          b609a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0), # House or car burgled since PREG
-                          b610a_rec = ifelse(data$b570 <= 4, yes = 1, no = 0)) # Had an accident since PREG
-                             
