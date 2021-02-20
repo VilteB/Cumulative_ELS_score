@@ -11,4 +11,4 @@ Upon completion it will have the following 6 sections:
   3. Creating Environmental Risk Cumulative Scores for the prenatal period
   4. Creating Environmental Risk Cumulative Scores for 0-7 years 
   5. Creating Environmental Risk Cumulative Scores for 8-9 years
-  6. CFA of envirobmental risk variables
+  6. CFA of enviromental risk variables
