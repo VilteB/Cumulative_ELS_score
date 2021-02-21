@@ -68,8 +68,6 @@ colnames(parenting) <- c("IDC", "p_harsh_parent", "m_harsh_parent")
 ## GR1065-G2 (3 yrs)
 GR1065v1 <- readquick("insert ALSPAC data here") # 9901 obs. of  28 
 
-(ifelse( == 1 |  == 2 |  == 3, |  == 4, 1,
-         ifelse( == 5, 0, NA))
   
 # Construct LE3weeks # items used LE at 3 weeks in ALSPAC mothers
 
@@ -99,8 +97,7 @@ LE8weeks_mother <- data.frame(GR1065v1$idm, #add ALSPAC mother ID here!
                      GR1065v1$e440a_rec) # Accident since MID PREG
 
 #recode LE 8 weeks in mothers to dichotomised variable
-LE8weeks_mother <- ifelse(LE8weeks_mother == 1 |LE8weeks_mother== 2 |LE8weeks_mother  == 3, |LE8weeks_mother  == 4, 1,
-                           ifelse(LE8weeks_mother == 5, 0, NA))
+
 
 #LE 8 month answers are dichotomised (retain "a" in variable code here). 1=Y, 2=N, -1 = missing
 LE8months_mother <- data.frame(idm, #ALSPAC ID mother
@@ -225,8 +222,6 @@ LE5years_mother <- data.frame(idm, # add ALPSAC mother id here
                        k4041a_rec, # Mothers pet died in past year
                        k4042a_rec) # Mother had an accident in past year)
 
-LE5years_mother <- ifelse(LE5years_mother == 1 |LE5years_mother  == 2 |LE5years_mother  == 3, |LE5years_mother == 4, 1,
-         ifelse(LE5years_mother == 5, 0, NA))
 
 #asabove, LE of mothers at 6 years have catageorical varibales, dischotmoise based on previous incidents
 LE6years_mother <- data.frame(idm, # ID of ALPSAC mother
@@ -254,8 +249,6 @@ LE6years_mother <- data.frame(idm, # ID of ALPSAC mother
                        l4044a_rec, # Respondent had an accident since study child's 5th birthday
                        l4041a_rec) # One of respondent's children started new school since study child's 5th birthday)
 
-LE6years_mother <- ifelse(LE6years_mother == 1 |LE6years_mother  == 2 |LE6years_mother  == 3, |LE6years_mother == 4, 1,
-                          ifelse(LE6years_mother == 5, 0, NA))
 
 ###### Now we will construct variables based on the child life events
 
@@ -350,279 +343,230 @@ LE6years_child <- data.frame(idc, #
                              kq372a_rec, # Child changed care taker since his/her 5th birthday (Y/N)
                              kq373a_rec) # Child was separated from another close person since his/her 5th birthday (Y/N)
 
-#-------------------------------------------------------------------------------
-## GR1065-G3-6 (3 yrs)
-GR1065v1G <- readquick("GR1065-G3-6_01072012.sav") # 9901 obs. of  9 
 
-# Construct GR1065 # items used for CR and IR.
-GR1065G <- data.frame(GR1065v1G$idc, 
-                      ifelse(GR1065v1G$g0600165 > 1, yes = 1, no = 0), # difficulty paying rent/bills (with GR1081)
-                      # DICH: 'no problems at all' = no risk, 'few problems' to 'a lot problems' = risk.
-                      ifelse(GR1065v1G$g0300165 < 5, yes = 1, no = 0),  # household income
-                      # DICH: according to the Central Statistic Netherlands (2013). 
-                      # Net household income below 1600 ???/month (basic needs level) = risk. 
-                      ifelse(GR1065v1G$g0400265 > 3, yes = 1, no = 0)) # how many children in the household
-# DICH: based on Cecil et al. (2014); Rijlaarsdam et al, (2016).
-# Family of more than three children = risk. 
-colnames(GR1065G) <- c("IDC", "trouble_pay_3yrs","income_3yrs","fam_size_3yrs")
+#combining all life event variables with mother ID
+LEsum_mother <- data.frame(LE8weeks_mother, LE8months_mother, LE21months_mother, LE3years_mother, LE4years_mother, 
+                                     LE5years_mother, LE6years_mother)
 
-#-------------------------------------------------------------------------------
-## GR1065X (3 yrs)
-GR1065v1X <- readquick("GR1065-X_01072012.sav") # 9901 obs. of 5
+#combining all life event vairables with child ID
+LEsum_child <- data.frame(LE18months_child, LE30months_child, LE3years_child, 
+                          LE4years_child, LE5years_child, LE6years_child)
 
-# Construct GR1065 # item used for IR.
-GR1065X <- data.frame(GR1065v1X$idc, 
-                      ifelse(GR1065v1X$x0500165 > 1, yes = 1, no = 0)) # do you have a partner present?
-# DICH: based on Cecil et al. (2014); Rijlaarsdam et al, (2016).
-# Having no partner or having a partner without living together = risk.
-colnames(GR1065X) <- c("IDC", "marital_status_3yrs")
+#_______________________________________________________________________________
+#_______________________________________________________________________________
 
-#-------------------------------------------------------------------------------
-## GR1075 (3-6 yrs)
-GR1075v1 <- readquick("SESFOLLOWUP_03022020.sav") # 9901 obs. of  10 variables # ATTENTION: this is different from the file Isabel used
 
-GR1075 <- data.frame(GR1075v1$idc, 
-                     ifelse(GR1075v1$educm3 <= 3, yes = 1, no = 0), # maternal education 3 yrs (for PR)
-                     ifelse(GR1075v1$educm5 <= 3, yes = 1, no = 0), # maternal education 5 yrs (for PR)
-                     ifelse(GR1075v1$educp3 <= 3, yes = 1, no = 0), # paternal education 3 yrs (for PR)
-                     ifelse(GR1075v1$educp5 <= 3, yes = 1, no = 0), # paternal education 5 yrs (for PR)
-                     # DICH: according to Statistics Netherlands (2016), 
-                     # an educational level of secondary phase 2 or below = risk.
-                     GR1075v1$mar_dich5, # Marital status: single (with GR1065 and le14 in IR)
-                     ifelse(GR1075v1$income5 < 4, yes = 1, no = 0)) # household income (for CR)
-# DICH: according to the Central Statistic Netherlands (2013). 
-# Net household income below 1600 ???/month (basic needs level) = risk.
-colnames(GR1075) <- c("IDC", "m_educ_3yrs", "m_educ_5yrs", "p_educ_3yrs", "p_educ_5yrs", 
-                      "marital_status_5yrs", "income_5yrs")
 
-#-------------------------------------------------------------------------------
-## GR1075B3 (5 yrs)
-GR1075v1B3 <- readquick("GR1075-B3_17072015.sav") # 9901 obs. of  10 : family composition
+CRsum_mother <- data.frame(e418a_rec, # Income reduced since MID PREG	
+                           f238a_rec,	# Reduced income
+                           g318a_rec,	
+                           h228a_rec,	
+                           j318a_rec,	
+                           k4018a_rec,	
+                           l4018a_rec,
+                           e423a_rec, # Became homeless since PREG	
+                           f243a_rec, # Became homeless	
+                           g323a_rec,	
+                           h233a_rec,	
+                           j323a_rec,	
+                           k4023a_rec,	
+                           l4023a_rec,
+                           e424a_rec, # Major financial PROB since MID PREG	
+                           f244a_rec, # Major financial problems
+                           g324a_rec,	
+                           h234a_rec,	
+                           j324a_rec,	
+                           k4024a_rec,	
+                           l4024a_rec,
+                           b2,	t2, b3,	t3, b4,	t4, b6,	t6). #need to find out what this is from Serena/charlotte.
+ 
+#___________________________________________________________________________________
 
-# Construct GR1075 # used in IR
-GR1075B3 <- data.frame(GR1075v1B3$idc, 
-                       ifelse(GR1075v1B3$children_household_clean > 3, yes = 1, no = 0)) # Family size > 3 children
-# DICH: based on Cecil et al. (2014); Rijlaarsdam et al, (2016).
-colnames(GR1075B3) <- c("IDC", "fam_size_5yrs")
+MHsum_mother <- data.frame(e407a_rec, #Trouble with law since MID PREG
+                           f227a_rec,	#Mum in trouble with law Y/N
+                           g307a_rec,	
+                           h217a_rec,	
+                           j307a_rec,	
+                           k4007a_rec,
+                           l4007a_rec,
+                           e416a_rec, # PTNR in trouble with law since MID PREG
+                           f236a_rec, # Partner in trouble with law	
+                           g316a_rec,
+                           h226a_rec,	
+                           j316a_rec,	
+                           k4016a_rec,
+                           l4016a_rec,
+                           e427a_rec, # Attempted suicide since MID PREG
+                           f248a_rec, # 	Attempted suicide
+                           g328a_rec,	
+                           h238a_rec,	
+                           j328a_rec,	
+                           k4028a_rec,	
+                           l4028a_rec,
+                           e428a_rec, # Convicted since MID PREG
+                           f249a_rec, # Court conviction
+                           g329a_rec,
+                           h239a_rec,
+                           j329a_rec,
+                           k4029a_rec,
+                           l4029a_rec,
+                           e435a_rec, # Attempted abortion since MID PREG
+                           f254a_rec,	#Mum had abortion
+                           g334a_rec,
+                           h244a_rec,
+                           j334a_rec,	
+                           k4034a_rec,	
+                           l4034a_rec,
+                           b1,	t1, # find values for these variables (include/delete?)
+                           b5,	t5,
+                           b12,	t12,
+                           b13	,t13,
+                           b14,	t14,
+                           b15,	t15)
 
-#-------------------------------------------------------------------------------
-## GR1075 - employment (5 yrs)
-GR1075v1E <- readquick("PARENTEMPLOYMENT5_13082012.sav") # 9901 obs. of  7 
+#______________________________________________________
 
-# Construct GR1075
-GR1075E <- data.frame(GR1075v1E$idc, 
-                      ifelse(GR1075v1E$b0500175_clean <= 3, yes = 0, no = 1), # mother occupation
-                      ifelse(GR1075v1E$b1200175_clean<= 3, yes = 0, no = 1)) # father occupation
-# DICH: unemployed if described themselves other than 'paid worker' 
-# or 'self-employed' (e.g. 'student')
-colnames(GR1075E) <- c("IDC", "m_empl_5yrs", "p_empl_5yrs")
+FRsum_mother <- data.frame(e408a_rec, # Divorced since MID PREG
+                           e409a_rec, #PTNR rejected CH since MID PREG
+                           e415a_rec, #PTNR went away since MID PREG
+                           e417a_rec, # Separated since MID PREG
+                           e419a_rec, # Argued with PTNR since MID PREG
+                           e420a_rec, # Argued with FAM/FRDS since MID PREG
+                           e422a_rec, # PTNR hurt MUM since MID PREG
+                           e425a_rec, # Married since MID PREG
+                           e426a_rec, # PTNR hurt CHDR since MID PREG
+                           e437a_rec, # PTNR EMOT cruel to MUM since MID PREG
+                           e438a_rec, # PTNR EMOT cruel to CH since MID PREG
+                           f228a_rec, # Divorce 
+                           f229a_rec, # Child not wanted by partner
+                           f235a_rec, # Partner went away
+                           f237a_rec, # Separation with partner
+                           f239a_rec, # Argued with partner
+                           f240a_rec, # Argued with family or friend
+                           f242a_rec, # Physically hurt by partner
+                           f245a_rec, # Got married
+                           f246a_rec, # Parnter physically cruel to children
+                           f256a_rec, # Partner emotionally cruel to Mum
+                           f257a_rec, # Partner emotionally cruel to children
+                           f247a_rec, # Mum physically cruel to children
+                           g308a_rec, # Mum divorced >CH8MTHs
+                           g309a_rec, # Partner rejected child >CH8MTHs
+                           g315a_rec, # Partner went away >CH8MTHs
+                           g317a_rec, # Mum and partner seperated >CH8MTHs
+                           g319a_rec, # Mum argued with partner >CH8MTHs
+                           g320a_rec, # Mum argued with family and friends >CH8MTHs
+                           g322a_rec, # Partner physically cruel to Mum >CH8MTHs
+                           g325a_rec, # Mum got married >CH8MTHs
+                           g326a_rec, # Partner physically cruel to children >CH8MTHs
+                           g327a_rec, # Mum physically cruel to children >CH8MTHs
+                           g336a_rec, # Partner emotionally cruel to Mum >CH8MTHs
+                           g337a_rec, # Partner emotionally cruel to children >CH8MTHs
+                           g338a_rec, # Mum emotionally cruel to children >CH8MTHs
+                           h218a_rec, # Whether got divorced since study child was 18 months old, Y/N
+                           h219a_rec, # Whether partner rejected children since study child was 18 months old, Y/N
+                           h225a_rec, # Whether partner went away since study child was 18 months old, Y/N
+                           h227a_rec, # Whether mum and partner separated since study child was 18 months old, Y/N
+                           h229a_rec, # Whether mum argued with partner since study child was 18 months old, Y/N
+                           h230a_rec, # Whether mum argued with family and friends since study child was 18 months old, Y/N
+                           h232a_rec, # Whether partner was physically cruel to mum since study child was 18 months old, Y/N
+                           h235a_rec, # Whether mum got married since study child was 18 months old, Y/N
+                           h236a_rec, # Whether partner was physically cruel to children since study child was 18 months old, Y/N
+                           h237a_rec, # Whether mum was physically cruel to children since study child was 18 months old, Y/N
+                           h246a_rec, # Whether partner was emotionally cruel to mum since study child was 18 months old, Y/N
+                           h247a_rec, # Whether partner was emotionally cruel to children since study child was 18 months old, Y/N
+                           h248a_rec, # Whether mum was emotionally cruel to children since study child was 18 months old, Y/N
+                           j308a_rec, # MUM Divorced> CH 30 MTHs y/n
+                           j309a_rec, # MUM Found PTR Not Want CH> CH 30 MTHs y/n
+                           j315a_rec, # Partner Went Away> CH 30 MTHs y/n
+                           j317a_rec, # MUM & Partner Separated> CH 30 MTHs y/n
+                           j319a_rec, # MUM Argued W Partner> CH 30 MTHs y/n
+                           j320a_rec, # MUM Argued W FMLY & FRDs> CH 30 MTHs y/n
+                           j322a_rec, # Partner PHYS Cruel to MUM> CH 30 MTHs y/n
+                           j325a_rec, # MUM Got Married> CH 30 MTHs y/n
+                           j326a_rec, # PTR PHYS Cruel to CDRN> CH 30 MTHs y/n
+                           j327a_rec, # MUM PHYS Cruel to CDRN> CH 30 MTHs y/n
+                           j336a_rec, # PTR Emotionally Cruel to MUM> CH 30 MTHs y/n
+                           j337a_rec, # PTR Emotional Cruel to CDRN> CH 30 MTHs y/n
+                           j338a_rec, # MUM Emotional Cruel to CDRN> CH 30 MTHs y/n
+                           k4008a_rec, # Mother was divorced in past year
+                           k4009a_rec, # Mother found that her partner did not want her child in past year
+                           k4015a_rec, # Mothers partner went away in past year
+                           k4017a_rec, # Mother and partner separated in past year
+                           k4019a_rec, # Mother argued with her partner in past year
+                           k4020a_rec, # Mother argued with family and friends in past year
+                           k4022a_rec, # Mothers partner was physically cruel to her in past year
+                           k4025a_rec, # Mother got married in past year
+                           k4026a_rec, # Mothers partner was physically cruel to children in past year
+                           k4027a_rec, # Mother was physically cruel to children in past year
+                           k4036a_rec, # Mothers partner was emotionally cruel to her in past year
+                           k4037a_rec, # Mothers partner was emotionally cruel to children in past year
+                           k4038a_rec, # Mother was emotionally cruel to children in past year
+                           l4008a_rec, # Respondent was divorced since study child's 5th birthday
+                           l4009a_rec, # Respondent found their partner did not want their child since study child's 5th birthday
+                           l4015a_rec, # Respondent's partner went away since study child's 5th birthday
+                           l4017a_rec, # Respondent separated from partner since study child's 5th birthday
+                           l4019a_rec, # Respondent argued with partner since study child's 5th birthday
+                           l4020a_rec, # Respondent argued with family/friends since study child's 5th birthday
+                           l4022a_rec, # Respondent's partner was physically cruel to them since study child's 5th birthday
+                           l4025a_rec, # Respondent got married since study child's 5th birthday
+                           l4026a_rec, # Respondent's partner physically cruel to respondent's children since study child's 5th birthday
+                           l4027a_rec, # Respondent physically cruel to own children since study child's 5th birthday
+                           l4036a_rec, # Respondent's partner was emotionally cruel to them since study child's 5th birthday
+                           l4037a_rec, # Respondent's partner was emotionally cruel to respondent's children since study child's 5th birthday
+                           l4038a_rec, # Respondent was emotionally cruel to their children since study child's 5th birthday
+                           l4040a_rec, # Respondent found new partner since study child's 5th birthday
+                           b7,
+                           b8,
+                           b9,
+                           b10,
+                           b11,
+                           b16,
+                           b17,
+                           b18,
+                           t7,
+                           t8,
+                           t9,
+                           t10,
+                           t11,
+                           DV_Shouted_21M,    #find these variables (delete/include?)
+                           DV_Hit_21M,
+                           DV_Break_21M,
+                           DV_Shouted_33M,
+                           DV_Hit_33M,
+                           DV_Break_33M,
+                           DV_Shouted_6Y,
+                           DV_Hit_6Y,
+                           DV_Break_6Y,
+                           Par_Shout_0_7_MedSplit,
+                           Par_Smack_0_7_MedSplit).)
 
-#-------------------------------------------------------------------------------
-## GR1079 (5-8 yrs) - bullying assessed by teacher
-GR1079v1 <- readquick("20141027_TRFteacherCleaned.sav") # 7580 obs. of  336
+#__________________________________________________________________
 
-# Construct GR1079 # used in DV score 
-GR1079 <- data.frame(GR1079v1$idc, 
-                     ifelse(GR1079v1$d0100179 >= 3, yes = 1, no = 0), # physical bulying (hit, kick, pinch, bite) according to the teacher
-                     ifelse(GR1079v1$d0100279 >= 3, yes = 1, no = 0), # verbal bullying (laugh at, insult, tease) according to the teacher
-                     ifelse(GR1079v1$d0100379 >= 3, yes = 1, no = 0)) # excluded, according to the teacher
-# DICH: based on previous work on bullying in Gen R (Muetzel et al., 2019).
-# If child was verbally/physically/relationally bullied once a week or more = risk. 
-colnames(GR1079) <- c("IDC", "bully_physical_t", "bully_verbal_t", "bully_excluded_t")
-#-------------------------------------------------------------------------------
-## GR1080E (8 yrs) - bullying assessed by main caregiver
-GR1080v1E <- readquick("GR1080-E_Bullying_17072015.sav") # 9901 obs. of  11 
+DVsum_child <- data.frame( kd504b_rec,	 # Ch physically hurt by someone (adj)
+                            kf454a_rec,	# Child physically hurt > 18 months, Y/N
+                            kj464a_rec,	# Child Was Physically Hurt By Person Y/N
+                            kl474a_rec,	# Child was physically hurt by someone since age 3 (not Y/N)
+                            kn4004a_rec,	# Child physically hurt by someone in past 15 months
+                            kq364a_rec, # Child was physically hurt by someone since his/her 5th birthday (Y/N)
+                            kd505b_rec,	# Ch sexually abused (adj)
+                            kf455a_rec,	# Child sexually abused > 18 months, Y/N
+                            kj465a_rec,	# Child Sexually Abused Y/N
+                            kl475a_rec,	# Child was sexually abused since age 3
+                            kn4005a_rec,	# Child sexually abused in past 15 months
+                            kq365a_rec, # Child was sexually abused since his/her 5th birthday (Y/N)
+                            SDQBullied_4_YN,	SDQBullied_7_YN)
 
-# First I need to recode some weird SPSS missing codes into NAs
-GR1080v1E$e0100280[GR1080v1E$e0100280 == 88] <- NA; GR1080v1E$e0100380[GR1080v1E$e0100380 == 88] <- NA; GR1080v1E$e0100480[GR1080v1E$e0100480 == 88] <- NA;
+#________________________________________________________________________
 
-# Construct GR1080 # used in DV score      # CHECK THE DATA, MAX IS 88, WHA?
-GR1080E <- data.frame(GR1080v1E$idc, 
-                      ifelse(GR1080v1E$e0100280 >= 4, yes = 1, no = 0), # how often your bullied (insulted, calling names or laughed at)
-                      ifelse(GR1080v1E$e0100380 >= 4, yes = 1, no = 0), # how often your bullied (spitting, hitting, kicking or pinching)
-                      ifelse(GR1080v1E$e0100480 >= 4, yes = 1, no = 0)) # how often your bullied (excluded, ignored or gossiped about)
-# DICH: based on previous work on bullying in Gen R (Muetzel et al., 2019).
-# If child was verbally/physically/relationally bullied once a week or more = risk. 
-colnames(GR1080E) <- c("IDC", "bully_physical_m", "bully_verbal_m", "bully_excluded_m")
-
-#-------------------------------------------------------------------------------
-## GR1080 (8 yrs)
-GR1080v1C <- readquick("GR1080-C10-11_04042017.sav") # 9901 obs. of  23 (academic performance)
-
-# Construct GR1080 # used in LE
-GR1080C <- data.frame(GR1080v1C$idc,
-                      GR1080v1C$cleaned_c1001280v2) # has your child repeated any grades?
-colnames(GR1080C) <- c("IDC", "rep_grade_8yrs")
-#-------------------------------------------------------------------------------
-## GR1082 (10 yrs)
-GR1082v1 <- readquick("GR1082_C1-5_22092016.sav") # 9901 obs. of  16 (academic performance)
-
-# Construct GR1082 # used in LE
-GR1082 <- data.frame(GR1082v1$idc, 
-                     GR1082v1$c0300182_cleaned) # has your child repeated any grades?
-colnames(GR1082) <- c("IDC", "rep_grade_10yrs")
-
-#-------------------------------------------------------------------------------
-## GR1081 E3-6 (10 yrs)
-GR1081v1 <- readquick("GR1081_E1-3_5-6_08082016.sav") # 9901 obs. of  35 
-
-# Construct GR1081 # used in CR (mainly) and in IR (family size)
-GR1081 <- data.frame(GR1081v1$idc, 
-                     ifelse(GR1081v1$e0600181_v2 > 1, yes = 1, no = 0), # trouble paying for food, rent, electricity
-                     # DICH: 'no problems at all' = no risk, 'few problems' to 'a lot problems' = risk.
-                     recode(GR1081v1$e0100281_v2,'0=1; 1=0'), # Sufficient heating in house during cold weather # INVERSE
-                     recode(GR1081v1$e0100381_v2,'0=1; 1=0'), # pay rent or mortgage without problems # INVERSE
-                     recode(GR1081v1$e0100481_v2,'0=1; 1=0'), # on average one hot meal per day # INVERSE
-                     recode(GR1081v1$e0100581_v2,'0=1; 1=0'), # own or lease a car # INVERSE
-                     recode(GR1081v1$e0100681_v2,'0=1; 1=0'), # own a washing machine # INVERSE
-                     recode(GR1081v1$e0100781_v2,'0=1; 1=0'), # own a refrigerator # INVERSE
-                     recode(GR1081v1$e0100881_v2,'0=1; 1=0'), # own a telephone # INVERSE
-                     recode(GR1081v1$e0101181_v2,'0=1; 1=0'), # holidays away from home 1 or more weeks per year # INVERSE
-                     # the above items are taken from the Material deprivation questionnaire.
-                     ifelse(GR1081v1$e0200181_v2 < 4, yes = 1, no = 0), # household income per month
-                     # DICH: according to the Central Statistic Netherlands (2013). 
-                     # Net household income below 1600 ???/month (basic needs level) = risk.
-                     ifelse(GR1081v1$e0200381_v2 > 3, yes = 1, no = 0)) # how many children live with this income.
-# DICH: based on Cecil et al. (2014); Rijlaarsdam et al, (2016).
-# Family of more than three children = risk. 
-colnames(GR1081) <- c("IDC", "trouble_pay_9yrs", "mat_depr_heating", "mat_depr_rent", 
-                      "mat_depr_meal", "mat_depr_car", "mat_depr_washingmachine", 
-                      "mat_depr_refrigerator", "mat_depr_telephone", "mat_depr_holidays",
-                      "income_9yrs","fam_size_9yrs")
-#-------------------------------------------------------------------------------
-## GR1081 - employment (10 yrs)
-GR1081v1E4 <- readquick("GR1081_E4_30082016.sav")
-
-# Construct GR1081E
-GR1081E4 <- data.frame(GR1081v1E4$idc, 
-                       ifelse(GR1081v1E4$e0400181_v2 > 1, yes = 1, no = 0)) # do you receive any benefits?
-# any kind of benefit (social, unemployment or disability allowances) = risk.
-colnames(GR1081E4) <- c("IDC", "empl_9yrs")
-#-------------------------------------------------------------------------------
-## GR1081 I - TV (10 yrs)
-GR1081v1I <- readquick("GR1081_I1-9_08082016.sav") # 9901 obs. of  29
-
-# Construct GR1081 I # used in CR
-GR1081I <- data.frame(GR1081v1I$idc, 
-                      ifelse(GR1081v1I$i0100181_cleaned < 2, yes = 1, no = 0)) # how many televisions in the house?
-# DICH: 1 = no television, 0 = at least one television.
-# This item used in the material deprivation index, together with variables from the 
-# Material deprivation questionnaire, to increase resemblance with EU-SILC guidelines.
-colnames(GR1081I) <- c("IDC", "mat_depr_tv")
-
-#-------------------------------------------------------------------------------
-# Brief Symptoms Inventory (3 and 9 yrs)
-BSI3 <- readquick("BSI 3 years of age_GR1065 G1-GR1066 C1_22112016.sav")
-BSI9 <- readquick("GR1081-GR1083_D1_BSI_19042017.sav")
-BSI <- merge(BSI3, BSI9, by = 'idc', all = T)
-
-# Psychopathology includes three syndrome domains: interpersonal sensitivity, 
-# depression and anxiety, measured in main caregivers and partners at the ages 3 and 9.
-# DICH: according to the Dutch BSI manual (De Beurs, 2009). Cutoffs values denote the 
-# transition from health to sickness and are gender and scale specific. 
-
-# INTERPERSONAL SENSITIVITY: Items 20, 21, 22, and 42
-#                             # mother
-m_is_3yrs = bsi_scores(items = c('g0101065', 'g0101165', 'g0101265', 'g0101765'), 
-                       filledinby = BSI$gr1065_filledinby,
-                       cutoff = c(.95, .78, .78, 1.12, 999))
-m_is_9yrs = bsi_scores(items = c('d0101081_cleaned', 'd0101181_cleaned', 'd0101281_cleaned', 'd0101781_cleaned'),
-                       filledinby = BSI$gr1081_filledinby,
-                       cutoff = c(.95, .95, .78, .78, 1.12))
-#                            # father
-f_is_3yrs = bsi_scores(items = c('c0101066', 'c0101166', 'c0101266', 'c0101766'),
-                       filledinby = BSI$gr1066_filledinby,
-                       cutoff = c(.78, .78, .95, 1.12, 999))
-f_is_9yrs = bsi_scores(items = c('d0101083_cleaned', 'd0101183_cleaned', 'd0101283_cleaned', 'd0101783_cleaned'),
-                       filledinby = BSI$gr1083_filledinby,
-                       cutoff = c(.78, .78, .95, .95, 1.12))
-# DEPRESSION: Items 9, 16, 17, 18, 35, and 50
-#                           # mother
-m_dep_3yrs = bsi_scores(items = c('g0100365', 'g0100665', 'g0100765', 'g0100865', 'g0101365', 'g0102165'),
-                        filledinby = BSI$gr1065_filledinby,
-                        cutoff = c(.80, .71, .71, .75, 999))
-m_dep_9yrs = bsi_scores(items = c('d0100381_cleaned', 'd0100681_cleaned', 'd0100781_cleaned', 'd0100881_cleaned', 'd0101381_cleaned', 'd0102181_cleaned'),
-                        filledinby = BSI$gr1081_filledinby,
-                        cutoff = c(.80, .80, .71, .71, .75))
-#                           # father
-f_dep_3yrs = bsi_scores(items = c('c0100366', 'c0100666', 'c0100766', 'c0100866', 'c0101366', 'c0102166'),
-                        filledinby = BSI$gr1066_filledinby,
-                        cutoff = c(.71, .71, .80, .75, 999))
-f_dep_9yrs = bsi_scores(items = c('d0100383_cleaned', 'd0100683_cleaned', 'd0100783_cleaned', 'd0100883_cleaned', 'd0101383_cleaned', 'd0102183_cleaned'),
-                        filledinby = BSI$gr1083_filledinby,
-                        cutoff = c(.71, .71, .80, .80, .75))
-# ANXIETY: Items 1, 12, 19, 38, 45, and 49 
-#                           # mother
-m_anx_3yrs = bsi_scores(items = c('g0100165', 'g0100465', 'g0100965', 'g0101465', 'g0101865', 'g0102065'),
-                        filledinby = BSI$gr1065_filledinby,
-                        cutoff = c(.71, .65, .65, .75, 999))
-m_anx_9yrs = bsi_scores(items = c('d0100181_cleaned', 'd0100481_cleaned', 'd0100981_cleaned', 'd0101481_cleaned', 'd0101881_cleaned', 'd0102081_cleaned'),
-                        filledinby = BSI$gr1081_filledinby,
-                        cutoff = c(.71, .71, .65, .65, .75))
-#                           # father
-f_anx_3yrs = bsi_scores(items = c('c0100166', 'c0100466', 'c0100966', 'c0101466', 'c0101866', 'c0102066'),
-                        filledinby = BSI$gr1066_filledinby,
-                        cutoff = c(.71, .71, .80, .75, 999))
-f_anx_9yrs = bsi_scores(items = c('d0100183_cleaned', 'd0100483_cleaned', 'd0100983_cleaned', 'd0101483_cleaned', 'd0101883_cleaned', 'd0102083_cleaned'),
-                        filledinby = BSI$gr1083_filledinby,
-                        cutoff = c(.71, .71, .80, .80, .75))
-
-# Construct the set to add to the dataset
-BSI_dich <- data.frame(BSI$idc, BSI$idm,
-                       m_is_3yrs, m_is_9yrs, f_is_3yrs, f_is_9yrs, 
-                       m_dep_3yrs, m_dep_9yrs, f_dep_3yrs, f_dep_9yrs,
-                       m_anx_3yrs, m_anx_9yrs, f_anx_3yrs, f_anx_9yrs)
-# BSI$gr1065_filledinby, BSI$gr1066_filledinby, BSI$gr1081_filledinby, BSI$gr1083_filledinby # Isabel also included these, but I don't think they are used
-colnames(BSI_dich) <- c("IDC", "IDM", "m_is_3yrs", "m_is_9yrs", "f_is_3yrs", "f_is_9yrs", 
-                        "m_dep_3yrs", "m_dep_9yrs", "f_dep_3yrs", "f_dep_9yrs",
-                        "m_anx_3yrs", "m_anx_9yrs", "f_anx_3yrs", "f_anx_9yrs")
 
 #-------------------------------------------------------------------------------
-# Family Assessment Device 
-FAD5 <- readquick("GR1075-B4_17072015.sav")
-FAD9m <- readquick("GR1081_E1-3_5-6_08082016.sav") # We used this file already but let's give it a nicer name
-FAD9f <- readquick("GR1083_E7_19102016.sav")
-
-m_fad_9yrs <- data.frame(5 - FAD9m$e0500181_v2, # Recode inverse item
-                         5 - FAD9m$e0500381_v2, # Recode inverse item
-                         5 - FAD9m$e0500581_v2, # Recode inverse item
-                         5 - FAD9m$e0500781_v2, # Recode inverse item
-                         5 - FAD9m$e0500981_v2, # Recode inverse item
-                         5 - FAD9m$e0501181_v2, # Recode inverse item
-                         FAD9m$e0500281_v2, 
-                         FAD9m$e0500481_v2, 
-                         FAD9m$e0500681_v2, 
-                         FAD9m$e0500881_v2, 
-                         FAD9m$e0501081_v2, 
-                         FAD9m$e0501281_v2)
-
-p_fad_9yrs <- data.frame(5 - FAD9f$e0700183v2, # Recode inverse item
-                         5 - FAD9f$e0700383v2, # Recode inverse item
-                         5 - FAD9f$e0700583v2, # Recode inverse item
-                         5 - FAD9f$e0700783v2, # Recode inverse item
-                         5 - FAD9f$e0700983v2, # Recode inverse item
-                         5 - FAD9f$e0701183v2, # Recode inverse item
-                         FAD9f$e0700283v2, 
-                         FAD9f$e0700483v2, 
-                         FAD9f$e0700683v2, 
-                         FAD9f$e0700883v2, 
-                         FAD9f$e0701083v2, 
-                         FAD9f$e0701283v2) 
-# The total score at age 5 is already dichotomous, age 9 need to be dichotomized manually.
-m_fad_9y = fad_scores(m_fad_9yrs)
-p_fad_9y = fad_scores(p_fad_9yrs)
-
-FAD_dich <- data.frame(FAD5$idc, FAD5$fad_5y, m_fad_9y, p_fad_9y)
-colnames(FAD_dich) <- c("IDC","m_fad_5yrs","m_fad_9yrs","p_fad_9yrs")
 
 #-------------------------------------------------------------------------------
 # This function merges together all separate data.frames according to the IDC
 # results in a dataframe with all relevant items for postnatal stress.
 # tech-tip: because merge can only take two data.frames at the time and I am lazy, I used Reduce.
 postnatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'IDC',  all = TRUE),
-                           list(BSI_dich, FAD_dich, life_events, parenting, GR1065, 
-                                GR1065G, GR1065X, GR1075, GR1075B3, GR1075E, GR1079, 
-                                GR1080E, GR1080C, GR1082, GR1081, GR1081E4, GR1081I)) 
+                           list(LEsum_child, DVsum_child)) 
 #-------------------------------------------------------------------------------
 fetal_general <- readquick("FETALPERIOD-ALLGENERALDATA_29012018.sav") # 9778 obs of 95 var
 
