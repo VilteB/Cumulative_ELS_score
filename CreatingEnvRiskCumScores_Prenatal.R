@@ -157,7 +157,7 @@ Prenatal_InterpersonalRisks <- data.frame(alspac.table[,c("aln", # add mothers I
 
 # 5. CREATE PRENATAL CUMULATIVE RISK SCORE 
 
-# This function merges together all prenatal ELS domains according to the IDM column 
+# This function merges together all prenatal ELS domains according to the 'aln' column 
 # results in a dataframe with all relevant items for prenatal stress.
 # tech-tip from Serena: use Reduce because merge can only take two dataframes at a time 
 
@@ -191,7 +191,6 @@ prenatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x =
 # 7. SUMMARY STATISTICS 
 
 # Let's have a look at risk distribution and missing data per indicator (as per Serena's script) 
-# I don't think this section will work with ALSPAC data. We probably will need to tweak the code. 
 
 prenatal_summary = data.frame(row.names=c("no risk","risk","NA","%risk","%miss"))
 
