@@ -146,7 +146,7 @@ Postnatal_8_10_DirectVictim <- data.frame(data.frame(alspac.table[,c("aln", # ad
                                    "kt5004a_rec", # Since 7th birthday child has been physically hurt by someone
                                    "kt5005a_rec")]) # Since 7th birthday child has been sexually abused
                                    # SDQBullied_8_YN, # Child is picked on or bullied by other children in past 6 months (original variable: ku698) 
-                                   # RelationalVictim_8yrs_Recoded, # Bullying, child is a relational victim (original variable: F8f8fp475)
+                                   # RelationalVictim_8yrs_Recoded, # Bullying, child is a relational victim (original variable: f8fp475)
                                    # OvertVictim_8yrs_Recoded)]) # Bullying, child is an overt victim (original variable: f8fp470)
 
 
