@@ -8,7 +8,7 @@
 ####################################################################################################################################################
 
 # The following script builds a dataset with all variables and domain scores used in
-# the creation of prenatal cumulative risk score by Cecil et al. (2014). 
+# the creation of postnatal cumulative risk score by Cecil et al. (2014). 
 # It adapts the scripts developed by S. Defina where she created a similar score for Generation R. 
 
 # The script contains the following functions: readquick, percent_missing and domainscore
@@ -18,7 +18,7 @@
 
 
 # first, exclude duplicated values (based on first 4 column names; keep first and remove second occurence)
-alspac.table = alspac.table %>% distinct(aln,qlet,kz021,ff1ms100, .keep_all = T) # I copied this from prenatal but not sure whether it applies for postnatal as well
+alspac.table = alspac.table %>% distinct(aln,qlet,kz021,ff1ms100, .keep_all = T) # ATTENTION: I copied this from prenatal but not sure whether it applies for postnatal as well
 
 # remote siblings (all qlet=B)
 alspac.table=alspac.table[alspac.table$qlet=="A",] # copied from prenatal 
@@ -155,8 +155,8 @@ Postnatal_8_10_DirectVictim <- data.frame(data.frame(alspac.table[,c("aln", # ad
 
 # 6. CREATE POSTNATAL CUMULATIVE RISK SCORE 
 
-# This function merges together all prenatal ELS domains according to the 'aln' column 
-# results in a dataframe with all relevant items for prenatal stress.
+# This function merges together all postnatal ELS domains according to the 'aln' column 
+# results in a dataframe with all relevant items for postnatal stress.
 # tech-tip from Serena: use Reduce because merge can only take two dataframes at a time 
 
 postnatal_stress_8_9Y <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
@@ -211,7 +211,7 @@ postnatal_stress_8_9Y$post_percent_missing = apply(postnatal_stress_8_9Y[,2:ncol
 
 # BEFORE RUNNING THE SCRIPT BELOW MAKE SURE YOU OBTAINED THE 'DOMAINSCORE' FUNCTION FROM SEREDEF
 # 'Setup_and_functions.R' script at https://github.com/SereDef/cumulative-ELS-score 
-# Running the domainscore function will add two extra columns to prenatal_stress dataframe: 
+# Running the domainscore function will add two extra columns to postnatal_stress dataframe: 
 # one containing the % of missingnes per participant and the other containing the domain score 
 
 # LIFE EVENTS
