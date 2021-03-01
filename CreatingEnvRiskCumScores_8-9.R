@@ -292,22 +292,22 @@ postnatal_stress_8_9Y[,c('post_IR_percent_missing','post_interpersonal_risk')] <
       "p2036_rec", # Mother's husband/partner was emotionally cruel to her since the study child's 6th birthday
       "p2037_rec", # Mother's husband/partner was emotionally cruel to her children since the study child's 6th birthday
       "p2038_rec", # Mother was emotionally cruel to her children since the study child's 6th birthday
-      "p2040_rec")]) # Mother found a new partner since the study child's 6th birthday
-    # DV_Shouted_9Y, # Mother/husband/partner shouted or called one another names in the past 3 months (original, non-dichotomised variable: p3153)
-    # DV_Hit_9Y # Mother/husband/partner hit or slapped one another in the past 3 months (original, non-dichotomised variable: p3154)
-    # DV_Break_9Y # Mother/husband/partner threw or broke things in the past 3 months (original, non-dichotomised variable: p3155)
-    # Par_Smack_9Y_Any)]) # Child is slapped or hit (original, non-dichotomised variable: ku298)
+      "p2040_rec", # Mother found a new partner since the study child's 6th birthday
+      "p3153_rec", # Mother/husband/partner shouted or called one another names in the past 3 months (in Cha script called: DV_Shouted_9Y)
+      "p3154_rec", # Mother/husband/partner hit or slapped one another in the past 3 months (in Cha script called: DV_Hit_9Y)
+      "p3155_rec", # Mother/husband/partner threw or broke things in the past 3 months (in Cha script called:: DV_Break_9Y)
+      "ku298_rec")]) # Child is slapped or hit (in Cha script called: Par_Smack_9Y_Any)
 
-  
   
 # DIRECT VICTIMISATION
   
 postnatal_stress_8_9Y[,c('post_DV_percent_missing','post_direct_victimization')] <- domainscore(postnatal_stress_8_9Y[,c(
       "kt5004a_rec", # Since 7th birthday child has been physically hurt by someone
-      "kt5005a_rec")]) # Since 7th birthday child has been sexually abused
-    # SDQBullied_8_YN, # Child is picked on or bullied by other children in past 6 months (original variable: ku698) 
-    # RelationalVictim_8yrs_Recoded, # Bullying, child is a relational victim (original variable: F8f8fp475)
-    # OvertVictim_8yrs_Recoded)]) # Bullying, child is an overt victim (original variable: f8fp470)
+      "kt5005a_rec" # Since 7th birthday child has been sexually abused
+      "f8fp475a_rec", # Bullying, child is a relational victim (in Cha script called: RelationalVictim_8yrs_Recoded)
+      "f8fp470")]) # Bullying, child is an overt victim (in Cha script called: OvertVictim_8yrs_Recoded)
+      # SDQBullied_8_YN, # Child is picked on or bullied by other children in past 6 months (original variable: ku698) 
+   
 
 
 ####################################################################################################################################################
@@ -319,8 +319,8 @@ saveRDS(postnatal_stress_8_9Y, paste(pathtodata,'postnatal_stress_8_9Y.rds', sep
 saveRDS(postnatal_summary_8_9Y, paste(pathtodata,'postnatal_stress_summary_8_9Y.rds', sep = ""))
 
 # Or save the dataset in a .csv format, in the directory where you have the raw data
-write.csv(postnatal_stress_8_9Y, file = "prenatal_stress_8_9Y.csv", row.names = FALSE, quote = FALSE)
-write.csv(postnatal_summary_8_9Y, file = "prenatal_stress_summary_8_9Y.csv", row.names = T, quote = FALSE)
+write.csv(postnatal_stress_8_9Y, file = "postnatal_stress_8_9Y.csv", row.names = FALSE, quote = FALSE)
+write.csv(postnatal_summary_8_9Y, file = "postnatal_stress_summary_8_9Y.csv", row.names = T, quote = FALSE)
 
 ####################################################################################################################################################
 
