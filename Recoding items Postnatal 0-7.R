@@ -1,14 +1,14 @@
 ####################################################################################################################################################
 
-# PRENATAL
+# POSTNATAL
 
 ####################################################################################################################################################
 
-# This script is used for dichotomising prenatal ELS variables into 1 = risk and 0 = no risk. 
+# This script is used for dichotomising postnatal ELS variables into 1 = risk and 0 = no risk. 
 
 # 1. LIFE EVENTS
 
-# Originally, variables have been coded as:
+# In most cases, variables have been coded as:
 
 # 1 = affected a lot
 # 2 = fairly affected
@@ -116,8 +116,7 @@ vars = c("e400", # PTNR died since MID PREG
          "g341", # A pet died >CH8MTHs
          "g342") # Mum had accident >CH8MTHs).)
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+        
          yes = c("yes had big effect","yes medium effect","yes mild effect","yes but no effect")
          no = c("didnt happen")
          
@@ -145,12 +144,10 @@ vars = c("e400", # PTNR died since MID PREG
          "h251", # Whether a pet died since study child was 18 months old, Y/N
          "h252")  # Whether mum had an accident since study child was 18 months old, Y/N)
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+         
          yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
          no = c("No")
          
-         # now check if these levels are present and no other levels were missed out 
          vars = c("j300", # Partner Died > CH 30 MTHs y/n
          "j301", # 1 of MUMs Children Died> CH 30 MTHs y/n
          "j302", # MUMs FRD or Relative Died> CH 30 MTHs y/n
@@ -174,12 +171,11 @@ vars = c("e400", # PTNR died since MID PREG
          "j341", # MUMs Pet Died> CH 30 MTHs y/n
          "j342") # MUM Had Accident> CH 30 MTHs y/n) 
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+        
          yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
          no = c("No, did not happen")
          
-         # now check if these levels are present and no other levels were missed out 
+        
          vars = c("k4000", # Mothers partner died in past year
          "k4001", # Mothers child died in past year
          "k4002", # D3: Mothers friend or relative died in past year
@@ -203,8 +199,7 @@ vars = c("e400", # PTNR died since MID PREG
          "k4041", # Mothers pet died in past year
          "k4042") # Mother had Accident in past year
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+        
          yes = c("Yes & affected respondent alot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
          no = c("No, did not happen")
          
@@ -233,12 +228,10 @@ vars = c("e400", # PTNR died since MID PREG
          "l4044", # Respondent had an accident since study child's 5th birthday
          "l4041") # One of respondent's children started new school since study child's 5th birthday
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
          yes = c("Yes")
          no = c("No")
          
-         # now check if these levels are present and no other levels were missed out 
+         
          vars = c("kd500b", # Ch taken into car
          "kd501b", # A pet died (adj)
          "kd502b", # Ch moved home (adj)
@@ -252,12 +245,11 @@ vars = c("e400", # PTNR died since MID PREG
          "kd512b", # Ch separated from someone else (adj)
          "kd513b") # Ch started nursery (adj))
       
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+        
          yes = c("Yes")
          no = c("No")
          
-         # now check if these levels are present and no other levels were missed out 
+
          vars = c("kf450", # Child taken into care > 18 months, Y/N
          "kf451a", # A pet died > 18 months, Y/N
          "kf452a", # Child moved home > 18 months, Y/N
@@ -271,12 +263,11 @@ vars = c("e400", # PTNR died since MID PREG
          "kf462a", # Child sep.from somebody > 18 months, Y/N
          "kf463a") # Child started new creche >18 months, Y/N)
         
-          # our R data file uses factor levels (not numeric) 
-         # define levels first
+
          yes = c("Yes")
          no = c("No")
          
-         # now check if these levels are present and no other levels were missed out 
+
          vars = c("kj460", # Child Taken Into Care Y/N
          "kj461a", # Pet died Y/N
          "kj462a", # Child Moved Home Y/N
@@ -290,12 +281,10 @@ vars = c("e400", # PTNR died since MID PREG
          "kj472a", # Child Separated From Someone Else Y/N
          "kj473a") # Child Started New Creche Y/N)
         
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+       
          yes = c("Yes, child was very upset","Yes, child was very upset","Yes, child was a bit upset","Yes, child was not upset")
          no = c("No, did not happen")
          
-         # now check if these levels are present and no other levels were missed out 
          vars = c("kl470", # Child taken into care since age 3
          "kl471", # A pet died since child age 3
          "kl472", # Child moved home since age 3
@@ -310,12 +299,10 @@ vars = c("e400", # PTNR died since MID PREG
          "kl483", # Child started new nursery/kindergarten since age 3
          "kl484") # Child started school since age 3)
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
          yes = c("Yes And Was Very Upset","Yes And Was Quite Upset","Yes And Was A Bit Upset","Yes But Was Not Upset")
          no = c("No Did Not Happen")
          
-         # now check if these levels are present and no other levels were missed out 
+         
          vars = c("kn4000", #  Child taken into care in past 15 months
          "kn4001", # Child's pet die in past 15 months
          "kn4002", # Child move home in past 15 months
@@ -330,12 +317,11 @@ vars = c("e400", # PTNR died since MID PREG
          "kn4013", # Child start a new nursery in past 15 months
          "kn4014") # Child start school in past 15 months)
          
-         # our R data file uses factor levels (not numeric) 
-         # define levels first
+
          yes = c("Yes")
          no = c("No")
          
-         # now check if these levels are present and no other levels were missed out 
+
          vars = c("kq360", # Child was taken into care since his/her 5th birthday (Y/N)
          "kq361a", # A pet died since child's 5th birthday (Y/N)
          "kq362a", # Child moved home since his/her 5th birthday (Y/N)
