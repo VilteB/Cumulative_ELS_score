@@ -1,7 +1,5 @@
 ##This version removes all of Charlottes varibales, that we did not request 
 
-* OXTR - CU/ANX PAPER
-* COLLAPSING/DICHOTOMIZING ENV RISK ITEMS
 
 #Remove DV_shouted, DV_hit and DV_break 
 #Remove Mother_feelings
@@ -70,19 +68,19 @@ source("Setup_and_functions.R")
 # ATTENTION! The code assumes you have run the SPSS Syntax that calculates 80th percentile harsh parenting scores.
 # (V:\Promovendi\Datasets\Gedragsgroep\Questionnaire data\After birth\0-3 years\Harsh parenting_Parent Child Conflict Tactics Scale\Syntax harsh parenting 3jr_PJ10012011)
 # or most recent version.
-parentingv1 <- readquick("New Parenting 3 years of age_GR1065 F1F6 -GR1066 B1-B5_22112016.sav") # 9897 obs of 130 columns
+#parentingv1 <- readquick("New Parenting 3 years of age_GR1065 F1F6 -GR1066 B1-B5_22112016.sav") # 9897 obs of 130 columns
 
 # NOTE: There are no official guidelines for dichotomization of the Parent Child Conflict Tactics scale. 
 # We based dichotomization on previous work in Gen R (Jansen et al., 2017): i.e. 80th percentile split. 
 
 # Construct GR1065 # used for DV domain.
-parenting <- data.frame(parentingv1$idc, parentingv1$harsh80_p, parentingv1$harsh80_m)
-colnames(parenting) <- c("IDC", "p_harsh_parent", "m_harsh_parent")
+#parenting <- data.frame(parentingv1$idc, parentingv1$harsh80_p, parentingv1$harsh80_m)
+#colnames(parenting) <- c("IDC", "p_harsh_parent", "m_harsh_parent")
 
 #-------------------------------------------------------------------------------
 ##Adding 3 week Life Events (not present in GenR) from mother
 ## GR1065-G2 (3 yrs)
-GR1065v1 <- readquick("insert ALSPAC data here") # 9901 obs. of  28 
+#GR1065v1 <- readquick("insert ALSPAC data here") # 9901 obs. of  28 
 
 #_________________________________________________________________________________________________________________________
 
