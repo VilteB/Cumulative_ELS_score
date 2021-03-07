@@ -4,6 +4,21 @@
 
 ####################################################################################################################################################
 
+#Family Risk
+
+
+  
+#Mother feelings 
+
+h760 = MatEnjoyment_33M_Bottom10
+
+#no low par involv 6m, 3Y or 6Y
+#Shout 
+Par_Shout_0_7_Tot
+
+ke017 #Par_Smack_2Y
+
+
 # This script is used for dichotomising postnatal ELS variables into 1 = risk and 0 = no risk. 
 
 # 1. LIFE EVENTS
@@ -32,6 +47,7 @@
 yes = c("Affected a lot","MOD affected","Mildly affected","No effect")
 no = c("didnt happen")
 
+#LE 8W
 # now check if these levels are present and no other levels were missed out 
 vars = c("e400", # PTNR died since MID PREG
          "e401", # CH died since MID PREG
@@ -56,13 +72,46 @@ vars = c("e400", # PTNR died since MID PREG
          "e439", # House burglary/car theft since MID PREG
          "e440") # Accident since MID PREG
          
-         
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+
+
+#LE 8M  
+
 #This is an example where the phrasing of answers is slightly different to that of before, so we require new definitions for each timepoint
 #our R data file uses factor levels (not numeric) 
          # define levels first
          yes = c("Y much affected","Y MOD affected","Y mildly affected","Y but N effect")
          no = c("N did not happen")
-         
+       
          # now check if these levels are present and no other levels were missed out 
          vars = c(
          "f220", # Death of partner
@@ -86,11 +135,48 @@ vars = c("e400", # PTNR died since MID PREG
          "f260", # New job for partner
          "f261") # Pet died
          
-         # our R data file uses factor levels (not numeric) 
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])        
+         
+         
+         
+         
+         
+         
+ #LE 21M          
+         
+           # our R data file uses factor levels (not numeric) 
          # define levels first
          yes = c("Yes Big Effect","Yes Some Effect","Yes Mild Effect","Yes No Effect")
          no = c("Did Not Happen")
-         
+
          # now check if these levels are present and no other levels were missed out 
          vars = c(   
          "g300", # Partner died >CH8MTHs
@@ -116,7 +202,40 @@ vars = c("e400", # PTNR died since MID PREG
          "g341", # A pet died >CH8MTHs
          "g342") # Mum had accident >CH8MTHs).)
          
-        
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])        
+         
+              
+       
+ #LE 3Y           
+         
          yes = c("yes had big effect","yes medium effect","yes mild effect","yes but no effect")
          no = c("didnt happen")
          
@@ -144,6 +263,38 @@ vars = c("e400", # PTNR died since MID PREG
          "h251", # Whether a pet died since study child was 18 months old, Y/N
          "h252")  # Whether mum had an accident since study child was 18 months old, Y/N)
          
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])         
+         
+         
+#LE 4Y            
          
          yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
          no = c("No")
@@ -170,12 +321,43 @@ vars = c("e400", # PTNR died since MID PREG
          "j340", # Partner Began New Job> CH 30 MTHs y/n
          "j341", # MUMs Pet Died> CH 30 MTHs y/n
          "j342") # MUM Had Accident> CH 30 MTHs y/n) 
+ 
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
          
-        
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])           
+ 
+         
+#LE 5Y          
+           
          yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
          no = c("No, did not happen")
-         
-        
+
          vars = c("k4000", # Mothers partner died in past year
          "k4001", # Mothers child died in past year
          "k4002", # D3: Mothers friend or relative died in past year
@@ -200,10 +382,45 @@ vars = c("e400", # PTNR died since MID PREG
          "k4042") # Mother had Accident in past year
          
         
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+         
+  
+         
+  #LE 6Y
+         
          yes = c("Yes & affected respondent alot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
          no = c("No, did not happen")
-         
-         # now check if these levels are present and no other levels were missed out 
+     
+          
+          # now check if these levels are present and no other levels were missed out 
          vars = c("l4000", # Respondent's partner died since study child's 5th birthday
          "l4001", # One of respondent's children died since study child's 5th birthday
          "l4002", # Respondent's friend/relative died since study child's 5th birthday
@@ -228,47 +445,131 @@ vars = c("e400", # PTNR died since MID PREG
          "l4044", # Respondent had an accident since study child's 5th birthday
          "l4041") # One of respondent's children started new school since study child's 5th birthday
          
-         yes = c("Yes")
-         no = c("No")
          
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)]) 
+
+#LE child 18M         
          
-         vars = c("kd500b", # Ch taken into car
-         "kd501b", # A pet died (adj)
-         "kd502b", # Ch moved home (adj)
-         "kd503b", # Ch had fright (adj)
-         "kd506b", # Ch separated from mum for > a wk (adj)
-         "kd507b", # Ch separated from dad for > a wk (adj)
-         "kd508b", # CH Acquired New Parent > 6 MTHS
-         "kd509b", # Ch had a new sibling (adj)
-         "kd510b", # Ch admitted to hospital (adj)
-         "kd511b", # Ch changed carer (adj)
-         "kd512b", # Ch separated from someone else (adj)
-         "kd513b") # Ch started nursery (adj))
+         yes = c("Yes & CH Very Upset", "Yes & CH Quite Upset", "Yes & CH Bit Upset", "Yes & CH Not Upset")
+         no = c("Did Not Happen")
+         
+        vars = c("kd500a", # Ch taken into car
+         "kd501a", # A pet died (adj)
+         "kd502a", # Ch moved home (adj)
+         "kd503a", # Ch had fright (adj)
+         "kd506a", # Ch separated from mum for > a wk (adj)
+         "kd507a", # Ch separated from dad for > a wk (adj)
+         "kd508a", # CH Acquired New Parent > 6 MTHS
+         "kd509a", # Ch had a new sibling (adj)
+         "kd510a", # Ch admitted to hospital (adj)
+         "kd511a", # Ch changed carer (adj)
+         "kd512a", # Ch separated from someone else (adj)
+         "kd513a") # Ch started nursery (adj))
       
-        
-         yes = c("Yes")
-         no = c("No")
          
-
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("_rec",names(alspac.table), value=T)])
+         
+ #LE child 30M
+         
+         yes = c("yes child very upset", "yes quite upset", "yes bit upset", "yes not upset")
+         no = c("no didnt happen")
+         
          vars = c("kf450", # Child taken into care > 18 months, Y/N
-         "kf451a", # A pet died > 18 months, Y/N
-         "kf452a", # Child moved home > 18 months, Y/N
-         "kf453a", # Child had fright > 18 months, Y/N
-         "kf456a", # Child sep.from mother >1wk >18 mths, Y/N
-         "kf457a", # Child sep.from father >1wk >18 mths, Y/N
-         "kf458a", # Child got new parent > 18 months, Y/N
-         "kf459a", # Child got new sibling > 18 months, Y/N
-         "kf460a", # Child admitted to hospital >18 mths, Y/N
-         "kf461a", # Child changed carer > 18 months, Y/N
-         "kf462a", # Child sep.from somebody > 18 months, Y/N
-         "kf463a") # Child started new creche >18 months, Y/N)
-        
+         "kf451", # A pet died > 18 months, Y/N
+         "kf452", # Child moved home > 18 months, Y/N
+         "kf453", # Child had fright > 18 months, Y/N
+         "kf456", # Child sep.from mother >1wk >18 mths, Y/N
+         "kf457", # Child sep.from father >1wk >18 mths, Y/N
+         "kf458", # Child got new parent > 18 months, Y/N
+         "kf459", # Child got new sibling > 18 months, Y/N
+         "kf460", # Child admitted to hospital >18 mths, Y/N
+         "kf461", # Child changed carer > 18 months, Y/N
+         "kf462", # Child sep.from somebody > 18 months, Y/N
+         "kf463") # Child started new creche >18 months, Y/N)
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+         
 
+    #LE Child 3Y
+         
          yes = c("Yes")
          no = c("No")
          
-
-         vars = c("kj460", # Child Taken Into Care Y/N
+         vars = c("kj460a", # Child Taken Into Care Y/N
          "kj461a", # Pet died Y/N
          "kj462a", # Child Moved Home Y/N
          "kj463a", # Child Had Shock Y/N
@@ -281,10 +582,11 @@ vars = c("e400", # PTNR died since MID PREG
          "kj472a", # Child Separated From Someone Else Y/N
          "kj473a") # Child Started New Creche Y/N)
         
-       
+  #LE child 4Y
+         
          yes = c("Yes, child was very upset","Yes, child was very upset","Yes, child was a bit upset","Yes, child was not upset")
          no = c("No, did not happen")
-         
+      
          vars = c("kl470", # Child taken into care since age 3
          "kl471", # A pet died since child age 3
          "kl472", # Child moved home since age 3
@@ -299,10 +601,42 @@ vars = c("e400", # PTNR died since MID PREG
          "kl483", # Child started new nursery/kindergarten since age 3
          "kl484") # Child started school since age 3)
          
-         yes = c("Yes And Was Very Upset","Yes And Was Quite Upset","Yes And Was A Bit Upset","Yes But Was Not Upset")
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
+         
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+         
+         #LE child 5Y        
+         
+         
+        yes = c("Yes And Was Very Upset","Yes And Was Quite Upset","Yes And Was A Bit Upset","Yes But Was Not Upset")
          no = c("No Did Not Happen")
-         
-         
+ 
          vars = c("kn4000", #  Child taken into care in past 15 months
          "kn4001", # Child's pet die in past 15 months
          "kn4002", # Child move home in past 15 months
@@ -316,24 +650,55 @@ vars = c("e400", # PTNR died since MID PREG
          "kn4012", # Child separated from another person in past 15 months
          "kn4013", # Child start a new nursery in past 15 months
          "kn4014") # Child start school in past 15 months)
+       
+         for (i in vars){
+           
+           # check if required levels are present / unexpected levels are not present
+           print(i)  
+           print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+           print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+           
+           readline(prompt = "levels ok? Press [enter] to continue")
+         }
          
-
-         yes = c("Yes")
-         no = c("No")
+         # recode
+         
+         for(i in vars){
+           var.out=paste0(i,"a_rec")
+           alspac.table[,var.out]=NA
+           alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+           alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+           
+           # check
+           print(i)
+           print(table(alspac.table[,i], useNA = "always"))
+           print(table(alspac.table[,var.out], useNA = "always"))
+           
+           readline(prompt = "twice the same? Press [enter] to continue")
+         }
+         
+         
+         # check new "a_rec" variables are there with meaningful values
+         summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+           
+         #LE child 6y
+       
+           yes = c("Yes, very upset", "Yes, quite upset", "Yes, a bit upset", "Yes, not upset")
+         no = c("No, did not happen")
          
 
          vars = c("kq360", # Child was taken into care since his/her 5th birthday (Y/N)
-         "kq361a", # A pet died since child's 5th birthday (Y/N)
-         "kq362a", # Child moved home since his/her 5th birthday (Y/N)
-         "kq363a", # Child had a shock/fright since his/her 5th birthday (Y/N)
-         "kq366a", #  Somebody in the family died since child's 5th birthday (Y/N)
-         "kq367a", # Child was separated from his/her mother since his/her 5th birthday (Y/N)
-         "kq368a", # Child was separated from his/her father since his/her 5th birthday (Y/N)
-         "kq369a", # Child acquired a new mother/father since his/her 5th birthday (Y/N)
-         "kq370a", # Child had a new brother or sister since his/her 5th birthday (Y/N)
-         "kq371a", # Child was admitted to hospital since his/her 5th birthday (Y/N)
-         "kq372a", # Child changed care taker since his/her 5th birthday (Y/N)
-         "kq373a") # Child was separated from another close person since his/her 5th birthday (Y/N)
+         "kq361", # A pet died since child's 5th birthday (Y/N)
+         "kq362", # Child moved home since his/her 5th birthday (Y/N)
+         "kq363", # Child had a shock/fright since his/her 5th birthday (Y/N)
+         "kq366", #  Somebody in the family died since child's 5th birthday (Y/N)
+         "kq367", # Child was separated from his/her mother since his/her 5th birthday (Y/N)
+         "kq368", # Child was separated from his/her father since his/her 5th birthday (Y/N)
+         "kq369", # Child acquired a new mother/father since his/her 5th birthday (Y/N)
+         "kq370", # Child had a new brother or sister since his/her 5th birthday (Y/N)
+         "kq371", # Child was admitted to hospital since his/her 5th birthday (Y/N)
+         "kq372", # Child changed care taker since his/her 5th birthday (Y/N)
+         "kq373") # Child was separated from another close person since his/her 5th birthday (Y/N)
 
 for (i in vars){
   
@@ -366,9 +731,6 @@ for(i in vars){
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 
-# Creating a data frame with the original LE variables 
-
-attach(alspac.table)
 
 LE_postnatal_continuous <- data.frame(e400, # PTNR died since MID PREG
                                      e401, # CH died since MID PREG
@@ -523,30 +885,30 @@ LE_postnatal_continuous <- data.frame(e400, # PTNR died since MID PREG
                                      l4043, # A pet of respondent died since study child's 5th birthday
                                      l4044, # Respondent had an accident since study child's 5th birthday
                                      l4041, # One of respondent's children started new school since study child's 5th birthday
-                                     kd500b, # Ch taken into car
-                                     kd501b, # A pet died (adj)
-                                     kd502b, # Ch moved home (adj)
-                                     kd503b, # Ch had fright (adj)
-                                     kd506b, # Ch separated from mum for > a wk (adj)
-                                     kd507b, # Ch separated from dad for > a wk (adj)
-                                     kd508b, # CH Acquired New Parent > 6 MTHS
-                                     kd509b, # Ch had a new sibling (adj)
-                                     kd510b, # Ch admitted to hospital (adj)
-                                     kd511b, # Ch changed carer (adj)
-                                     kd512b, # Ch separated from someone else (adj)
-                                     kd513b, # Ch started nursery (adj))
-                                     kf450a, # Child taken into care > 18 months, Y/N
-                                     kf451a, # A pet died > 18 months, Y/N
-                                     kf452a, # Child moved home > 18 months, Y/N
-                                     kf453a, # Child had fright > 18 months, Y/N
-                                     kf456a, # Child sep.from mother >1wk >18 mths, Y/N
-                                     kf457a, # Child sep.from father >1wk >18 mths, Y/N
-                                     kf458a, # Child got new parent > 18 months, Y/N
-                                     kf459a, # Child got new sibling > 18 months, Y/N
-                                     kf460a, # Child admitted to hospital >18 mths, Y/N
-                                     kf461a, # Child changed carer > 18 months, Y/N
-                                     kf462a, # Child sep.from somebody > 18 months, Y/N
-                                     kf463a, # Child started new creche >18 months, Y/N)
+                                     kd500a, # Ch taken into car
+                                     kd501a, # A pet died (adj)
+                                     kd502a, # Ch moved home (adj)
+                                     kd503a, # Ch had fright (adj)
+                                     kd506a, # Ch separated from mum for > a wk (adj)
+                                     kd507a, # Ch separated from dad for > a wk (adj)
+                                     kd508a, # CH Acquired New Parent > 6 MTHS
+                                     kd509a, # Ch had a new sibling (adj)
+                                     kd510a, # Ch admitted to hospital (adj)
+                                     kd511a, # Ch changed carer (adj)
+                                     kd512a, # Ch separated from someone else (adj)
+                                     kd513a, # Ch started nursery (adj))
+                                     kf450, # Child taken into care > 18 months, Y/N
+                                     kf451, # A pet died > 18 months, Y/N
+                                     kf452, # Child moved home > 18 months, Y/N
+                                     kf453, # Child had fright > 18 months, Y/N
+                                     kf456, # Child sep.from mother >1wk >18 mths, Y/N
+                                     kf457, # Child sep.from father >1wk >18 mths, Y/N
+                                     kf458, # Child got new parent > 18 months, Y/N
+                                     kf459, # Child got new sibling > 18 months, Y/N
+                                     kf460, # Child admitted to hospital >18 mths, Y/N
+                                     kf461, # Child changed carer > 18 months, Y/N
+                                     kf462, # Child sep.from somebody > 18 months, Y/N
+                                     kf463, # Child started new creche >18 months, Y/N)
                                      kj460a, # Child Taken Into Care Y/N
                                      kj461a, # Pet died Y/N
                                      kj462a, # Child Moved Home Y/N
@@ -585,18 +947,18 @@ LE_postnatal_continuous <- data.frame(e400, # PTNR died since MID PREG
                                      kn4012, # Child separated from another person in past 15 months
                                      kn4013, # Child start a new nursery in past 15 months
                                      kn4014, # Child start school in past 15 months)
-                                     kq360a, # Child was taken into care since his/her 5th birthday (Y/N)
-                                     kq361a, # A pet died since child's 5th birthday (Y/N)
-                                     kq362a, # Child moved home since his/her 5th birthday (Y/N)
-                                     kq363a, # Child had a shock/fright since his/her 5th birthday (Y/N)
-                                     kq366a, #  Somebody in the family died since child's 5th birthday (Y/N)
-                                     kq367a, # Child was separated from his/her mother since his/her 5th birthday (Y/N)
-                                     kq368a, # Child was separated from his/her father since his/her 5th birthday (Y/N)
-                                     kq369a, # Child acquired a new mother/father since his/her 5th birthday (Y/N)
-                                     kq370a, # Child had a new brother or sister since his/her 5th birthday (Y/N)
-                                     kq371a, # Child was admitted to hospital since his/her 5th birthday (Y/N)
-                                     kq372a, # Child changed care taker since his/her 5th birthday (Y/N)
-                                     kq373a) # Child was separated from another close person since his/her 5th birthday (Y/N)) # Had an accident since PREG
+                                     kq360, # Child was taken into care since his/her 5th birthday (Y/N)
+                                     kq361, # A pet died since child's 5th birthday (Y/N)
+                                     kq362, # Child moved home since his/her 5th birthday (Y/N)
+                                     kq363, # Child had a shock/fright since his/her 5th birthday (Y/N)
+                                     kq366, #  Somebody in the family died since child's 5th birthday (Y/N)
+                                     kq367, # Child was separated from his/her mother since his/her 5th birthday (Y/N)
+                                     kq368, # Child was separated from his/her father since his/her 5th birthday (Y/N)
+                                     kq369, # Child acquired a new mother/father since his/her 5th birthday (Y/N)
+                                     kq370, # Child had a new brother or sister since his/her 5th birthday (Y/N)
+                                     kq371, # Child was admitted to hospital since his/her 5th birthday (Y/N)
+                                     kq372, # Child changed care taker since his/her 5th birthday (Y/N)
+                                     kq373) # Child was separated from another close person since his/her 5th birthday (Y/N)) # Had an accident since PREG
 
 # Creating a data frame containing the newly created binary LE variables
 
@@ -753,18 +1115,18 @@ LE_postnatal_binary <- data.frame(e400a_rec,
                                   l4043a_rec,
                                   l4044a_rec,
                                   l4041a_rec,
-                                  kd500b_rec,
-                                  kd501b_rec,
-                                  kd502b_rec,
-                                  kd503b_rec,
-                                  kd506b_rec,
-                                  kd507b_rec,
-                                  kd508b_rec,
-                                  kd509b_rec,
-                                  kd510b_rec,
-                                  kd511b_rec,
-                                  kd512b_rec,
-                                  kd513b_rec,
+                                  kd500a_rec,
+                                  kd501a_rec,
+                                  kd502a_rec,
+                                  kd503a_rec,
+                                  kd506a_rec,
+                                  kd507a_rec,
+                                  kd508a_rec,
+                                  kd509a_rec,
+                                  kd510a_rec,
+                                  kd511a_rec,
+                                  kd512a_rec,
+                                  kd513a_rec,
                                   kf450a_rec,
                                   kf451a_rec,
                                   kf452a_rec,
@@ -855,51 +1217,233 @@ yes = c("Affected a lot","MOD affected","Mildly affected","No effect")
 no = c("Did not happen")
 
 # now check if these levels are present and no other levels were missed out 
-vars = c("e418a_rec", # Income reduced since MID PREG	
-         "e423a_rec", # Became homeless since PREG
-         "e424a_rec") # Major financial PROB since MID PREG	
+vars = c("e418", # Income reduced since MID PREG	
+         "e423", # Became homeless since PREG
+         "e424") # Major financial PROB since MID PREG	
          
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
 
  yes = c("Y much affected","Y MOD affected","Y mildly affected","Y but N effect")
  no = c("N did not happen")
          
          
- vars = c("f238a_rec",	# Reduced income
-         "f243a_rec", # Became homeless
-         "f244a_rec") # Major financial problems
+ vars = c("f238",	# Reduced income
+         "f243", # Became homeless
+         "f244") # Major financial problems
+
+ for (i in vars){
    
+   # check if required levels are present / unexpected levels are not present
+   print(i)  
+   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+   
+   readline(prompt = "levels ok? Press [enter] to continue")
+ }
+ 
+ # recode
+ 
+ for(i in vars){
+   var.out=paste0(i,"a_rec")
+   alspac.table[,var.out]=NA
+   alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+   alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+   
+   # check
+   print(i)
+   print(table(alspac.table[,i], useNA = "always"))
+   print(table(alspac.table[,var.out], useNA = "always"))
+   
+   readline(prompt = "twice the same? Press [enter] to continue")
+ }
+ 
+ 
+ # check new "a_rec" variables are there with meaningful values
+ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+ 
 yes = c("Yes Big Effect","Yes Some Effect","Yes Mild Effect","Yes No Effect")
 no = c("Did Not Happen")        
                
-vars = c("g318a_rec",	
-         "g323a_rec",	
-         "g324a_rec")	
-        
+vars = c("g318",	
+         "g323",	
+         "g324")	
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+       
 yes = c("yes had big effect","yes medium effect","yes mild effect","yes but no effect")
 no = c("didnt happen")   
 
-vars = c("h228a_rec",	
-          "h233a_rec",	
-          "h234a_rec")
+vars = c("h228",	
+          "h233",	
+          "h234")
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
 no = c("No")         
           
-vars = c("j318a_rec",	
-           "j323a_rec",
-           "j324a_rec")	
-           
+vars = c("j318",	
+           "j323",
+           "j324")	
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
 yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
 no = c("No, did not happen")          
            
-vars = c("k4018a_rec",	
-          "k4023a_rec",
-          "k4024a_rec")
+vars = c("k4018",	
+          "k4023",
+          "k4024")
           
-          
-vars = c("l4018a_rec",
-         "l4023a_rec",
-         "l4024a_rec") # Major financial PROB since PREG
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+yes = c("Yes & affected respondent a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
+no = c("No, did not happen")    
+
+vars = c("l4018",
+         "l4023",
+         "l4024") # Major financial PROB since PREG
 
 
 for (i in vars){
@@ -1007,63 +1551,213 @@ yes = c("Affected a lot","MOD affected","Mildly affected","No effect")
 no = c("Did not happen")
 
 
-vars = c("e407a_rec", #Trouble with law since MID PREG
-"e416a_rec", # PTNR in trouble with law since MID PREG) # Major financial PROB since MID PREG	
-"e427a_rec", # Attempted suicide since MID PREG
-"e428a_rec", # Convicted since MID PREG
-"e435a_rec") # Attempted abortion since MID PREG
+vars = c("e407", #Trouble with law since MID PREG
+"e416", # PTNR in trouble with law since MID PREG) # Major financial PROB since MID PREG	
+"e427", # Attempted suicide since MID PREG
+"e428", # Convicted since MID PREG
+"e435") # Attempted abortion since MID PREG
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Y much affected","Y MOD affected","Y mildly affected","Y but N effect")
 no = c("N did not happen")
 
-vars = c("f227a_rec",	#Mum in trouble with law Y/N
-         "f236a_rec", # Partner in trouble with law	
-         "f248a_rec", # 	Attempted suicide
-         "f249a_rec", # Court conviction
-         "f254a_rec")	#Mum had abortion
+vars = c("f227",	#Mum in trouble with law Y/N
+         "f236", # Partner in trouble with law	
+         "f248", # 	Attempted suicide
+         "f249", # Court conviction
+         "f254")	#Mum had abortion
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
          
 yes = c("Yes Big Effect","Yes Some Effect","Yes Mild Effect","Yes No Effect")
 no = c("Did Not Happen")        
 
-vars = c("g307a_rec",
-         "g316a_rec",
-         "g328a_rec",
-         "g329a_rec",
-         "g334a_rec")	
+vars = c("g307",
+         "g316",
+         "g328",
+         "g329",
+         "g334")	
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("yes had big effect","yes medium effect","yes mild effect","yes but no effect")
 no = c("didnt happen")   
 
-vars = c("h217a_rec",
-         "h226a_rec",
-         "h238a_rec",
-         "h239a_rec",
-         "h244a_rec")
+vars = c("h217",
+         "h226",
+         "h238",
+         "h239",
+         "h244")
+
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
 no = c("No")         
 
-vars = c("j307a_rec",
-         "j316a_rec",
-         "j328a_rec",
-         "j329a_rec",
-         "j334a_rec",)	
+vars = c("j307",
+         "j316",
+         "j328",
+         "j329",
+         "j334",)	
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
 no = c("No, did not happen")          
 
-vars = c("k4007a_rec",
-         "k4016a_rec",
-         "k4028a_rec",
-         "k4029a_rec",
-         "k4034a_rec",)
+vars = c("k4007",
+         "k4016",
+         "k4028",
+         "k4029",
+         "k4034",)
 
 
-vars = c("l4007a_rec",
-         "l4016a_rec",
-         "l4028a_rec",
-         "l4029a_rec",
-         "l4034a_rec") # Major financial PROB since PREG
+vars = c("l4007",
+         "l4016",
+         "l4028",
+         "l4029",
+         "l4034") # Major financial PROB since PREG
 
 for (i in vars){
   
@@ -1200,117 +1894,318 @@ yes = c("Affected a lot","MOD affected","Mildly affected","No effect")
 no = c("Did not happen")
 
 
-vars = c("e408a_rec", # Divorced since MID PREG
-         "e409a_rec", #PTNR rejected CH since MID PREG
-         "e415a_rec", #PTNR went away since MID PREG
-         "e417a_rec", # Separated since MID PREG
-         "e419a_rec", # Argued with PTNR since MID PREG
-         "e420a_rec", # Argued with FAM/FRDS since MID PREG
-         "e422a_rec", # PTNR hurt MUM since MID PREG
-         "e425a_rec", # Married since MID PREG
-         "e426a_rec", # PTNR hurt CHDR since MID PREG
-         "e437a_rec", # PTNR EMOT cruel to MUM since MID PREG
-         "e438a_rec") # PTNR EMOT cruel to CH since MID PREG) # Attempted abortion since MID PREG
+vars = c("e408", # Divorced since MID PREG
+         "e409", #PTNR rejected CH since MID PREG
+         "e415", #PTNR went away since MID PREG
+         "e417", # Separated since MID PREG
+         "e419", # Argued with PTNR since MID PREG
+         "e420", # Argued with FAM/FRDS since MID PREG
+         "e422", # PTNR hurt MUM since MID PREG
+         "e425", # Married since MID PREG
+         "e426", # PTNR hurt CHDR since MID PREG
+         "e437", # PTNR EMOT cruel to MUM since MID PREG
+         "e438") # PTNR EMOT cruel to CH since MID PREG) # Attempted abortion since MID PREG
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
 
 yes = c("Y much affected","Y MOD affected","Y mildly affected","Y but N effect")
 no = c("N did not happen")
 
-vars = c("f228a_rec", # Divorce 
-         "f229a_rec", # Child not wanted by partner
-         "f235a_rec", # Partner went away
-         "f237a_rec", # Separation with partner
-         "f239a_rec", # Argued with partner
-         "f240a_rec", # Argued with family or friend
-         "f242a_rec", # Physically hurt by partner
-         "f245a_rec", # Got married
-         "f246a_rec", # Parnter physically cruel to children
-         "f256a_rec", # Partner emotionally cruel to Mum
-         "f257a_rec", # Partner emotionally cruel to children
-         "f247a_rec") # Mum physically cruel to children)	#Mum had abortion
+vars = c("f228", # Divorce 
+         "f229", # Child not wanted by partner
+         "f235", # Partner went away
+         "f237", # Separation with partner
+         "f239", # Argued with partner
+         "f240", # Argued with family or friend
+         "f242", # Physically hurt by partner
+         "f245", # Got married
+         "f246", # Parnter physically cruel to children
+         "f256", # Partner emotionally cruel to Mum
+         "f257", # Partner emotionally cruel to children
+         "f247") # Mum physically cruel to children)	#Mum had abortion
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
 
 yes = c("Yes Big Effect","Yes Some Effect","Yes Mild Effect","Yes No Effect")
 no = c("Did Not Happen")        
 
-vars = c("g308a_rec", # Mum divorced >CH8MTHs
-         "g309a_rec", # Partner rejected child >CH8MTHs
-         "g315a_rec", # Partner went away >CH8MTHs
-         "g317a_rec", # Mum and partner seperated >CH8MTHs
-         "g319a_rec", # Mum argued with partner >CH8MTHs
-         "g320a_rec", # Mum argued with family and friends >CH8MTHs
-         "g322a_rec", # Partner physically cruel to Mum >CH8MTHs
-         "g325a_rec", # Mum got married >CH8MTHs
-         "g326a_rec", # Partner physically cruel to children >CH8MTHs
-         "g327a_rec", # Mum physically cruel to children >CH8MTHs
-         "g336a_rec", # Partner emotionally cruel to Mum >CH8MTHs
-         "g337a_rec", # Partner emotionally cruel to children >CH8MTHs
-         "g338a_rec") # Mum emotionally cruel to children >CH8MTHs)	
+vars = c("g308", # Mum divorced >CH8MTHs
+         "g309", # Partner rejected child >CH8MTHs
+         "g315", # Partner went away >CH8MTHs
+         "g317", # Mum and partner seperated >CH8MTHs
+         "g319", # Mum argued with partner >CH8MTHs
+         "g320", # Mum argued with family and friends >CH8MTHs
+         "g322", # Partner physically cruel to Mum >CH8MTHs
+         "g325", # Mum got married >CH8MTHs
+         "g326", # Partner physically cruel to children >CH8MTHs
+         "g327", # Mum physically cruel to children >CH8MTHs
+         "g336", # Partner emotionally cruel to Mum >CH8MTHs
+         "g337", # Partner emotionally cruel to children >CH8MTHs
+         "g338") # Mum emotionally cruel to children >CH8MTHs)	
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
 
 yes = c("yes had big effect","yes medium effect","yes mild effect","yes but no effect")
 no = c("didnt happen")   
 
-vars = c("h218a_rec", # Whether got divorced since study child was 18 months old, Y/N
-         "h219a_rec", # Whether partner rejected children since study child was 18 months old, Y/N
-         "h225a_rec", # Whether partner went away since study child was 18 months old, Y/N
-         "h227a_rec", # Whether mum and partner separated since study child was 18 months old, Y/N
-         "h229a_rec", # Whether mum argued with partner since study child was 18 months old, Y/N
-         "h230a_rec", # Whether mum argued with family and friends since study child was 18 months old, Y/N
-         "h232a_rec", # Whether partner was physically cruel to mum since study child was 18 months old, Y/N
-         "h235a_rec", # Whether mum got married since study child was 18 months old, Y/N
-         "h236a_rec", # Whether partner was physically cruel to children since study child was 18 months old, Y/N
-         "h237a_rec", # Whether mum was physically cruel to children since study child was 18 months old, Y/N
-         "h246a_rec", # Whether partner was emotionally cruel to mum since study child was 18 months old, Y/N
-         "h247a_rec", # Whether partner was emotionally cruel to children since study child was 18 months old, Y/N
-         "h248a_rec") # Whether mum was emotionally cruel to children since study child was 18 months old, Y/N)
+vars = c("h218", # Whether got divorced since study child was 18 months old, Y/N
+         "h219", # Whether partner rejected children since study child was 18 months old, Y/N
+         "h225", # Whether partner went away since study child was 18 months old, Y/N
+         "h227", # Whether mum and partner separated since study child was 18 months old, Y/N
+         "h229", # Whether mum argued with partner since study child was 18 months old, Y/N
+         "h230", # Whether mum argued with family and friends since study child was 18 months old, Y/N
+         "h232", # Whether partner was physically cruel to mum since study child was 18 months old, Y/N
+         "h235", # Whether mum got married since study child was 18 months old, Y/N
+         "h236", # Whether partner was physically cruel to children since study child was 18 months old, Y/N
+         "h237", # Whether mum was physically cruel to children since study child was 18 months old, Y/N
+         "h246", # Whether partner was emotionally cruel to mum since study child was 18 months old, Y/N
+         "h247", # Whether partner was emotionally cruel to children since study child was 18 months old, Y/N
+         "h248") # Whether mum was emotionally cruel to children since study child was 18 months old, Y/N)
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
 
 yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
 no = c("No")         
 
-vars = c("j308a_rec", # MUM Divorced> CH 30 MTHs y/n
-         "j309a_rec", # MUM Found PTR Not Want CH> CH 30 MTHs y/n
-         "j315a_rec", # Partner Went Away> CH 30 MTHs y/n
-         "j317a_rec", # MUM & Partner Separated> CH 30 MTHs y/n
-         "j319a_rec", # MUM Argued W Partner> CH 30 MTHs y/n
-         "j320a_rec", # MUM Argued W FMLY & FRDs> CH 30 MTHs y/n
-         "j322a_rec", # Partner PHYS Cruel to MUM> CH 30 MTHs y/n
-         "j325a_rec", # MUM Got Married> CH 30 MTHs y/n
-         "j326a_rec", # PTR PHYS Cruel to CDRN> CH 30 MTHs y/n
-         "j327a_rec", # MUM PHYS Cruel to CDRN> CH 30 MTHs y/n
-         "j336a_rec", # PTR Emotionally Cruel to MUM> CH 30 MTHs y/n
-         "j337a_rec", # PTR Emotional Cruel to CDRN> CH 30 MTHs y/n
-         "j338a_rec") # MUM Emotional Cruel to CDRN> CH 30 MTHs y/n)	
+vars = c("j308", # MUM Divorced> CH 30 MTHs y/n
+         "j309", # MUM Found PTR Not Want CH> CH 30 MTHs y/n
+         "j315", # Partner Went Away> CH 30 MTHs y/n
+         "j317", # MUM & Partner Separated> CH 30 MTHs y/n
+         "j319", # MUM Argued W Partner> CH 30 MTHs y/n
+         "j320", # MUM Argued W FMLY & FRDs> CH 30 MTHs y/n
+         "j322", # Partner PHYS Cruel to MUM> CH 30 MTHs y/n
+         "j325", # MUM Got Married> CH 30 MTHs y/n
+         "j326", # PTR PHYS Cruel to CDRN> CH 30 MTHs y/n
+         "j327", # MUM PHYS Cruel to CDRN> CH 30 MTHs y/n
+         "j336", # PTR Emotionally Cruel to MUM> CH 30 MTHs y/n
+         "j337", # PTR Emotional Cruel to CDRN> CH 30 MTHs y/n
+         "j338") # MUM Emotional Cruel to CDRN> CH 30 MTHs y/n)	
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
 
 yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
 no = c("No, did not happen")          
 
-vars = c("k4008a_rec", # Mother was divorced in past year
-         "k4009a_rec", # Mother found that her partner did not want her child in past year
-         "k4015a_rec", # Mothers partner went away in past year
-         "k4017a_rec", # Mother and partner separated in past year
-         "k4019a_rec", # Mother argued with her partner in past year
-         "k4020a_rec", # Mother argued with family and friends in past year
-         "k4022a_rec", # Mothers partner was physically cruel to her in past year
-         "k4025a_rec", # Mother got married in past year
-         "k4026a_rec", # Mothers partner was physically cruel to children in past year
-         "k4027a_rec", # Mother was physically cruel to children in past year
-         "k4036a_rec", # Mothers partner was emotionally cruel to her in past year
-         "k4037a_rec", # Mothers partner was emotionally cruel to children in past year)
-         "k4038a_rec") # Mother was emotionally cruel to children in past year
+vars = c("k4008", # Mother was divorced in past year
+         "k4009", # Mother found that her partner did not want her child in past year
+         "k4015", # Mothers partner went away in past year
+         "k4017", # Mother and partner separated in past year
+         "k4019", # Mother argued with her partner in past year
+         "k4020", # Mother argued with family and friends in past year
+         "k4022", # Mothers partner was physically cruel to her in past year
+         "k4025", # Mother got married in past year
+         "k4026", # Mothers partner was physically cruel to children in past year
+         "k4027", # Mother was physically cruel to children in past year
+         "k4036", # Mothers partner was emotionally cruel to her in past year
+         "k4037", # Mothers partner was emotionally cruel to children in past year)
+         "k4038") # Mother was emotionally cruel to children in past year
 
-vars = c("l4008a_rec", # Respondent was divorced since study child's 5th birthday
-         "l4009a_rec", # Respondent found their partner did not want their child since study child's 5th birthday
-         "l4015a_rec", # Respondent's partner went away since study child's 5th birthday
-         "l4017a_rec", # Respondent separated from partner since study child's 5th birthday
-         "l4019a_rec", # Respondent argued with partner since study child's 5th birthday
-         "l4020a_rec", # Respondent argued with family/friends since study child's 5th birthday
-         "l4022a_rec", # Respondent's partner was physically cruel to them since study child's 5th birthday
-         "l4025a_rec", # Respondent got married since study child's 5th birthday
-         "l4026a_rec", # Respondent's partner physically cruel to respondent's children since study child's 5th birthday
-         "l4027a_rec", # Respondent physically cruel to own children since study child's 5th birthday
-         "l4036a_rec", # Respondent's partner was emotionally cruel to them since study child's 5th birthday
-         "l4037a_rec", # Respondent's partner was emotionally cruel to respondent's children since study child's 5th birthday
-         "l4038a_rec", # Respondent was emotionally cruel to their children since study child's 5th birthday
-         "l4040a_rec") # Respondent found new partner since study child's 5th birthday
 
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
+no = c("No, did not happen")     
+
+vars = c("l4008", # Respondent was divorced since study child's 5th birthday
+         "l4009", # Respondent found their partner did not want their child since study child's 5th birthday
+         "l4015", # Respondent's partner went away since study child's 5th birthday
+         "l4017", # Respondent separated from partner since study child's 5th birthday
+         "l4019", # Respondent argued with partner since study child's 5th birthday
+         "l4020", # Respondent argued with family/friends since study child's 5th birthday
+         "l4022", # Respondent's partner was physically cruel to them since study child's 5th birthday
+         "l4025", # Respondent got married since study child's 5th birthday
+         "l4026", # Respondent's partner physically cruel to respondent's children since study child's 5th birthday
+         "l4027", # Respondent physically cruel to own children since study child's 5th birthday
+         "l4036", # Respondent's partner was emotionally cruel to them since study child's 5th birthday
+         "l4037", # Respondent's partner was emotionally cruel to respondent's children since study child's 5th birthday
+         "l4038", # Respondent was emotionally cruel to their children since study child's 5th birthday
+         "l4040") # Respondent found new partner since study child's 5th birthday
+
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+ 
+
+##From here for the next 150 lines, these are the variables included in charlottes script for
+#which we have numerous missing values, I have subsituted those which we have and included them
+#as individual items as in charlottes script. 
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+yes = c("Yes mum did","Yes partner did","Yes both did")
+no = c("No not at all")
+
+vars = c("h580", #DV_Shouted_33M 
+"h581") #DV_Hit_33M
 
 for (i in vars){
   
@@ -1342,7 +2237,145 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
+yes = c("Yes, i did this","Yes, he did this","Yes, we both did this")
+no = c("No, not at all")
 
+vars = c("l6153") #DV_Shouted_6Y
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+#yes = c("Yes, mother did this","Yes, partner did this","Yes, both did this")
+#no = c("No")
+
+#vars = c("p3153", #DV_Shouted_9Y
+#"p3154", #DV_Hit_9Y
+#"p3155") #DV_Break_9Y
+
+#for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+ # print(i)  
+  #print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  #print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+#  readline(prompt = "levels ok? Press [enter] to continue")
+#}
+
+# recode
+
+#for(i in vars){
+ # var.out=paste0(i,"a_rec")
+  #alspac.table[,var.out]=NA
+  #alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  #alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+#  print(i)
+ # print(table(alspac.table[,i], useNA = "always"))
+  #print(table(alspac.table[,var.out], useNA = "always"))
+  
+#  readline(prompt = "twice the same? Press [enter] to continue")
+#}
+
+
+# check new "a_rec" variables are there with meaningful values
+#summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+yes = c("Yes mum Did","Yes Partner Did","Yes both Did")
+no = c("No not at All")
+
+vars = c("g712",  #DV_Hit_21M
+"g713")  #DV_Break_21M
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+vars = c("ke017") #Par_Smack_2Y
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 # Creating a data frame with the original IR variables 
 attach(alspac.table)
@@ -1435,10 +2468,16 @@ IR_postnatal_continuous <- data.frame(e408,
                                      l4036,
                                      l4037,
                                      l4038,
-                                     l4040)
-
-
-
+                                     l4040, 
+                                     h580, #DV_Shouted_33M 
+                                     h581, #DV_Hit_33M
+                                     l6153, #DV_Shouted_6Y 
+                                     p3153, #DV_Shouted_9Y
+                                     g712, #DV_Hit_21M
+                                     g713,  #DV_Break_21M
+                                     p3154, #DV_Hit_9Y
+                                     p3155,  #DV_Break_9Y
+                                     ke017) #Par_Smack_2Y
 
 IR_postnatal_binary <- data.frame(e408a_rec,
 e409a_rec,
@@ -1528,9 +2567,17 @@ l4027a_rec,
 l4036a_rec,
 l4037a_rec,
 l4038a_rec,
-l4040a_rec)
-w 
-detach(alspac.table)
+l4040a_rec, 
+h580a_rec, #DV_Shouted_33M 
+h581a_rec, #DV_Hit_33M
+l6153a_rec, #DV_Shouted_6Y 
+p3153a_rec, #DV_Shouted_9Y
+g712a_rec, #DV_Hit_21M
+g713a_rec,  #DV_Break_21M
+p3154a_rec, #DV_Hit_9Y
+p3155a_rec, #DV_Break_9Y
+ke017a_rec) #Par_Smack_2Y
+
 
 # Checking correlations btw columns of IR_postnatal_continuous and columns of IR_postnatal_binary
 #corbetw2mat(IR_postnatal_continuous, IR_postnatal_binary, what = "paired")  
@@ -1552,8 +2599,38 @@ yes = c("Yes")
 no = c("No")
 
 # now check if these levels are present and no other levels were missed out 
-vars = c("kd504b_rec",	 # Ch physically hurt by someone (adj)
-         "kd505b_rec")	# Ch sexually abused (adj)
+vars = c("kd504b",	 # Ch physically hurt by someone (adj)
+         "kd505b")	# Ch sexually abused (adj)
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("_rec",names(alspac.table), value=T)])
 
 # However, it turns back to non-binary
 # our R data file uses factor levels (not numeric) 
@@ -1562,32 +2639,149 @@ yes = c("yes child very upset", "yes quite upset", "yes bit upset","yes not upse
 no = c("no didnt happen")
          
  
-vars = c("kf454a_rec",	# Child physically hurt > 18 months, Y/N
-         "kf455a_rec")	# Child sexually abused > 18 months, Y/N
+vars = c("kf454",	# Child physically hurt > 18 months, Y/N
+         "kf455")	# Child sexually abused > 18 months, Y/N
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Yes CH Very Upset", "Yes Quite Upset", "Yes Bit Upset", "Yes Not Upset")
 no = c("No didnt Happen")
          
-vars = c("kj464a_rec",	# Child Was Physically Hurt By Person Y/N
-         "kj465a_rec")	# Child Sexually Abused Y/N
-         
+vars = c("kj464",	# Child Was Physically Hurt By Person Y/N
+         "kj465")	# Child Sexually Abused Y/N
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)]) 
+        
 yes = c("Yes, child was very upset", "Yes child was quite upset", "Yes, child was abit upset", "Yes, child was not upset")
 no = c("No, did not happen")       
 
-vars = c("kl474a_rec",	# Child was physically hurt by someone since age 3 (not Y/N)
-         "kl475a_rec")	# Child was sexually abused since age 3
+vars = c("kl474",	# Child was physically hurt by someone since age 3 (not Y/N)
+         "kl475")	# Child was sexually abused since age 3
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
           
 yes = c("Yes And Was Very Upset", "Yes And Was Quite Upset", "Yes And Was A Bit Upset", "Yes But Was Not Upset")
 no = c("No Did Not Happen")       
 
-vars = c("kn4004a_rec",	# Child physically hurt by someone in past 15 months
-         "kn4005a_rec")	# Child sexually abused in past 15 months
+vars = c("kn4004",	# Child physically hurt by someone in past 15 months
+         "kn4005")	# Child sexually abused in past 15 months
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Yes, very upset", "Yes, quite upset", "Yes, a bit upset", "Yes, not upset")
 no = c("No, did not happen")  
 
-vars = c("kq364a_rec", # Child was physically hurt by someone since his/her 5th birthday (Y/N)
-         "kq365a_rec")
+vars = c("kq364", # Child was physically hurt by someone since his/her 5th birthday (Y/N)
+         "kq365")
 
 for (i in vars){
   

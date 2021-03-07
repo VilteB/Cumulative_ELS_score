@@ -169,7 +169,9 @@ LE21months_mother <- data.frame(alspac.table[,c("aln", # family ID
                          "g339a_rec", # Mums house or car burgled >CH 8MTHs
                          "g340a_rec", # Partner started new job >CH8MTHs
                          "g341a_rec", # A pet died >CH8MTHs
-                         "g342a_rec")]) # Mum had accident >CH8MTHs).)
+                         "g342a_rec")]) # Mum had accident >CH8MTHs).
+
+
 
 #No GenR variables up until 3 years
 #LE 3 years is a dichotomised variable, so retain "a" and code as 1=Y, 2=N etc
@@ -279,18 +281,18 @@ LE6years_mother <- data.frame(alspac.table[,c("aln", # ID of ALPSAC mother
 
 #retain "b" for DICH variables, 1=YES, 2=NO, child LE at 18 months
 LE18months_child <- data.frame(alspac.table[,c("aln", # add ALSPAC child ID here
-                               "kd500b_rec", # Ch taken into car
-                               "kd501b_rec", # A pet died (adj)
-                               "kd502b_rec", # Ch moved home (adj)
-                               "kd503b_rec", # Ch had fright (adj)
-                               "kd506b_rec", # Ch separated from mum for > a wk (adj)
-                               "kd507b_rec", # Ch separated from dad for > a wk (adj)
-                               "kd508b_rec", # CH Acquired New Parent > 6 MTHS
-                               "kd509b_rec", # Ch had a new sibling (adj)
-                               "kd510b_rec", # Ch admitted to hospital (adj)
-                               "kd511b_rec", # Ch changed carer (adj)
-                               "kd512b_rec", # Ch separated from someone else (adj)
-                               "kd513b_rec")]) # Ch started nursery (adj))
+                               "kd500a_rec", # Ch taken into car
+                               "kd501a_rec", # A pet died (adj)
+                               "kd502a_rec", # Ch moved home (adj)
+                               "kd503a_rec", # Ch had fright (adj)
+                               "kd506a_rec", # Ch separated from mum for > a wk (adj)
+                               "kd507a_rec", # Ch separated from dad for > a wk (adj)
+                               "kd508a_rec", # CH Acquired New Parent > 6 MTHS
+                               "kd509a_rec", # Ch had a new sibling (adj)
+                               "kd510a_rec", # Ch admitted to hospital (adj)
+                               "kd511a_rec", # Ch changed carer (adj)
+                               "kd512a_rec", # Ch separated from someone else (adj)
+                               "kd513a_rec")]) # Ch started nursery (adj))
 
 #binarised variables: Y=1, N=2, child LE at 30 months
 LE30months_child <- data.frame(alspac.table[,c("aln", #add ALPSAC child ID here
@@ -775,18 +777,18 @@ postnatal_stress[,c('post_LE_percent_missing','post_life_events')] <- domainscor
 "l4043a_rec", # A pet of respondent died since study child's 5th birthday
 "l4044a_rec", # Respondent had an accident since study child's 5th birthday
 "l4041a_rec", # One of respondent's children started new school since study child's 5th birthday
-"kd500b_rec", # Ch taken into car
-"kd501b_rec", # A pet died (adj)
-"kd502b_rec", # Ch moved home (adj)
-"kd503b_rec", # Ch had fright (adj)
-"kd506b_rec", # Ch separated from mum for > a wk (adj)
-"kd507b_rec", # Ch separated from dad for > a wk (adj)
-"kd508b_rec", # CH Acquired New Parent > 6 MTHS
-"kd509b_rec", # Ch had a new sibling (adj)
-"kd510b_rec", # Ch admitted to hospital (adj)
-"kd511b_rec", # Ch changed carer (adj)
-"kd512b_rec", # Ch separated from someone else (adj)
-"kd513b_rec", # Ch started nursery (adj))
+"kd500a_rec", # Ch taken into car
+"kd501a_rec", # A pet died (adj)
+"kd502a_rec", # Ch moved home (adj)
+"kd503a_rec", # Ch had fright (adj)
+"kd506a_rec", # Ch separated from mum for > a wk (adj)
+"kd507a_rec", # Ch separated from dad for > a wk (adj)
+"kd508a_rec", # CH Acquired New Parent > 6 MTHS
+"kd509a_rec", # Ch had a new sibling (adj)
+"kd510a_rec", # Ch admitted to hospital (adj)
+"kd511a_rec", # Ch changed carer (adj)
+"kd512a_rec", # Ch separated from someone else (adj)
+"kd513a_rec", # Ch started nursery (adj))
 "kf450a_rec", # Child taken into care > 18 months, Y/N
 "kf451a_rec", # A pet died > 18 months, Y/N
 "kf452a_rec", # Child moved home > 18 months, Y/N
@@ -1007,7 +1009,15 @@ postnatal_stress[,c('post_IR_percent_missing','post_interpersonal_risk')] <- dom
   "l4036a_rec", # Respondent's partner was emotionally cruel to them since study child's 5th birthday
   "l4037a_rec", # Respondent's partner was emotionally cruel to respondent's children since study child's 5th birthday
   "l4038a_rec", # Respondent was emotionally cruel to their children since study child's 5th birthday
-  "l4040a_rec")]) # Respondent found new partner since study child's 5th birthday)])
+  "l4040a_rec", # Respondent found new partner since study child's 5th birthday
+  "h580a_rec", #DV_Shouted_33M 
+  "h581a_rec", #DV_Hit_33M
+  "l6153a_rec", #DV_Shouted_6Y 
+  "p3153a_rec", #DV_Shouted_9Y
+  "g712a_rec", #DV_Hit_21M
+  "g713a_rec",  #DV_Break_21M
+  "p3154a_rec", #DV_Hit_9Y
+  "p3155a_rec")]) #DV_Break_9Y 
 
 # DV
 postnatal_stress[,c('post_DV_percent_missing','post_direct_victimization')] <- domainscore(postnatal_stress[,c(
