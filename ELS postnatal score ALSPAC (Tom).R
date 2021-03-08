@@ -324,7 +324,7 @@ LE3years_child <- data.frame(alspac.table[,c("aln", #ID of ALSPAC child here
                              "kj473a_rec")]). # Child Started New Creche Y/N)
 
 #non binarised variables, emit "a" in variable name,  1-4 = YES, 5= NO, all other = NA
-LE4years_child <- data.frame(alspac.table[c,("aln", #add ID of ALSPAC child here
+LE4years_child <- data.frame(alspac.table[,c("aln", #add ID of ALSPAC child here
                              "kl470a_rec", # Child taken into care since age 3
                              "kl471a_rec", # A pet died since child age 3
                              "kl472a_rec", # Child moved home since age 3
@@ -541,13 +541,13 @@ FRsum_mother <- data.frame(alspac.table[,c("aln", "e408a_rec", # Divorced since 
 #__________________________________________________________________
 
 DVsum_child <- data.frame(alspac.table[,c("aln",
-  "kd504b_rec",	 # Ch physically hurt by someone (adj)
+                            "kd504a_rec",	 # Ch physically hurt by someone (adj)
                             "kf454a_rec",	# Child physically hurt > 18 months, Y/N
                             "kj464a_rec",	# Child Was Physically Hurt By Person Y/N
                            "kl474a_rec",	# Child was physically hurt by someone since age 3 (not Y/N)
                             "kn4004a_rec",	# Child physically hurt by someone in past 15 months
                             "kq364a_rec", # Child was physically hurt by someone since his/her 5th birthday (Y/N)
-                            "kd505b_rec",	# Ch sexually abused (adj)
+                            "kd505a_rec",	# Ch sexually abused (adj)
                             "kf455a_rec",	# Child sexually abused > 18 months, Y/N
                             "kj465a_rec",	# Child Sexually Abused Y/N
                             "kl475a_rec",	# Child was sexually abused since age 3
@@ -1021,13 +1021,13 @@ postnatal_stress[,c('post_IR_percent_missing','post_interpersonal_risk')] <- dom
 
 # DV
 postnatal_stress[,c('post_DV_percent_missing','post_direct_victimization')] <- domainscore(postnatal_stress[,c(
-  "kd504b_rec",	 # Ch physically hurt by someone (adj)
+  "kd504a_rec",	 # Ch physically hurt by someone (adj)
   "kf454a_rec",	# Child physically hurt > 18 months, Y/N
   "kj464a_rec",	# Child Was Physically Hurt By Person Y/N
   "kl474a_rec",	# Child was physically hurt by someone since age 3 (not Y/N)
   "kn4004a_rec",	# Child physically hurt by someone in past 15 months
   "kq364a_rec", # Child was physically hurt by someone since his/her 5th birthday (Y/N)
-  "kd505b_rec",	# Ch sexually abused (adj)
+  "kd505a_rec",	# Ch sexually abused (adj)
   "kf455a_rec",	# Child sexually abused > 18 months, Y/N
   "kj465a_rec",	# Child Sexually Abused Y/N
   "kl475a_rec",	# Child was sexually abused since age 3

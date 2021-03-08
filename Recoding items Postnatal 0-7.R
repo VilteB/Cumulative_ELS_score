@@ -10,13 +10,7 @@
   
 #Mother feelings 
 
-h760 = MatEnjoyment_33M_Bottom10
-
-#no low par involv 6m, 3Y or 6Y
-#Shout 
-Par_Shout_0_7_Tot
-
-ke017 #Par_Smack_2Y
+#h760 = MatEnjoyment_33M_Bottom10
 
 
 # This script is used for dichotomising postnatal ELS variables into 1 = risk and 0 = no risk. 
@@ -566,21 +560,51 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
     #LE Child 3Y
          
-         yes = c("Yes")
-         no = c("No")
+         yes = c("Yes CH Very Upset", "Yes Quite Upset", "Yes Bit Upset", "Yes Not Upset")
+         no = c("No didnt Happen")
          
-         vars = c("kj460a", # Child Taken Into Care Y/N
-         "kj461a", # Pet died Y/N
-         "kj462a", # Child Moved Home Y/N
-         "kj463a", # Child Had Shock Y/N
-         "kj466a", # Child & Mum Separated Y/N
-         "kj467a", # Child & Dad Separated Y/N
-         "kj468a", # Child Got a New Parent Y/N
-         "kj469a", # Child Got a New Sibling Y/N
-         "kj470a", # Child Admitted To Hospital Y/N
-         "kj471a", # Child Changed Carer Y/N
-         "kj472a", # Child Separated From Someone Else Y/N
-         "kj473a") # Child Started New Creche Y/N)
+         vars = c("kj460", # Child Taken Into Care
+         "kj461", # Pet died 
+         "kj462", # Child Moved Home 
+         "kj463", # Child Had Shock 
+         "kj466", # Child & Mum Separated 
+         "kj467", # Child & Dad Separated 
+         "kj468", # Child Got a New Parent 
+         "kj469", # Child Got a New Sibling 
+         "kj470", # Child Admitted To Hospital 
+         "kj471", # Child Changed Carer 
+         "kj472", # Child Separated From Someone Else
+         "kj473") # Child Started New Creche 
+        
+         for (i in vars){ 
+         # check if required levels are present / unexpected levels are not present
+         print(i)  
+         print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+         print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+         
+         readline(prompt = "levels ok? Press [enter] to continue")
+         }
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
         
   #LE child 4Y
          
@@ -909,18 +933,18 @@ LE_postnatal_continuous <- data.frame(e400, # PTNR died since MID PREG
                                      kf461, # Child changed carer > 18 months, Y/N
                                      kf462, # Child sep.from somebody > 18 months, Y/N
                                      kf463, # Child started new creche >18 months, Y/N)
-                                     kj460a, # Child Taken Into Care Y/N
-                                     kj461a, # Pet died Y/N
-                                     kj462a, # Child Moved Home Y/N
-                                     kj463a, # Child Had Shock Y/N
-                                     kj466a, # Child & Mum Separated Y/N
-                                     kj467a, # Child & Dad Separated Y/N
-                                     kj468a, # Child Got a New Parent Y/N
-                                     kj469a, # Child Got a New Sibling Y/N
-                                     kj470a, # Child Admitted To Hospital Y/N
-                                     kj471a, # Child Changed Carer Y/N
-                                     kj472a, # Child Separated From Someone Else Y/N
-                                     kj473a, # Child Started New Creche Y/N)
+                                     kj460, # Child Taken Into Care Y/N
+                                     kj461, # Pet died Y/N
+                                     kj462, # Child Moved Home Y/N
+                                     kj463, # Child Had Shock Y/N
+                                     kj466, # Child & Mum Separated Y/N
+                                     kj467, # Child & Dad Separated Y/N
+                                     kj468, # Child Got a New Parent Y/N
+                                     kj469, # Child Got a New Sibling Y/N
+                                     kj470, # Child Admitted To Hospital Y/N
+                                     kj471, # Child Changed Carer Y/N
+                                     kj472, # Child Separated From Someone Else Y/N
+                                     kj473, # Child Started New Creche Y/N)
                                      kl470, # Child taken into care since age 3
                                      kl471, # A pet died since child age 3
                                      kl472, # Child moved home since age 3
@@ -2472,11 +2496,11 @@ IR_postnatal_continuous <- data.frame(e408,
                                      h580, #DV_Shouted_33M 
                                      h581, #DV_Hit_33M
                                      l6153, #DV_Shouted_6Y 
-                                     p3153, #DV_Shouted_9Y
+                                     #p3153, #DV_Shouted_9Y
                                      g712, #DV_Hit_21M
                                      g713,  #DV_Break_21M
-                                     p3154, #DV_Hit_9Y
-                                     p3155,  #DV_Break_9Y
+                                     #p3154, #DV_Hit_9Y
+                                     #p3155,  #DV_Break_9Y
                                      ke017) #Par_Smack_2Y
 
 IR_postnatal_binary <- data.frame(e408a_rec,
@@ -2595,12 +2619,12 @@ corbetw2mat(data.matrix(IR_postnatal_continuous), IR_postnatal_binary, what = "p
 
 # Here, as an exception, the coding in Charlottes script is binary 
 # define levels first
-yes = c("Yes")
-no = c("No")
+yes = c("Yes & CH Very Upset", "Yes & CH Quite Upset", "Yes & CH Bit Upset", "Yes & CH Not Upset")
+no = c("Did Not Happen")
 
 # now check if these levels are present and no other levels were missed out 
-vars = c("kd504b",	 # Ch physically hurt by someone (adj)
-         "kd505b")	# Ch sexually abused (adj)
+vars = c("kd504a",	 # Ch physically hurt by someone (adj)
+         "kd505a")	# Ch sexually abused (adj)
 
 for (i in vars){
   
@@ -2818,13 +2842,13 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 # Creating a data frame with the original IR variables 
 attach(alspac.table)
 
-DV_postnatal_continuous <- data.frame(kd504b,
+DV_postnatal_continuous <- data.frame(kd504a,
                                      kf454,
                                      kj464,
                                      kl474,	
                                      kn4004,	
                                      kq364,
-                                     kd505b,
+                                     kd505a,
                                      kf455,
                                      kj465,
                                      kl475,	
@@ -2833,13 +2857,13 @@ DV_postnatal_continuous <- data.frame(kd504b,
 
 # Creating a data frame containing the newly created binary IR variables 
 
-DV_postnatal_binary <- data.frame(kd504b_rec,	
+DV_postnatal_binary <- data.frame(kd504a_rec,	
                                  kf454a_rec,
                                  kj464a_rec,
                                  kl474a_rec,
                                  kn4004a_rec,	
                                  kq364a_rec,
-                                 kd505b_rec,
+                                 kd505a_rec,
                                  kf455a_rec,
                                  kj465a_rec,
                                  kl475a_rec,
