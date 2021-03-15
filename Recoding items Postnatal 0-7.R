@@ -4,6 +4,9 @@
 
 ####################################################################################################################################################
 
+#install package 'lineup' which contains the 'corbetw2mat' function
+library(lineup)
+
 #Family Risk
 
 
@@ -39,10 +42,8 @@
 # our R data file uses factor levels (not numeric) 
 # define levels first
 yes = c("Affected a lot","MOD affected","Mildly affected","No effect")
-#no = c("didnt happen")
-
-# EW
 no = c("Did not happen")
+
 # Factor levels missed out:
 # Other, DK
 
@@ -303,14 +304,11 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 #LE 4Y            
 
-# EW
-# yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
-# no = c("No")
-
-# other level: "No/Missing" (set to missing)
 
 yes = c("Yes and affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, not affect at all")
 no = c("No")
+
+# other level: "No/Missing" (set to missing)
 
 vars = c("j300", # Partner Died > CH 30 MTHs y/n
          "j301", # 1 of MUMs Children Died> CH 30 MTHs y/n
@@ -367,10 +365,6 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 
 #LE 5Y          
-
-# EW
-# yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
-# no = c("No, did not happen")
 
 yes = c("Yes, affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
 no = c("No, did not happen")
@@ -434,10 +428,6 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 
 #LE 6Y
-
-# EW
-# yes = c("Yes & affected respondent alot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
-# no = c("No, did not happen")
 
 yes = c("Yes & affected respondent a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
 no = c("No, did not happen")
@@ -557,7 +547,7 @@ summary(alspac.table[,grep("_rec",names(alspac.table), value=T)])
 yes = c("yes child very upset", "yes quite upset", "yes bit upset", "yes not upset")
 no = c("no didnt happen")
 
-# EW other and dn set to missing ('other' actually quite often with n>0; unlike the other variables)
+# EW other and dn set to missing ('other' up to n=7; unlike the other variables; still coded as missing)
 
 vars = c("kf450", # Child taken into care > 18 months, Y/N
          "kf451", # A pet died > 18 months, Y/N
@@ -654,10 +644,6 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
         
 #LE child 4Y
-
-# EW
-# yes = c("Yes, child was very upset","Yes, child was very upset","Yes, child was a bit upset","Yes, child was not upset")
-# no = c("No, did not happen")
 
 yes = c("Yes, child was very upset","Yes, child was quite upset","Yes, child was a bit upset","Yes, child was not upset")
 no = c("No, did not happen")
@@ -1275,8 +1261,6 @@ LE_postnatal_binary <- data.frame(e400a_rec,
 
 detach(alspac.table)
 
-#install package 'lineup' which contains the 'corbetw2mat' function
-library(lineup)
 
 #Checking correlations btw columns of LE_postnatal_continuous and columns of LE_postnatal_binary
 #corbetw2mat(LE_prenatal_continuous, LE_prenatal_binary, what = "paired")    
@@ -1284,7 +1268,7 @@ library(lineup)
 # for factor-based dataframe
 corbetw2mat(data.matrix(LE_postnatal_continuous), LE_postnatal_binary, what = "paired")    
 
-# EW: all correlation large (above 0.8), but all NEGATIVE??
+# EW: all correlation large (above 0.8), but all negative, which is okay, as 'did not happen' level often last (=highest)
 
 ####################################################################################################################################################
 
@@ -1451,10 +1435,6 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
-# EW
-# yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
-# no = c("No")         
-
 yes = c("Yes, not affect at all","Yes, mildly affected","Yes, moderately affected","Yes and affected a lot")
 no = c("No")         
 
@@ -1493,10 +1473,6 @@ for(i in vars){
 
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
-
-#EW
-# yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
-# no = c("No, did not happen")          
 
 yes = c("Yes, affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
 no = c("No, did not happen")          
@@ -1814,21 +1790,10 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
-# EW
-# yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
-# no = c("No")         
-
 yes = c("Yes, not affect at all","Yes, mildly affected","Yes, moderately affected","Yes and affected a lot")
 no = c("No")         
 
 # EW: "No/Missing" set to missing
-
-# EW: variable missing here?
-# vars = c("j307",
-#          "j316",
-#          "j328",
-#          "j329",
-#          "j334",)	
 
 vars = c("j307",
          "j316",
@@ -1866,22 +1831,52 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
-# EW
-# yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
-# no = c("No, did not happen")          
+yes = c("Yes, affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
+no = c("No, did not happen")          
 
+# EW: 'Other text answer' set to missing
+
+vars = c("k4007",
+         "k4016",
+         "k4028",
+         "k4029",
+         "k4034")
+
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "a_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+#EW
 yes = c("Yes & affected respondent a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
 no = c("No, did not happen")          
 
-# EW: Other, DK set to missing
-
-# EW: variable missing; twice the same section? k or l?
-# vars = c("k4007",
-#          "k4016",
-#          "k4028",
-#          "k4029",
-#          "k4034",)
-
+# EW: + Other and DK
 
 vars = c("l4007",
          "l4016",
@@ -1923,7 +1918,6 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 # Creating a data frame with the original PR variables 
 attach(alspac.table)
 
-# EW: continue here: confused re k vs l
 PR_postnatal_continuous <- data.frame(e407, #Trouble with law since MID PREG
                                      f227,	#Mum in trouble with law Y/N
                                      g307,	
@@ -2024,6 +2018,7 @@ corbetw2mat(data.matrix(PR_postnatal_continuous), PR_postnatal_binary, what = "p
 yes = c("Affected a lot","MOD affected","Mildly affected","No effect")
 no = c("Did not happen")
 
+# EW: + "Other" "DK"
 
 vars = c("e408", # Divorced since MID PREG
          "e409", #PTNR rejected CH since MID PREG
@@ -2191,7 +2186,7 @@ for(i in vars){
   readline(prompt = "twice the same? Press [enter] to continue")
 }
 
-yes = c("Yes but Not Affected","Yes Bit affected","Yes MOD Affected","Yes & Affected Lot")
+yes = c("Yes, not affect at all","Yes, mildly affected","Yes, moderately affected","Yes and affected a lot")
 no = c("No")         
 
 vars = c("j308", # MUM Divorced> CH 30 MTHs y/n
@@ -2234,7 +2229,7 @@ for(i in vars){
   readline(prompt = "twice the same? Press [enter] to continue")
 }
 
-yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
+yes = c("Yes, affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
 no = c("No, did not happen")          
 
 vars = c("k4008", # Mother was divorced in past year
@@ -2279,7 +2274,10 @@ for(i in vars){
 }
 
 
-yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
+yes = c("Yes & affected respondent a lot",
+        "Yes, moderately affected",
+        "Yes, mildly affected",
+        "Yes, did not affect respondent at all")
 no = c("No, did not happen")     
 
 vars = c("l4008", # Respondent was divorced since study child's 5th birthday
@@ -2368,77 +2366,79 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
-yes = c("Yes, i did this","Yes, he did this","Yes, we both did this")
-no = c("No, not at all")
+# ### EW: l6153 not available
+# yes = c("Yes, i did this","Yes, he did this","Yes, we both did this")
+# no = c("No, not at all")
+# 
+# vars = c("l6153") #DV_Shouted_6Y
+# 
+# for (i in vars){
+#   
+#   # check if required levels are present / unexpected levels are not present
+#   print(i)  
+#   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+#   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+#   
+#   readline(prompt = "levels ok? Press [enter] to continue")
+# }
+# 
+# # recode
+# 
+# for(i in vars){
+#   var.out=paste0(i,"a_rec")
+#   alspac.table[,var.out]=NA
+#   alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+#   alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+#   
+#   # check
+#   print(i)
+#   print(table(alspac.table[,i], useNA = "always"))
+#   print(table(alspac.table[,var.out], useNA = "always"))
+#   
+#   readline(prompt = "twice the same? Press [enter] to continue")
+# }
+# 
+# 
+# # check new "a_rec" variables are there with meaningful values
+# summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
-vars = c("l6153") #DV_Shouted_6Y
-
-for (i in vars){
-  
-  # check if required levels are present / unexpected levels are not present
-  print(i)  
-  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
-  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
-  
-  readline(prompt = "levels ok? Press [enter] to continue")
-}
-
-# recode
-
-for(i in vars){
-  var.out=paste0(i,"a_rec")
-  alspac.table[,var.out]=NA
-  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
-  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
-  
-  # check
-  print(i)
-  print(table(alspac.table[,i], useNA = "always"))
-  print(table(alspac.table[,var.out], useNA = "always"))
-  
-  readline(prompt = "twice the same? Press [enter] to continue")
-}
-
-
-# check new "a_rec" variables are there with meaningful values
-summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
-
-#yes = c("Yes, mother did this","Yes, partner did this","Yes, both did this")
-#no = c("No")
-
-#vars = c("p3153", #DV_Shouted_9Y
-#"p3154", #DV_Hit_9Y
-#"p3155") #DV_Break_9Y
-
-#for (i in vars){
-  
-  # check if required levels are present / unexpected levels are not present
- # print(i)  
-  #print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
-  #print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
-  
-#  readline(prompt = "levels ok? Press [enter] to continue")
-#}
-
-# recode
-
-#for(i in vars){
- # var.out=paste0(i,"a_rec")
-  #alspac.table[,var.out]=NA
-  #alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
-  #alspac.table[which(alspac.table[,i] %in% no),var.out]=0
-  
-  # check
-#  print(i)
- # print(table(alspac.table[,i], useNA = "always"))
-  #print(table(alspac.table[,var.out], useNA = "always"))
-  
-#  readline(prompt = "twice the same? Press [enter] to continue")
-#}
-
-
-# check new "a_rec" variables are there with meaningful values
-#summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+# ###### commented out coz Y9 (=too old)
+# #yes = c("Yes, mother did this","Yes, partner did this","Yes, both did this")
+# #no = c("No")
+# 
+# #vars = c("p3153", #DV_Shouted_9Y
+# #"p3154", #DV_Hit_9Y
+# #"p3155") #DV_Break_9Y
+# 
+# #for (i in vars){
+#   
+#   # check if required levels are present / unexpected levels are not present
+#  # print(i)  
+#   #print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+#   #print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+#   
+# #  readline(prompt = "levels ok? Press [enter] to continue")
+# #}
+# 
+# # recode
+# 
+# #for(i in vars){
+#  # var.out=paste0(i,"a_rec")
+#   #alspac.table[,var.out]=NA
+#   #alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+#   #alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+#   
+#   # check
+# #  print(i)
+#  # print(table(alspac.table[,i], useNA = "always"))
+#   #print(table(alspac.table[,var.out], useNA = "always"))
+#   
+# #  readline(prompt = "twice the same? Press [enter] to continue")
+# #}
+# 
+# 
+# # check new "a_rec" variables are there with meaningful values
+# #summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
 yes = c("Yes mum Did","Yes Partner Did","Yes both Did")
 no = c("No not at All")
@@ -2475,6 +2475,12 @@ for(i in vars){
 
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+
+# EW: unclear how coded (below is my interpretation)
+yes = c("Every day","SEV times WK","C once WK","Rarely")
+no = c("Never")
+
 
 vars = c("ke017") #Par_Smack_2Y
 
@@ -2602,7 +2608,7 @@ IR_postnatal_continuous <- data.frame(e408,
                                      l4040, 
                                      h580, #DV_Shouted_33M 
                                      h581, #DV_Hit_33M
-                                     l6153, #DV_Shouted_6Y 
+                                     #l6153, #DV_Shouted_6Y 
                                      #p3153, #DV_Shouted_9Y
                                      g712, #DV_Hit_21M
                                      g713,  #DV_Break_21M
@@ -2701,12 +2707,12 @@ l4038a_rec,
 l4040a_rec, 
 h580a_rec, #DV_Shouted_33M 
 h581a_rec, #DV_Hit_33M
-l6153a_rec, #DV_Shouted_6Y 
-p3153a_rec, #DV_Shouted_9Y
+#l6153a_rec, #DV_Shouted_6Y 
+#p3153a_rec, #DV_Shouted_9Y
 g712a_rec, #DV_Hit_21M
 g713a_rec,  #DV_Break_21M
-p3154a_rec, #DV_Hit_9Y
-p3155a_rec, #DV_Break_9Y
+#p3154a_rec, #DV_Hit_9Y
+#p3155a_rec, #DV_Break_9Y
 ke017a_rec) #Par_Smack_2Y
 
 
@@ -2808,6 +2814,7 @@ no = c("No didnt Happen")
          
 vars = c("kj464",	# Child Was Physically Hurt By Person Y/N
          "kj465")	# Child Sexually Abused Y/N
+
 for (i in vars){
   
   # check if required levels are present / unexpected levels are not present
@@ -2838,11 +2845,12 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)]) 
         
-yes = c("Yes, child was very upset", "Yes child was quite upset", "Yes, child was abit upset", "Yes, child was not upset")
+yes = c("Yes, child was very upset", "Yes, child was quite upset", "Yes, child was a bit upset", "Yes, child was not upset")
 no = c("No, did not happen")       
 
 vars = c("kl474",	# Child was physically hurt by someone since age 3 (not Y/N)
          "kl475")	# Child was sexually abused since age 3
+
 for (i in vars){
   
   # check if required levels are present / unexpected levels are not present
@@ -2878,6 +2886,7 @@ no = c("No Did Not Happen")
 
 vars = c("kn4004",	# Child physically hurt by someone in past 15 months
          "kn4005")	# Child sexually abused in past 15 months
+
 for (i in vars){
   
   # check if required levels are present / unexpected levels are not present
