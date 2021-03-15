@@ -1866,14 +1866,21 @@ for(i in vars){
 # check new "a_rec" variables are there with meaningful values
 summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 
-yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
+# EW
+# yes = c("Yes affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
+# no = c("No, did not happen")          
+
+yes = c("Yes & affected respondent a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect respondent at all")
 no = c("No, did not happen")          
 
-vars = c("k4007",
-         "k4016",
-         "k4028",
-         "k4029",
-         "k4034",)
+# EW: Other, DK set to missing
+
+# EW: variable missing; twice the same section? k or l?
+# vars = c("k4007",
+#          "k4016",
+#          "k4028",
+#          "k4029",
+#          "k4034",)
 
 
 vars = c("l4007",
@@ -1916,6 +1923,7 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 # Creating a data frame with the original PR variables 
 attach(alspac.table)
 
+# EW: continue here: confused re k vs l
 PR_postnatal_continuous <- data.frame(e407, #Trouble with law since MID PREG
                                      f227,	#Mum in trouble with law Y/N
                                      g307,	
