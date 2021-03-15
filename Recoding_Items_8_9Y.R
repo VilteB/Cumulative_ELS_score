@@ -593,17 +593,58 @@ corbetw2mat(data.matrix(IR_postnatal_8_9_continuous), IR_postnatal_8_9_binary, w
 
 # our R data file uses factor levels (not numeric) 
 # define levels first
-yes = c("Yes", "Yes, very upset", "Yes, quite upset", "Yes, bit upset", "Yes, not upset") 
+yes = "Yes" 
+no = "No"
+
+# now check if these levels are present and no other levels were missed out 
+vars = c("f8fp475", # Bullying, Child is relational victim: F8
+         "f8fp470") # Bullying, Child is overt victim: F8
+  
+for (i in vars){
+  
+  # check if required levels are present / unexpected levels are not present
+  print(i)  
+  print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
+  print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
+  
+  readline(prompt = "levels ok? Press [enter] to continue")
+}
+
+# recode
+
+for(i in vars){
+  var.out=paste0(i,"a_rec")
+  alspac.table[,var.out]=NA
+  alspac.table[which(alspac.table[,i] %in% yes),var.out]=1
+  alspac.table[which(alspac.table[,i] %in% no),var.out]=0
+  
+  # check
+  print(i)
+  print(table(alspac.table[,i], useNA = "always"))
+  print(table(alspac.table[,var.out], useNA = "always"))
+  
+  readline(prompt = "twice the same? Press [enter] to continue")
+}
+
+
+# check new "_rec" variables are there with meaningful values
+summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
+
+
+
+#RECODE TO BINARY
+
+# our R data file uses factor levels (not numeric) 
+# define levels first
+yes = c("Yes, very upset", "Yes, quite upset", "Yes, bit upset", "Yes, not upset") 
 no = "No"
 # I have merged possible answers for f8fp475, f8fp470 and kt5004, kt5005, which are originally measured on a seprate scale. 
 # If this causes issues in running the code, the present section should be split up according to variable response labels. 
 
 # now check if these levels are present and no other levels were missed out 
-vars = c("f8fp475", # Bullying, Child is relational victim: F8
-         "f8fp470", # Bullying, Child is overt victim: F8
-         "kt5004",  # Since 7th birthday child has been physically hurt by someone
+vars = c("kt5004",  # Since 7th birthday child has been physically hurt by someone
          "kt5005")  # Since 7th birthday child has been sexually abused
-  
+
 for (i in vars){
   
   # check if required levels are present / unexpected levels are not present
@@ -639,24 +680,20 @@ summary(alspac.table[,grep("a_rec",names(alspac.table), value=T)])
 # Creating a data frame with the original DV variables 
 attach(alspac.table)
 
-DV_postnatal_8_9_continuous <- data.frame(f8fp475, # Bullying, Child is relational victim: F8
-                                          f8fp470, # Bullying, Child is overt victim: F8
-                                          kt5004,  # Since 7th birthday child has been physically hurt by someone
+DV_postnatal_8_9_continuous <- data.frame(kt5004,  # Since 7th birthday child has been physically hurt by someone
                                           kt5005)  # Since 7th birthday child has been sexually abused
 
 
 # Creating a data frame containing the newly created binary DV variables 
 
-DV_postnatal_8_9_binary <- data.frame(f8fp475a_rec, # ATTENTION: in Char script this is RelationalVictim_8yrs_Recoded
-                                      f8fp470a_rec, # ATTENTION: in Char script this is OvertVictim_8yrs_Recoded
-                                      kt5004a_rec,  # Since 7th birthday child has been physically hurt by someone
+DV_postnatal_8_9_binary <- data.frame(kt5004a_rec,  # Since 7th birthday child has been physically hurt by someone
                                       kt5005a_rec)  # Since 7th birthday child has been sexually abused
 
 
 detach(alspac.table)
 
 # Checking correlations btw columns of DV_postnatal_8_9_continuous and columns of DV_postnatal_8_9_binary
-corbetw2mat(data.matrix(DV_postnatal_8_9_continuous), DV_postnatal_8_9_binary, what = "paired")  
+corbetw2mat(data.matrix(DV_postnatal_8_9_continuous), DV_postnatal_8_9_binary, what = "paired") 
 
 ####################################################################################################################################################
 
