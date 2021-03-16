@@ -61,12 +61,6 @@ Postnatal_LifeEvents_9Y_mum <-  data.frame(alspac.table[,c("aln", # add child ID
                            "p2044_rec")]) # Mother had an accident since the study child's 6th birthday
 
 
-# colnames(Postnatal_LifeEvents_9Y_mum) <- c("IDC","husband/partner_died","m_children_died","m_friend/relative_died","m_children_ill","m_friend/relative_ill","m_admitted_hospital","m_very_ill",
-                           "m_husband/partner_lost_job","m_husband/partner_problems_work","m_problems_work ", "m_lost_job","m_moved_house","m_became_pregnant","m_new_job",
-                           "m_returned_work","m_miscarriage","m_examination","m_house/car_burgled","m_child_start_school","m_husband/partner_new_job","pet_died",
-                           "m_accident") # As an example, I have added more intuitive variable names here to align with Serena's scripts. 
-                           # Do you prefer to rename all of the variables included in the ELS score or would we rather keep the original names?
-
 
 # Postnatal_LifeEvents_9Y_child = cumulative score for life events at 9 years (child-based)
 
