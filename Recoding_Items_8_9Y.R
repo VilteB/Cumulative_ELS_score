@@ -498,8 +498,8 @@ summary(alspac.table[,grep("_rec",names(alspac.table), value=T)])
 
 # Section 3 
 # define levels for differently coded items
-yes = c("Yes, mother did this","Yes, partner did this","Yes, both did this")
-no = c("No")
+yes = c("Every day","Several times a week","Once or twice a week","Once or twice a month", "Rarely")
+no = c("Never")
 
 vars = "ku298" # Child is slapped or hit (in Char script: Par_Smack_9Y_Any)
 
