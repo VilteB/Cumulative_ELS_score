@@ -3004,5 +3004,5 @@ vars = c("p1","b1","t1","p2","p3","p4","b2","b3","b4",
          "t14","t15","p16","b16","p17","p18","b17","b18")
 
 for (i in vars){
-  print(table(alspac.table[,vars]))
+  print(table(alspac.table[,i]))
 }
