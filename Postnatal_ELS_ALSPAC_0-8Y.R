@@ -195,7 +195,7 @@ LE5years_mother <- data.frame(alspac.table[,c("aln", # add ALPSAC mother id here
                                               "k4042a_rec")]) # Mother had an accident in past year)
 
 
-#asabove, LE of mothers at 6 years have catageorical varibales, dischotmoise based on previous incidents
+#as above, LE of mothers at 6 years have catageorical variables, dischotomised based on previous incidents
 LE6years_mother <- data.frame(alspac.table[,c("aln", # ID of ALPSAC mother
                                               "l4000a_rec", # Respondent's partner died since study child's 5th birthday
                                               "l4001a_rec", # One of respondent's children died since study child's 5th birthday
@@ -220,6 +220,33 @@ LE6years_mother <- data.frame(alspac.table[,c("aln", # ID of ALPSAC mother
                                               "l4043a_rec", # A pet of respondent died since study child's 5th birthday
                                               "l4044a_rec", # Respondent had an accident since study child's 5th birthday
                                               "l4041a_rec")]) # One of respondent's children started new school since study child's 5th birthday)
+
+# LE asked at 9 years regarding period from 6th birthday 
+LE9years_mother <-  data.frame(alspac.table[,c("aln", # add child ID here
+                                               "p2000_rec", # Husband/partner died since the study child's 6th birthday 
+                                               "p2001_rec", # One of mother's children died since the study child's 6th birthday
+                                               "p2002_rec", # Mother's friend or relative died since the study child's 6th birthday
+                                               "p2003_rec", # One of mother's children was ill since the study child's 6th birthday
+                                               "p2004_rec", # Mother's husband/partner was ill since the study child's 6th birthday
+                                               "p2005_rec", # Mother's friend or relative was ill since the study child's 6th birthday
+                                               "p2006_rec", # Mother was admitted to hospital since the study child's 6th birthday
+                                               "p2010_rec", # Mother was very ill since the study child's 6th birthday
+                                               "p2011_rec", # Mother's husband/partner lost his job since the study child's 6th birthday
+                                               "p2012_rec", # Mother's husband/partner had problems at work since the study child's 6th birthday
+                                               "p2013_rec", # Mother had problems at work since the study child's 6th birthday
+                                               "p2014_rec", # Mother lost her job since the study child's 6th birthday
+                                               "p2021_rec", # Mother moved house since the study child's 6th birthday
+                                               "p2030_rec", # Mother became pregnant since the study child's 6th birthday
+                                               "p2031_rec", # Mother started a new job since the study child's 6th birthday
+                                               "p2032_rec", # Mother returned to work since the study child's 6th birthday
+                                               "p2033_rec", # Mother had a miscarriage since the study child's 6th birthday
+                                               "p2035_rec", # Mother took an examination since the study child's 6th birthday
+                                               "p2039_rec", # Mother's house or car was burgled since the study child's 6th birthday
+                                               "p2041_rec", # One of mother's children started school since the study child's 6th birthday
+                                               "p2042_rec", # Mother's husband/partner started a new job since the study child's 6th birthday
+                                               "p2043_rec", # A pet died since the study child's 6th birthday
+                                               "p2044_rec")]) # Mother had an accident since the study child's 6th birthday
+                                                           
 
 
 ####################################
@@ -319,25 +346,43 @@ LE6years_child <- data.frame(alspac.table[,c("aln", #
                                              "kq372a_rec", # Child changed care taker since his/her 5th birthday (Y/N)
                                              "kq373a_rec")]) # Child was separated from another close person since his/her 5th birthday (Y/N)
 
+# LE asked at 9 years regarding period from 6th birthday 
+LE9years_child <- data.frame(alspac.table[,c("aln", # add child ID here
+                                             "kt5000a_rec", # Since 7th birthday child has been taken into care
+                                             "kt5001a_rec", # Since 7th birthday child's pet died
+                                             "kt5002a_rec", # Since 7th birthday child moved home
+                                             "kt5003a_rec", # Since 7th birthday child had shock or fright
+                                             "kt5006a_rec", # Since 7th birthday child has had someone in family die
+                                             "kt5007a_rec", # Since 7th birthday child has been separated from mother
+                                             "kt5008a_rec", # Since 7th birthday child has been separated from father
+                                             "kt5009a_rec", # Since 7th birthday child has had a new mother or father
+                                             "kt5010a_rec", # Since 7th birthday child has had a new brother or sister
+                                             "kt5011a_rec", # Since 7th birthday child has been admitted to hospital
+                                             "kt5012a_rec", # Since 7th birthday child has changed their caretaker
+                                             "kt5013a_rec", # Since 7th birthday child has been separated from someone else
+                                             "kt5014a_rec", # Since 7th birthday child has started a new school
+                                             "kt5015a_rec")]) # Since 7th birthday child has lost their best friend
+                                                            
+
 
 #combining all life event variables with mother ID
 
 LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
                        list(LE8weeks_mother, LE8months_mother, LE21months_mother, LE3years_mother, LE4years_mother, 
-                            LE5years_mother, LE6years_mother)) # I think this may be more appropriate than the one below, which would create multiple 'aln' columns 
+                            LE5years_mother, LE6years_mother, LE9years_mother)) # I think this may be more appropriate than the one below, which would create multiple 'aln' columns 
 
 #LEsum_mother <- data.frame(LE8weeks_mother, LE8months_mother, LE21months_mother, LE3years_mother, LE4years_mother, 
-                            #LE5years_mother, LE6years_mother)
+                            #LE5years_mother, LE6years_mother, LE9years_child)
 
 
 #combining all life event vairables with child ID
 
 LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
                        list(LE18months_child, LE30months_child, LE3years_child, 
-                            LE4years_child, LE5years_child, LE6years_child)) # same comment as for LEsum_mother
+                            LE4years_child, LE5years_child, LE6years_child, LE9years_child)) # same comment as for LEsum_mother
 
 #LEsum_child <- data.frame(LE18months_child, LE30months_child, LE3years_child, 
-                #LE4years_child, LE5years_child, LE6years_child)
+                #LE4years_child, LE5years_child, LE6years_child, LE9years_child)
 
 ####################################################################################################################################################
 
@@ -376,7 +421,10 @@ CRsum_mother <- data.frame(alspac.table[,c("aln",
                                            "b4", # Housing Defects 0-2Y
                                            "t4", # Housing Defects 2-4Y
                                            "b6", # Financial difficulties 0-2Y
-                                           "t6")]) # Financial difficulties 2-4Y
+                                           "t6", # Financial difficulties 2-4Y
+                                           "p2018_rec", # Mother's income was reduced since the study child's 6th birthday 
+                                           "p2023_rec", # Mother became homeless since the study child's 6th birthday
+                                           "p2024_rec")]) # Mother had a major financial problem since the study child's 6th birthday
 
 ####################################################################################################################################################
 
@@ -421,6 +469,11 @@ PRsum_mother <- data.frame(alspac.table[,c("aln",
                                            "j334a_rec",	
                                            "k4034a_rec",	
                                            "l4034a_rec",
+                                           "p2007_rec", # Mother was in trouble with the law since the study child's 6th birthday
+                                           "p2016_rec", # Mother's husband/partner was in trouble with the law since the study child's 6th birthday
+                                           "p2028_rec", # Mother attempted suicide since the study child's 6th birthday
+                                           "p2029_rec", # Mother was convicted of an offence since the study child's 6th birthday
+                                           "p2034_rec", # Mother had an abortion since the study child's 6th birthday
                                            "b1",	# Early parenthood 0-2Y
                                            "t1",  # Early parenthood 2-4Y
                                            "b5",	# Maternal education 0-2Y
@@ -437,6 +490,14 @@ PRsum_mother <- data.frame(alspac.table[,c("aln",
 # b13 0-2Y and t13 2-4Y representing substance abuse were removed from Parental Risks. 
 # Decide what to do with psychopathology of mother (included for now). 
 
+# Adding early parent factors as per Serena's script
+# NOTE: EARLY PARENT VARIABLE IS ALREADY INCLUDED CALLED 'b1' and 't1'. CHECK WHICH ONES IS MORE COMPATIBLE WITH GENR. Does 'b1' and 't1' also use 19y as a cut-off? If not, use one below:
+
+#early_parent <- data.frame(alspac.table$aln, m_age = ifelse(alspac.table$a901 < 19, yes = 1, no = 0), # mother age younger than 19 at baseline based on Cecil et al. (2014); Rijlaarsdam et al. (2016)
+                           #p_age = ifelse(alspac.table$pb910 < 19, yes = 1, no = 0)) # partner younger than 19 years at baseline based on Cecil et al. (2014); Rijlaarsdam et al. (2016)
+
+#PRsum_mother <- merge(PRsum_mother, early_parent, by = 'aln', all = T)
+
                        
 
 ####################################################################################################################################################
@@ -446,7 +507,8 @@ PRsum_mother <- data.frame(alspac.table[,c("aln",
 ####################################################################################################################################################
 
 
-IRsum_mother <- data.frame(alspac.table[,c("aln", "e408a_rec", # Divorced since MID PREG
+IRsum_mother <- data.frame(alspac.table[,c("aln", 
+                                           "e408a_rec", # Divorced since MID PREG
                                            "e409a_rec", #PTNR rejected CH since MID PREG
                                            "e415a_rec", #PTNR went away since MID PREG
                                            "e417a_rec", # Separated since MID PREG
@@ -535,6 +597,24 @@ IRsum_mother <- data.frame(alspac.table[,c("aln", "e408a_rec", # Divorced since 
                                            "l4037a_rec", # Respondent's partner was emotionally cruel to respondent's children since study child's 5th birthday
                                            "l4038a_rec", # Respondent was emotionally cruel to their children since study child's 5th birthday
                                            "l4040a_rec", # Respondent found new partner since study child's 5th birthday
+                                           "p2008_rec", # Mother was divorced since the study child's 6th birthday
+                                           "p2009_rec", # Mother found out that her husband/partner didn't want her child since the study child's 6th birthday
+                                           "p2015_rec", # Mother's husband/partner went away since the study child's 6th birthday
+                                           "p2017_rec", # Mother and husband/partner separated since the study child's 6th birthda
+                                           "p2019_rec", # Mother argued with husband/partner since the study child's 6th birthday
+                                           "p2020_rec", # Mother argued with family and friends since the study child's 6th birthday
+                                           "p2022_rec", # Mother's husband/partner was physically cruel to her since the study child's 6th birthday
+                                           "p2025_rec", # Mother got married since the study child's 6th birthday
+                                           "p2026_rec", # Mother's husband/partner was physically cruel to her children since the study child's 6th birthday
+                                           "p2027_rec", # Mother was physically cruel to her children since the study child's 6th birthday
+                                           "p2036_rec", # Mother's husband/partner was emotionally cruel to her since the study child's 6th birthday
+                                           "p2037_rec", # Mother's husband/partner was emotionally cruel to her children since the study child's 6th birthday
+                                           "p2038_rec", # Mother was emotionally cruel to her children since the study child's 6th birthday
+                                           "p2040_rec", # Mother found a new partner since the study child's 6th birthday
+                                           "p3153_rec", # Mother/husband/partner shouted or called one another names in the past 3 months (in Cha script called: DV_Shouted_9Y)
+                                           "p3154_rec", # Mother/husband/partner hit or slapped one another in the past 3 months (in Cha script called: DV_Hit_9Y)
+                                           "p3155_rec", # Mother/husband/partner threw or broke things in the past 3 months (in Cha script called:: DV_Break_9Y)
+                                           "ku298_rec", # Child is slapped or hit (in Cha script called: Par_Smack_9Y_Any)
                                            "b7", # Partner Status 0-2Y
                                            "t7", # Partner Status 2-4Y
                                            "b8", # Partner Affection 0-2Y
@@ -585,7 +665,7 @@ DVsum_child <- data.frame(alspac.table[,c("aln",
                                           "kt5004a_rec", # Since 7th birthday child has been physically hurt by someone 8y
                                           "kt5005a_rec", # Since 7th birthday child has been sexually abused 
                                           "f8fp475a_rec", # Bullying, child is a relational victim (in Cha script called: RelationalVictim_8yrs_Recoded)
-                                          "f8fp470")]) # Bullying, child is an overt victim (in Cha script called: OvertVictim_8yrs_Recoded)
+                                          "f8fp470a_rec")]) # Bullying, child is an overt victim (in Cha script called: OvertVictim_8yrs_Recoded)
                                           # SDQBullied_8_YN # Child is picked on or bullied by other children in past 6 months (original variable: ku698)
 
 ####################################################################################################################################################
@@ -597,26 +677,6 @@ DVsum_child <- data.frame(alspac.table[,c("aln",
 
 postnatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all = TRUE),
                            list(LEsum_child, LEsum_mother, CRsum_mother, PRsum_mother, IRsum_mother, DVsum_child)) 
-
-####################################################################################################################################################
-
-
-#adding early parent factors as in Serenas script (NOTE: I suspect the code below will not run, if it doesn't, try 'ALTERNATIVE' code chunk under)
-early_parent <- data.frame(alspac.table[,c("aln", 
-                                           ifelse(a901 < 19, yes = 1, no = 0), # mother age younger than 19 at baseline
-                                           # DICH: based on Cecil et al. (2014); Rijlaarsdam et al. (2016).
-                                           ifelse(pb910 < 19, yes = 1, no = 0))]) # partner younger than 19 years at baseline
-
-colnames(early_parent) <- c("aln","m_age","partner_age")
-
-postnatal_stress <- merge(postnatal_stress, early_parent, by = 'aln', all = T)
-
-
-# ALTERNATIVE: If above code for early_parent did not work, try this instead
-early_parent <- data.frame(alspac.table$aln, m_age = ifelse(alspac.table$a901 < 19, yes = 1, no = 0), # mother age younger than 19 at baseline based on Cecil et al. (2014); Rijlaarsdam et al. (2016)
-                           p_age = ifelse(alspac.table$pb910 < 19, yes = 1, no = 0)) # partner younger than 19 years at baseline based on Cecil et al. (2014); Rijlaarsdam et al. (2016)
-
-postnatal_stress <- merge(postnatal_stress, early_parent, by = 'aln', all = T)
 
 
 ####################################################################################################################################################
@@ -826,6 +886,29 @@ postnatal_stress[,c('post_LE_percent_missing','post_life_events')] <- domainscor
   "l4043a_rec", # A pet of respondent died since study child's 5th birthday
   "l4044a_rec", # Respondent had an accident since study child's 5th birthday
   "l4041a_rec", # One of respondent's children started new school since study child's 5th birthday
+  "p2000_rec", # Husband/partner died since the study child's 6th birthday 
+  "p2001_rec", # One of mother's children died since the study child's 6th birthday
+  "p2002_rec", # Mother's friend or relative died since the study child's 6th birthday
+  "p2003_rec", # One of mother's children was ill since the study child's 6th birthday
+  "p2004_rec", # Mother's husband/partner was ill since the study child's 6th birthday
+  "p2005_rec", # Mother's friend or relative was ill since the study child's 6th birthday
+  "p2006_rec", # Mother was admitted to hospital since the study child's 6th birthday
+  "p2010_rec", # Mother was very ill since the study child's 6th birthday
+  "p2011_rec", # Mother's husband/partner lost his job since the study child's 6th birthday
+  "p2012_rec", # Mother's husband/partner had problems at work since the study child's 6th birthday
+  "p2013_rec", # Mother had problems at work since the study child's 6th birthday
+  "p2014_rec", # Mother lost her job since the study child's 6th birthday
+  "p2021_rec", # Mother moved house since the study child's 6th birthday
+  "p2030_rec", # Mother became pregnant since the study child's 6th birthday
+  "p2031_rec", # Mother started a new job since the study child's 6th birthday
+  "p2032_rec", # Mother returned to work since the study child's 6th birthday
+  "p2033_rec", # Mother had a miscarriage since the study child's 6th birthday
+  "p2035_rec", # Mother took an examination since the study child's 6th birthday
+  "p2039_rec", # Mother's house or car was burgled since the study child's 6th birthday
+  "p2041_rec", # One of mother's children started school since the study child's 6th birthday
+  "p2042_rec", # Mother's husband/partner started a new job since the study child's 6th birthday
+  "p2043_rec", # A pet died since the study child's 6th birthday
+  "p2044_rec", # Mother had an accident since the study child's 6th birthday
   "kd500a_rec", # Ch taken into car
   "kd501a_rec", # A pet died (adj)
   "kd502a_rec", # Ch moved home (adj)
@@ -899,7 +982,21 @@ postnatal_stress[,c('post_LE_percent_missing','post_life_events')] <- domainscor
   "kq370a_rec", # Child had a new brother or sister since his/her 5th birthday (Y/N)
   "kq371a_rec", # Child was admitted to hospital since his/her 5th birthday (Y/N)
   "kq372a_rec", # Child changed care taker since his/her 5th birthday (Y/N)
-  "kq373a_rec")]) # Child was separated from another close person since his/her 5th birthday (Y/N)
+  "kq373a_rec", # Child was separated from another close person since his/her 5th birthday (Y/N)
+  "kt5000a_rec", # Since 7th birthday child has been taken into care
+  "kt5001a_rec", # Since 7th birthday child's pet died
+  "kt5002a_rec", # Since 7th birthday child moved home
+  "kt5003a_rec", # Since 7th birthday child had shock or fright
+  "kt5006a_rec", # Since 7th birthday child has had someone in family die
+  "kt5007a_rec", # Since 7th birthday child has been separated from mother
+  "kt5008a_rec", # Since 7th birthday child has been separated from father
+  "kt5009a_rec", # Since 7th birthday child has had a new mother or father
+  "kt5010a_rec", # Since 7th birthday child has had a new brother or sister
+  "kt5011a_rec", # Since 7th birthday child has been admitted to hospital
+  "kt5012a_rec", # Since 7th birthday child has changed their caretaker
+  "kt5013a_rec", # Since 7th birthday child has been separated from someone else
+  "kt5014a_rec", # Since 7th birthday child has started a new school
+  "kt5015a_rec")]) # Since 7th birthday child has lost their best friend
 
 
 
@@ -927,6 +1024,9 @@ postnatal_stress[,c('post_CR_percent_missing','post_contextual_risk')] <- domain
   "j324a_rec",	
   "k4024a_rec",	
   "l4024a_rec",
+  "p2018_rec", # Mother's income was reduced since the study child's 6th birthday
+  "p2023_rec", # Mother became homeless since the study child's 6th birthday
+  "p2024_rec", # Mother had a major financial problem since the study child's 6th birthday
   "b2", # Housing adequacy  0-2Y
   "t2", # Housing adequacy  2-4Y
   "b3", # Housing Basic Living  0-2Y
@@ -973,6 +1073,11 @@ postnatal_stress[,c('post_PR_percent_missing','post_parental_risk')] <- domainsc
   "j334a_rec",	
   "k4034a_rec",	
   "l4034a_rec",
+  "p2007_rec", # Mother was in trouble with the law since the study child's 6th birthday
+  "p2016_rec", # Mother's husband/partner was in trouble with the law since the study child's 6th birthday
+  "p2028_rec", # Mother attempted suicide since the study child's 6th birthday
+  "p2029_rec", # Mother was convicted of an offence since the study child's 6th birthday
+  "p2034_rec", # Mother had an abortion since the study child's 6th birthday
   "b1",	# Early parenthood 0-2Y
   "t1",  # Early parenthood 2-4Y
   "b5",	# Maternal education 0-2Y
@@ -1079,6 +1184,24 @@ postnatal_stress[,c('post_IR_percent_missing','post_interpersonal_risk')] <- dom
   "l4037a_rec", # Respondent's partner was emotionally cruel to respondent's children since study child's 5th birthday
   "l4038a_rec", # Respondent was emotionally cruel to their children since study child's 5th birthday
   "l4040a_rec", # Respondent found new partner since study child's 5th birthday
+  "p2008_rec", # Mother was divorced since the study child's 6th birthday
+  "p2009_rec", # Mother found out that her husband/partner didn't want her child since the study child's 6th birthday
+  "p2015_rec", # Mother's husband/partner went away since the study child's 6th birthday
+  "p2017_rec", # Mother and husband/partner separated since the study child's 6th birthda
+  "p2019_rec", # Mother argued with husband/partner since the study child's 6th birthday
+  "p2020_rec", # Mother argued with family and friends since the study child's 6th birthday
+  "p2022_rec", # Mother's husband/partner was physically cruel to her since the study child's 6th birthday
+  "p2025_rec", # Mother got married since the study child's 6th birthday
+  "p2026_rec", # Mother's husband/partner was physically cruel to her children since the study child's 6th birthday
+  "p2027_rec", # Mother was physically cruel to her children since the study child's 6th birthday
+  "p2036_rec", # Mother's husband/partner was emotionally cruel to her since the study child's 6th birthday
+  "p2037_rec", # Mother's husband/partner was emotionally cruel to her children since the study child's 6th birthday
+  "p2038_rec", # Mother was emotionally cruel to her children since the study child's 6th birthday
+  "p2040_rec", # Mother found a new partner since the study child's 6th birthday
+  "p3153_rec", # Mother/husband/partner shouted or called one another names in the past 3 months (in Cha script called: DV_Shouted_9Y)
+  "p3154_rec", # Mother/husband/partner hit or slapped one another in the past 3 months (in Cha script called: DV_Hit_9Y)
+  "p3155_rec", # Mother/husband/partner threw or broke things in the past 3 months (in Cha script called:: DV_Break_9Y)
+  "ku298_rec", # Child is slapped or hit (in Cha script called: Par_Smack_9Y_Any)
   "b7", # Partner Status 0-2Y
   "t7", # Partner Status 2-4Y
   "b8", # Partner Affection 0-2Y
