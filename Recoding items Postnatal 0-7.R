@@ -80,7 +80,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -96,7 +96,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -146,7 +146,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -162,7 +162,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -215,7 +215,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -231,7 +231,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -278,7 +278,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -294,7 +294,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -340,7 +340,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -356,7 +356,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -402,7 +402,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -418,7 +418,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -467,7 +467,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 
@@ -484,7 +484,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -519,7 +519,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -535,7 +535,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -569,7 +569,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -585,7 +585,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -619,7 +619,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -635,7 +635,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -671,7 +671,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -687,7 +687,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -723,7 +723,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -739,7 +739,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -772,7 +772,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -788,7 +788,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1295,7 +1295,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1311,7 +1311,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1335,7 +1335,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1351,7 +1351,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1372,7 +1372,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1388,7 +1388,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1412,7 +1412,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1428,7 +1428,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1451,7 +1451,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1467,7 +1467,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1490,7 +1490,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1506,7 +1506,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1530,7 +1530,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1546,7 +1546,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1643,7 +1643,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1659,7 +1659,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1684,7 +1684,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1700,7 +1700,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1725,7 +1725,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1741,7 +1741,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1767,7 +1767,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1783,7 +1783,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1808,7 +1808,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1824,7 +1824,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1849,7 +1849,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1865,7 +1865,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -1891,7 +1891,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -1907,7 +1907,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2039,7 +2039,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2055,7 +2055,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 yes = c("Y much affected","Y MOD affected","Y mildly affected","Y but N effect")
@@ -2081,7 +2081,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2097,7 +2097,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 yes = c("Yes Big Effect","Yes Some Effect","Yes Mild Effect","Yes No Effect")
@@ -2124,7 +2124,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2140,7 +2140,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 yes = c("yes had big effect","yes medium effect","yes mild effect","yes but no effect")
@@ -2167,7 +2167,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2183,7 +2183,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 yes = c("Yes, not affect at all","Yes, mildly affected","Yes, moderately affected","Yes and affected a lot")
@@ -2210,7 +2210,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2226,7 +2226,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 yes = c("Yes, affected a lot","Yes, moderately affected","Yes, mildly affected","Yes, did not affect at all")
@@ -2254,7 +2254,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2270,7 +2270,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2303,7 +2303,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2319,7 +2319,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
  
 
@@ -2359,7 +2359,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2453,7 +2453,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2469,7 +2469,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2491,7 +2491,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2507,7 +2507,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2746,7 +2746,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2762,7 +2762,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2786,7 +2786,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2802,7 +2802,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2822,7 +2822,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2838,7 +2838,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2858,7 +2858,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2874,7 +2874,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2894,7 +2894,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2910,7 +2910,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2930,7 +2930,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -2946,7 +2946,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -2994,7 +2994,7 @@ corbetw2mat(data.matrix(DV_postnatal_continuous), DV_postnatal_binary, what = "p
 
 ####################################################################################################################################################
 
-# EW: chck coding of extra variables
+# EW: check coding of extra variables
 
 vars = c("p1","b1","t1","p2","p3","p4","b2","b3","b4",
          "t2","t3","t4","p5","b5","t5","p6","b6","t6",
@@ -3005,4 +3005,8 @@ vars = c("p1","b1","t1","p2","p3","p4","b2","b3","b4",
 
 for (i in vars){
   print(table(alspac.table[,i]))
+  levels(alspac.table[,i])[levels(alspac.table[,i]) == "Consent withdrawn by mother"]=NA
+  alspac.table[,i]=as.numeric(levels(alspac.table[,i]))[alspac.table[,i]]
+  print(table(alspac.table[,i]))
+  
 }
