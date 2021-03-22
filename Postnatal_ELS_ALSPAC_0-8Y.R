@@ -297,7 +297,7 @@ LE3years_child <- data.frame(alspac.table[,c("aln", #ID of ALSPAC child here
                                              "kj470a_rec", # Child Admitted To Hospital Y/N
                                              "kj471a_rec", # Child Changed Carer Y/N
                                              "kj472a_rec", # Child Separated From Someone Else Y/N
-                                             "kj473a_rec")]). # Child Started New Creche Y/N)
+                                             "kj473a_rec")]) # Child Started New Creche Y/N)
 
 #non binarised variables, emit "a" in variable name,  1-4 = YES, 5= NO, all other = NA
 LE4years_child <- data.frame(alspac.table[,c("aln", #add ID of ALSPAC child here
@@ -313,7 +313,7 @@ LE4years_child <- data.frame(alspac.table[,c("aln", #add ID of ALSPAC child here
                                              "kl481a_rec", # Child changed care taker since age 3
                                              "kl482a_rec", # Child separated from someone else since age 3
                                              "kl483a_rec", # Child started new nursery/kindergarten since age 3
-                                             "kl484a_rec")]). # Child started school since age 3)
+                                             "kl484a_rec")]) # Child started school since age 3)
 
 #non DICH variable, omit "a" in varibale name, 1-4 = YES, 5= NO, all other = NA
 LE5years_child <- data.frame(alspac.table[,c("aln", #add alspac child ID
@@ -377,7 +377,8 @@ LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TR
 
 #combining all life event vairables with child ID
 
-LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
+# EW: changed to LEsum_child
+LEsum_child <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
                        list(LE18months_child, LE30months_child, LE3years_child, 
                             LE4years_child, LE5years_child, LE6years_child, LE9years_child)) # same comment as for LEsum_mother
 
@@ -483,9 +484,11 @@ PRsum_mother <- data.frame(alspac.table[,c("aln",
                                            "b14",	# Crime trouble with police 0-2Y
                                            "t14",	# Crime trouble with police 2-4Y
                                            "b15",	# Crime convictions 0-2Y
-                                           "t15", # Crime convictions 2-4Y
-                                           "m_age",
-                                           "p_age")]) 
+                                           "t15")])#, # Crime convictions 2-4Y
+                                           #"m_age",
+                                           #"p_age")]) 
+
+# EW: above, I commented out m_Age and p_age, because we already have b1 and t1
 
 # b13 0-2Y and t13 2-4Y representing substance abuse were removed from Parental Risks. 
 # Decide what to do with psychopathology of mother (included for now). 
@@ -693,8 +696,8 @@ for (i in 2:ncol(postnatal_stress)) { # ATTENTION, if not merged with child_id, 
   s = summary(as.factor(postnatal_stress[,i]))
   c = colnames(postnatal_stress)[i]
   postnatal_summary[1:3,c] <- s
-  postnatal_summary[4,c] <- round((postnatal_summary[2,c] / 11906)*100, 2)
-  postnatal_summary[5,c] <- round((postnatal_summary[3,c] / 11906)*100, 2)
+  postnatal_summary[4,c] <- round((postnatal_summary[2,c] / 15442)*100, 2)
+  postnatal_summary[5,c] <- round((postnatal_summary[3,c] / 15442)*100, 2)
 }
 
 ####################################################################################################################################################
@@ -1087,11 +1090,11 @@ postnatal_stress[,c('post_PR_percent_missing','post_parental_risk')] <- domainsc
   "b14",	# Crime trouble with police 0-2Y
   "t14",	# Crime trouble with police 2-4Y
   "b15",	# Crime convictions 0-2Y
-  "t15", # Crime convictions 2-4Y
-  "m_age",
-  "p_age")])
+  "t15")])#, # Crime convictions 2-4Y
+  # "m_age",
+  # "p_age")])
 
-
+# EW: again, above I excluded m_age and p_age, because we already have b1 and t1
 
 # IR
 postnatal_stress[,c('post_IR_percent_missing','post_interpersonal_risk')] <- domainscore(postnatal_stress[,c(
@@ -1244,7 +1247,9 @@ postnatal_stress[,c('post_DV_percent_missing','post_direct_victimization')] <- d
   "kt5004a_rec", # Since 7th birthday child has been physically hurt by someone 8y
   "kt5005a_rec", # Since 7th birthday child has been sexually abused 
   "f8fp475a_rec", # Bullying, child is a relational victim (in Cha script called: RelationalVictim_8yrs_Recoded)
-  "f8fp470")]) # Bullying, child is an overt victim (in Cha script called: OvertVictim_8yrs_Recoded)
+  "f8fp470a_rec")]) # Bullying, child is an overt victim (in Cha script called: OvertVictim_8yrs_Recoded)
+
+# EW: changed f8fp470 to f8fp470a_rec
   
 ####################################################################################################################################################
 
