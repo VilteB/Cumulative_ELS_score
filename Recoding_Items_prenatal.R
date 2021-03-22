@@ -64,7 +64,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -80,7 +80,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
   
 
@@ -169,7 +169,7 @@ no = c("didnt happen")
 
 # now check if these levels are present and no other levels were missed out 
 vars = c("b588", # Income reduced since PREG
-         "b593", # Became homeless since PREG
+         #"b593", # Became homeless since PREG
          "b594") # Major financial PROB since PREG
 
 
@@ -180,8 +180,10 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
+
+# EW: excluded "b593", as already binary
 
 # recode
 
@@ -196,7 +198,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -215,7 +217,7 @@ CR_prenatal_continuous <- data.frame(b588, # Income reduced since PREG
 # Creating a data frame containing the newly created binary CR variables
 
 CR_prenatal_binary <- data.frame(b588a_rec, # Income reduced since PREG
-                                 b593a_rec, # Became homeless since PREG
+                                 b593, # Became homeless since PREG; EW: not b593a_rec, as already binary
                                  b594a_rec) # Major financial PROB since PREG
 
 
@@ -242,8 +244,8 @@ no = c("didnt happen")
 # now check if these levels are present and no other levels were missed out 
 vars = c("b577", # In trouble with the law since PREG
          "b586", # PTNR in trouble with law since PREG
-         "b597", # Attempted suicide since PREG
-         "b598", # Convicted of an offence since PREG
+         #"b597", # Attempted suicide since PREG; EW: already binary
+         #"b598", # Convicted of an offence since PREG; EW: already binary
          "b605") # Tried to have abortion
 
 for (i in vars){
@@ -253,7 +255,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -269,7 +271,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -290,8 +292,8 @@ PR_prenatal_continuous <- data.frame(b577, # In trouble with the law since PREG
 
 PR_prenatal_binary <- data.frame(b577a_rec, # In trouble with the law since PREG
                                  b586a_rec, # PTNR in trouble with law since PREG
-                                 b597a_rec, # Attempted suicide since PREG
-                                 b598a_rec, # Convicted of an offence since PREG
+                                 b597, # Attempted suicide since PREG; EW: already binary
+                                 b598, # Convicted of an offence since PREG; EW: already binary
                                  b605a_rec) # Tried to have abortion
                                      
 
@@ -316,17 +318,17 @@ yes = c("affected a lot","fairly affected","mildly affected","N effect at all")
 no = c("didnt happen")
 
 # now check if these levels are present and no other levels were missed out 
-vars = c("b578", # Divorced since PREG
+vars = c(#"b578", # Divorced since PREG; EW: already binary
          "b579", # PTNR rejected PREG
          "b585", # PTNR went away since PREG	
-         "b587", # Separated since PREG	
+         #"b587", # Separated since PREG; EW: already binary	
          "b589", # Argued with PTNR since PREG
          "b590", # Argued with family or friends since PREG
          "b592", # PTNR hurt mum since PREG	
          "b595", # Got married since PREG		
          "b596", # PTNR hurt CH since PREG	
-         "b607", # PTNR was EMOT cruel to mum since PREG
-         "b608") # PTNR was EMOT cruel to mum since PREG
+         "b607") #, # PTNR was EMOT cruel to mum since PREG
+         #"b608") # PTNR was EMOT cruel to mum since PREG; EW: already binary
 
   
 for (i in vars){
@@ -336,7 +338,7 @@ for (i in vars){
   print(levels(alspac.table[,i])[levels(alspac.table[,i]) %in% c(yes,no)])
   print(levels(alspac.table[,i])[!levels(alspac.table[,i]) %in% c(yes,no)])
   
-  readline(prompt = "levels ok? Press [enter] to continue")
+  #readline(prompt = "levels ok? Press [enter] to continue")
 }
 
 # recode
@@ -352,7 +354,7 @@ for(i in vars){
   print(table(alspac.table[,i], useNA = "always"))
   print(table(alspac.table[,var.out], useNA = "always"))
   
-  readline(prompt = "twice the same? Press [enter] to continue")
+  #readline(prompt = "twice the same? Press [enter] to continue")
 }
 
 
@@ -378,17 +380,17 @@ IR_prenatal_continuous <- data.frame(b578, # Divorced since PREG
 
 # Creating a data frame containing the newly created binary IR variables 
 
-IR_prenatal_binary <- data.frame(b578a_rec, # Divorced since PREG
+IR_prenatal_binary <- data.frame(b578, # Divorced since PREG; EW: already binary
                                  b579a_rec, # PTNR rejected PREG
                                  b585a_rec, # PTNR went away since PREG		
-                                 b587a_rec, # Separated since PREG		
+                                 b587, # Separated since PREG; EW: already binary		
                                  b589a_rec, # Argued with PTNR since PREG	
                                  b590a_rec, # Argued with family or friends since PREG
                                  b592a_rec, # PTNR hurt mum since PREG	
                                  b595a_rec, # Got married since PREG		
                                  b596a_rec, # PTNR hurt CH since PREG	
                                  b607a_rec, # PTNR was EMOT cruel to mum since PREG
-                                 b608a_rec) # PTNR was EMOT cruel to CH since PREG
+                                 b608) # PTNR was EMOT cruel to CH since PREG; EW: already binary
 
 
 detach(alspac.table)
@@ -400,3 +402,19 @@ corbetw2mat(data.matrix(IR_prenatal_continuous), IR_prenatal_binary, what = "pai
 
 ####################################################################################################################################################
 
+# EW: check coding of extra variables
+
+vars = c("p1","b1","t1","p2","p3","p4","b2","b3","b4",
+         "t2","t3","t4","p5","b5","t5","p6","b6","t6",
+         "p7","p8","p9","b7","b8","b9","t7","t8","t9",
+         "p10","p11","b10","b11","t10","t11","p12",
+         "b12","t12","p13","b13","t13","p14","p15","b14","b15",
+         "t14","t15","p16","b16","p17","p18","b17","b18")
+
+for (i in vars){
+  print(table(alspac.table[,i]))
+  levels(alspac.table[,i])[levels(alspac.table[,i]) == "Consent withdrawn by mother"]=NA
+  alspac.table[,i]=as.numeric(levels(alspac.table[,i]))[alspac.table[,i]]
+  print(table(alspac.table[,i]))
+  
+}
