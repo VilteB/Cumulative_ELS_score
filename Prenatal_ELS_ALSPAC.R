@@ -63,12 +63,12 @@ Prenatal_LifeEvents <- data.frame(alspac.table[,c("aln", # add mothers ID here (
 
 Prenatal_ContextualRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID here,
                                            "b588a_rec", # Income reduced since PREG
-                                           "b593a_rec", # Became homeless since PREG
-                                           "b594a_rec")]) #, # Major financial PROB since PREG
-                                           # "p2", # Housing adequacy 
-                                           # "p3", # Housing Basic Living 
-                                           # "p4", # Housing Defects
-                                           # "p6")]) # Financial difficulties 
+                                           "b593", # Became homeless since PREG; EW: not b593a_rec, as already binary
+                                           "b594a_rec", # Major financial PROB since PREG
+                                           "p2", # Housing adequacy 
+                                           "p3", # Housing Basic Living 
+                                           "p4", # Housing Defects
+                                           "p6")]) # Financial difficulties 
                                                   
 
 ####################################################################################################################################################
@@ -80,15 +80,15 @@ Prenatal_ContextualRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID 
 Prenatal_ParentalRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID here,
                                          "b577a_rec", # In trouble with the law since PREG
                                          "b586a_rec", # PTNR in trouble with law since PREG
-                                         "b597a_rec", # Attempted suicide since PREG
-                                         "b598a_rec", # Convicted of an offence since PREG
-                                         "b605a_rec")])#, # Tried to have abortion
-                                         # p1, # Early parenthood
-                                         # p5, # Maternal education 
-                                         # p12, # Psychopathology of mother
-                                         # p13, # Substance abuse 
-                                         # p14, # Crime trouble with police 
-                                         # p15) # Crime convictions   
+                                         "b597", # Attempted suicide since PREG; EW: already binary
+                                         "b598", # Convicted of an offence since PREG; EW: already binary
+                                         "b605a_rec", # Tried to have abortion
+                                         "p1", # Early parenthood
+                                         "p5", # Maternal education 
+                                         "p12", # Psychopathology of mother
+                                         "p13", # Substance abuse 
+                                         "p14", # Crime trouble with police 
+                                         "p15")]) # Crime convictions   
 
 # This first version appears in CumRisk_Instructions&Information.xlsx, 
 # likely suggesting from the three version, this one was selected to form the cumulative score)
@@ -97,14 +97,14 @@ Prenatal_ParentalRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID he
 Prenatal_Parental_NoSubUse <- data.frame(alspac.table[,c("aln", # add mothers ID here,
                                             "b577a_rec", # In trouble with the law since PREG
                                             "b586a_rec", # PTNR in trouble with law since PREG
-                                            "b597a_rec", # Attempted suicide since PREG
-                                            "b598a_rec", # Convicted of an offence since PREG
-                                            "b605a_rec")])#, # Tried to have abortion
-                                            # p1, # Early parenthood
-                                            # p5, # Maternal education 
-                                            # p12, # Psychopathology of mother
-                                            # p14, # Crime trouble with police 
-                                            # p15) # Crime convictions   
+                                            "b597", # Attempted suicide since PREG
+                                            "b598", # Convicted of an offence since PREG
+                                            "b605a_rec", # Tried to have abortion
+                                            "p1", # Early parenthood
+                                            "p5", # Maternal education 
+                                            "p12", # Psychopathology of mother
+                                            "p14", # Crime trouble with police 
+                                            "p15")]) # Crime convictions   
 
 # The difference between Prenatal_MH_LifestyleRisks and Prenatal_Parental_NoSubUse is that the latter excludes substance abuse (p13) 
 
@@ -112,14 +112,14 @@ Prenatal_Parental_NoSubUse <- data.frame(alspac.table[,c("aln", # add mothers ID
 Prenatal_MH_LifestyleRisks_NoMI <- data.frame(alspac.table[,c("aln", # add mothers ID here,
                                                  "b577a_rec", # In trouble with the law since PREG
                                                  "b586a_rec", # PTNR in trouble with law since PREG
-                                                 "b597a_rec", # Attempted suicide since PREG
-                                                 "b598a_rec", # Convicted of an offence since PREG
-                                                 "b605a_rec")])#, # Tried to have abortion
-                                                 # p1, # Early parenthood
-                                                 # p5, # Maternal education 
-                                                 # p13, # Substance abuse 
-                                                 # p14, # Crime trouble with police 
-                                                 # p15) # Crime convictions   
+                                                 "b597", # Attempted suicide since PREG
+                                                 "b598", # Convicted of an offence since PREG
+                                                 "b605a_rec", # Tried to have abortion
+                                                 "p1", # Early parenthood
+                                                 "p5", # Maternal education 
+                                                 "p13", # Substance abuse 
+                                                 "p14", # Crime trouble with police 
+                                                 "p15")]) # Crime convictions   
 
 # The difference between Prenatal_MH_LifestyleRisks and Prenatal_MH_LifestyleRisks_NoMI is that the latter excludes psychopathology of mother (p12) 
 
@@ -130,25 +130,25 @@ Prenatal_MH_LifestyleRisks_NoMI <- data.frame(alspac.table[,c("aln", # add mothe
 
 
 Prenatal_InterpersonalRisks <- data.frame(alspac.table[,c("aln", # add mothers ID here,
-                                             "b578a_rec", # Divorced since PREG
+                                             "b578", # Divorced since PREG; EW: already binary
                                              "b579a_rec", # PTNR rejected PREG
                                              "b585a_rec", # PTNR went away since PREG		
-                                             "b587a_rec", # Separated since PREG		
+                                             "b587", # Separated since PREG; EW: already binary		
                                              "b589a_rec", # Argued with PTNR since PREG	
                                              "b590a_rec", # Argued with family or friends since PREG
                                              "b592a_rec", # PTNR hurt mum since PREG	
                                              "b595a_rec", # Got married since PREG		
                                              "b596a_rec", # PTNR hurt CH since PREG	
                                              "b607a_rec", # PTNR was EMOT cruel to mum since PREG
-                                             "b608a_rec")])#, # PTNR was EMOT cruel to CH since PREG
-                                             # p7, #Partner Status 
-                                             # p8, # Partner Affection 
-                                             # p9, # Partner cruelty 
-                                             # p10, # Family Size
-                                             # p11, # Family Major problems 
-                                             # p16, # Partner Support
-                                             # p17, # Social Network - Emotional 
-                                             # p18) # Social Network - Practical 
+                                             "b608", # PTNR was EMOT cruel to CH since PREG; EW: already binary
+                                             "p7", #Partner Status 
+                                             "p8", # Partner Affection 
+                                             "p9", # Partner cruelty 
+                                             "p10", # Family Size
+                                             "p11", # Family Major problems 
+                                             "p16", # Partner Support
+                                             "p17", # Social Network - Emotional 
+                                             "p18")]) # Social Network - Practical 
 
                                           
 
@@ -198,8 +198,8 @@ for (i in 2:ncol(prenatal_stress)) { # ATTENTION, if not merged with child_id, c
   s = summary(as.factor(prenatal_stress[,i]))
   c = colnames(prenatal_stress)[i]
   prenatal_summary[1:3,c] <- s
-  prenatal_summary[4,c] <- round((prenatal_summary[2,c] / 11906)*100, 2)
-  prenatal_summary[5,c] <- round((prenatal_summary[3,c] / 11906)*100, 2)
+  prenatal_summary[4,c] <- round((prenatal_summary[2,c] / 15442)*100, 2)
+  prenatal_summary[5,c] <- round((prenatal_summary[3,c] / 15442)*100, 2)
 }
 
 ####################################################################################################################################################
@@ -267,12 +267,12 @@ prenatal_stress[,c('pre_LE_percent_missing','pre_life_events')] <- domainscore(p
 
 prenatal_stress[,c('pre_CR_percent_missing','pre_contextual_risk')] <- domainscore(prenatal_stress[,c(
   "b588a_rec", # Income reduced since PREG
-  "b593a_rec", # Became homeless since PREG
-  "b594a_rec")])#, # Major financial PROB since PREG
-  # p2, # Housing adequacy 
-  # p3, # Housing Basic Living 
-  # p4, # Housing Defects
-  # p6)]) # Financial difficulties 
+  "b593", # Became homeless since PREG; EW: not b593a_rec, as already binary
+  "b594a_rec", # Major financial PROB since PREG
+  "p2", # Housing adequacy 
+  "p3", # Housing Basic Living 
+  "p4", # Housing Defects
+  "p6")]) # Financial difficulties 
 
 
                                                                                                                             
@@ -282,15 +282,15 @@ prenatal_stress[,c('pre_CR_percent_missing','pre_contextual_risk')] <- domainsco
 prenatal_stress[,c('pre_PR_percent_missing','pre_parental_risks')] <- domainscore(prenatal_stress[,c(
   "b577a_rec", # In trouble with the law since PREG
   "b586a_rec", # PTNR in trouble with law since PREG
-  "b597a_rec", # Attempted suicide since PREG
-  "b598a_rec", # Convicted of an offence since PREG
-  "b605a_rec")])#, # Tried to have abortion
-  # p1, # Early parenthood
-  # p5, # Maternal education 
-  # p12, # Psychopathology of mother
-  # p13, # Substance abuse 
-  # p14, # Crime trouble with police 
-  # p15)]) # Crime convictions   
+  "b597", # Attempted suicide since PREG
+  "b598", # Convicted of an offence since PREG
+  "b605a_rec", # Tried to have abortion
+  "p1", # Early parenthood
+  "p5", # Maternal education 
+  "p12", # Psychopathology of mother
+  "p13", # Substance abuse 
+  "p14", # Crime trouble with police 
+  "p15")]) # Crime convictions   
                                                                                                                             
 
 
@@ -298,25 +298,25 @@ prenatal_stress[,c('pre_PR_percent_missing','pre_parental_risks')] <- domainscor
 
 
 prenatal_stress[,c('pre_IS_percent_missing','pre_interpersonal_risks')] <- domainscore(prenatal_stress[,c(
-  "b578a_rec", # Divorced since PREG
+  "b578", # Divorced since PREG; EW: already binary
   "b579a_rec", # PTNR rejected PREG
   "b585a_rec", # PTNR went away since PREG		
-  "b587a_rec", # Separated since PREG		
+  "b587", # Separated since PREG; EW: already binary		
   "b589a_rec", # Argued with PTNR since PREG	
   "b590a_rec", # Argued with family or friends since PREG
   "b592a_rec", # PTNR hurt mum since PREG	
   "b595a_rec", # Got married since PREG		
   "b596a_rec", # PTNR hurt CH since PREG	
   "b607a_rec", # PTNR was EMOT cruel to mum since PREG
-  "b608a_rec")])#, # PTNR was EMOT cruel to CH since PREG
-  # p7, #Partner Status 
-  # p8, # Partner Affection 
-  # p9, # Partner cruelty 
-  # p10, # Family Size
-  # p11, # Family Major problems 
-  # p16, # Partner Support
-  # p17, # Social Network - Emotional 
-  # p18)]) # Social Network - Practical 
+  "b608", # PTNR was EMOT cruel to CH since PREG; EW: already binary
+  "p7", #Partner Status 
+  "p8", # Partner Affection 
+  "p9", # Partner cruelty 
+  "p10", # Family Size
+  "p11", # Family Major problems 
+  "p16", # Partner Support
+  "p17", # Social Network - Emotional 
+  "p18")]) # Social Network - Practical 
 
                                                                                                                                  
 
