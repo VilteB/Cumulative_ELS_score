@@ -42,6 +42,7 @@ table(duplicated(alspac.table$aln))
 
 #ASLPAC variables are not YES/NO, here, 1-4 = YES, 5 = NO, -1 = missing, all others = NA
 LE8weeks_mother <- data.frame(alspac.table[,c("aln", #add ALSPAC family ID here!
+                                              "qlet",
                                               "e400a_rec", # PTNR died since MID PREG
                                               "e401a_rec", # CH died since MID PREG
                                               "e402a_rec", # FRD or REL died since MID PREG
@@ -70,6 +71,7 @@ LE8weeks_mother <- data.frame(alspac.table[,c("aln", #add ALSPAC family ID here!
 
 #LE 8 month answers are dichotomised (retain "a" in variable code here). 1=Y, 2=N, -1 = missing
 LE8months_mother <- data.frame(alspac.table[,c("aln", #family ID
+                                               "qlet",
                                                "f220a_rec", # Death of partner
                                                "f221a_rec", # Death of one of children
                                                "f222a_rec", # Death of friend or relative
@@ -93,6 +95,7 @@ LE8months_mother <- data.frame(alspac.table[,c("aln", #family ID
 
 #LE21month variables are dichotomised, therefore retain "a". 1=Y, 2=N
 LE21months_mother <- data.frame(alspac.table[,c("aln", # family ID 
+                                                "qlet",
                                                 "g300a_rec", # Partner died >CH8MTHs
                                                 "g301a_rec", # One of Mums children died >CH8MTHs
                                                 "g302a_rec", # Friend or relative died >CH8MTHs
@@ -121,6 +124,7 @@ LE21months_mother <- data.frame(alspac.table[,c("aln", # family ID
 #No GenR variables up until 3 years
 #LE 3 years is a dichotomised variable, so retain "a" and code as 1=Y, 2=N etc
 LE3years_mother <- data.frame(alspac.table[,c("aln", #family ID
+                                              "qlet",
                                               "h210a_rec", # Whether partner died since study child was 18 months old, Y/N
                                               "h211a_rec", # Whether one of mums children died since study child was 18 months old, Y/N
                                               "h212a_rec", # Whether a friend or relative died since study child was 18 months old, Y/N
@@ -146,6 +150,7 @@ LE3years_mother <- data.frame(alspac.table[,c("aln", #family ID
 
 #LE 4 years is a binary variable, retain "a" and code as Y=1, N=2
 LE4years_mother <- data.frame(alspac.table[,c("aln", # add ALPSAC mother ID here
+                                              "qlet",
                                               "j300a_rec", # Partner Died > CH 30 MTHs y/n
                                               "j301a_rec", # 1 of MUMs Children Died> CH 30 MTHs y/n
                                               "j302a_rec", # MUMs FRD or Relative Died> CH 30 MTHs y/n
@@ -171,6 +176,7 @@ LE4years_mother <- data.frame(alspac.table[,c("aln", # add ALPSAC mother ID here
 
 #LE 5 years (k4000 etc) are catagorical variables and therefore require re-coding to binarise. currently: 1-4 = yes, 5= no anything else = NA
 LE5years_mother <- data.frame(alspac.table[,c("aln", # add ALPSAC mother id here 
+                                              "qlet",
                                               "k4000a_rec", # Mothers partner died in past year
                                               "k4001a_rec", # Mothers child died in past year
                                               "k4002a_rec", # D3: Mothers friend or relative died in past year
@@ -197,6 +203,7 @@ LE5years_mother <- data.frame(alspac.table[,c("aln", # add ALPSAC mother id here
 
 #as above, LE of mothers at 6 years have catageorical variables, dischotomised based on previous incidents
 LE6years_mother <- data.frame(alspac.table[,c("aln", # ID of ALPSAC mother
+                                              "qlet",
                                               "l4000a_rec", # Respondent's partner died since study child's 5th birthday
                                               "l4001a_rec", # One of respondent's children died since study child's 5th birthday
                                               "l4002a_rec", # Respondent's friend/relative died since study child's 5th birthday
@@ -223,6 +230,7 @@ LE6years_mother <- data.frame(alspac.table[,c("aln", # ID of ALPSAC mother
 
 # LE asked at 9 years regarding period from 6th birthday 
 LE9years_mother <-  data.frame(alspac.table[,c("aln", # add child ID here
+                                               "qlet",
                                                "p2000_rec", # Husband/partner died since the study child's 6th birthday 
                                                "p2001_rec", # One of mother's children died since the study child's 6th birthday
                                                "p2002_rec", # Mother's friend or relative died since the study child's 6th birthday
@@ -257,6 +265,7 @@ LE9years_mother <-  data.frame(alspac.table[,c("aln", # add child ID here
 
 #retain "b" for DICH variables, 1=YES, 2=NO, child LE at 18 months
 LE18months_child <- data.frame(alspac.table[,c("aln", # add ALSPAC child ID here
+                                               "qlet",
                                                "kd500a_rec", # Ch taken into car
                                                "kd501a_rec", # A pet died (adj)
                                                "kd502a_rec", # Ch moved home (adj)
@@ -272,6 +281,7 @@ LE18months_child <- data.frame(alspac.table[,c("aln", # add ALSPAC child ID here
 
 #binarised variables: Y=1, N=2, child LE at 30 months
 LE30months_child <- data.frame(alspac.table[,c("aln", #add ALPSAC child ID here
+                                               "qlet",
                                                "kf450a_rec", # Child taken into care > 18 months, Y/N
                                                "kf451a_rec", # A pet died > 18 months, Y/N
                                                "kf452a_rec", # Child moved home > 18 months, Y/N
@@ -286,6 +296,7 @@ LE30months_child <- data.frame(alspac.table[,c("aln", #add ALPSAC child ID here
                                                "kf463a_rec")]) # Child started new creche >18 months, Y/N)
 
 LE3years_child <- data.frame(alspac.table[,c("aln", #ID of ALSPAC child here
+                                             "qlet",
                                              "kj460a_rec", # Child Taken Into Care Y/N
                                              "kj461a_rec", # Pet died Y/N
                                              "kj462a_rec", # Child Moved Home Y/N
@@ -301,6 +312,7 @@ LE3years_child <- data.frame(alspac.table[,c("aln", #ID of ALSPAC child here
 
 #non binarised variables, emit "a" in variable name,  1-4 = YES, 5= NO, all other = NA
 LE4years_child <- data.frame(alspac.table[,c("aln", #add ID of ALSPAC child here
+                                             "qlet",
                                              "kl470a_rec", # Child taken into care since age 3
                                              "kl471a_rec", # A pet died since child age 3
                                              "kl472a_rec", # Child moved home since age 3
@@ -317,6 +329,7 @@ LE4years_child <- data.frame(alspac.table[,c("aln", #add ID of ALSPAC child here
 
 #non DICH variable, omit "a" in varibale name, 1-4 = YES, 5= NO, all other = NA
 LE5years_child <- data.frame(alspac.table[,c("aln", #add alspac child ID
+                                             "qlet",
                                              "kn4000a_rec", #  Child taken into care in past 15 months
                                              "kn4001a_rec", # Child's pet die in past 15 months
                                              "kn4002a_rec", # Child move home in past 15 months
@@ -332,7 +345,8 @@ LE5years_child <- data.frame(alspac.table[,c("aln", #add alspac child ID
                                              "kn4014a_rec")]) # Child start school in past 15 months)
 
 #DICH variable for LE in children at 6 years, retain "a", 2=NO 1= YES
-LE6years_child <- data.frame(alspac.table[,c("aln", # 
+LE6years_child <- data.frame(alspac.table[,c("aln", #
+                                             "qlet",
                                              "kq360a_rec", # Child was taken into care since his/her 5th birthday (Y/N)
                                              "kq361a_rec", # A pet died since child's 5th birthday (Y/N)
                                              "kq362a_rec", # Child moved home since his/her 5th birthday (Y/N)
@@ -348,6 +362,7 @@ LE6years_child <- data.frame(alspac.table[,c("aln", #
 
 # LE asked at 9 years regarding period from 6th birthday 
 LE9years_child <- data.frame(alspac.table[,c("aln", # add child ID here
+                                             "qlet",
                                              "kt5000a_rec", # Since 7th birthday child has been taken into care
                                              "kt5001a_rec", # Since 7th birthday child's pet died
                                              "kt5002a_rec", # Since 7th birthday child moved home
@@ -367,7 +382,7 @@ LE9years_child <- data.frame(alspac.table[,c("aln", # add child ID here
 
 #combining all life event variables with mother ID
 
-LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
+LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = c('aln','qlet'),  all.x = TRUE), 
                        list(LE8weeks_mother, LE8months_mother, LE21months_mother, LE3years_mother, LE4years_mother, 
                             LE5years_mother, LE6years_mother, LE9years_mother)) # I think this may be more appropriate than the one below, which would create multiple 'aln' columns 
 
@@ -378,7 +393,7 @@ LEsum_mother <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TR
 #combining all life event vairables with child ID
 
 # EW: changed to LEsum_child
-LEsum_child <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
+LEsum_child <- Reduce(function(x,y) merge(x = x, y = y, by = c('aln','qlet'),  all.x = TRUE), 
                        list(LE18months_child, LE30months_child, LE3years_child, 
                             LE4years_child, LE5years_child, LE6years_child, LE9years_child)) # same comment as for LEsum_mother
 
@@ -394,6 +409,7 @@ LEsum_child <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRU
 
 
 CRsum_mother <- data.frame(alspac.table[,c("aln", 
+                                           "qlet",
                                            "e418a_rec", # Income reduced since MID PREG	
                                            "f238a_rec",	# Reduced income
                                            "g318a_rec",	
@@ -435,6 +451,7 @@ CRsum_mother <- data.frame(alspac.table[,c("aln",
 ####################################################################################################################################################
 
 PRsum_mother <- data.frame(alspac.table[,c("aln", 
+                                           "qlet",
                                            "e407a_rec", #Trouble with law since MID PREG
                                            "f227a_rec",	#Mum in trouble with law Y/N
                                            "g307a_rec",	
@@ -511,6 +528,7 @@ PRsum_mother <- data.frame(alspac.table[,c("aln",
 
 
 IRsum_mother <- data.frame(alspac.table[,c("aln", 
+                                           "qlet",
                                            "e408a_rec", # Divorced since MID PREG
                                            "e409a_rec", #PTNR rejected CH since MID PREG
                                            "e415a_rec", #PTNR went away since MID PREG
@@ -653,6 +671,7 @@ IRsum_mother <- data.frame(alspac.table[,c("aln",
 # 5. DIRECT VICTIMISATION
 
 DVsum_child <- data.frame(alspac.table[,c("aln",
+                                          "qlet",
                                           "kd504a_rec",	 # Ch physically hurt by someone (adj)
                                           "kf454a_rec",	# Child physically hurt > 18 months, Y/N
                                           "kj464a_rec",	# Child Was Physically Hurt By Person Y/N
@@ -678,7 +697,7 @@ DVsum_child <- data.frame(alspac.table[,c("aln",
 # This function merges together all separate data.frames according to the 'aln' column with all relevant items for postnatal stress.
 # tech-tip from Serena: use Reduce because merge can only take two dataframes at a time 
 
-postnatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all = TRUE),
+postnatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = c('aln','qlet'),  all = TRUE),
                            list(LEsum_child, LEsum_mother, CRsum_mother, PRsum_mother, IRsum_mother, DVsum_child)) 
 
 
@@ -692,7 +711,7 @@ postnatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all = 
 
 postnatal_summary = data.frame(row.names=c("no risk","risk","NA","%risk","%miss"))
 
-for (i in 2:ncol(postnatal_stress)) { # ATTENTION, if not merged with child_id, count from 2.
+for (i in 3:ncol(postnatal_stress)) { # ATTENTION, if not merged with child_id, count from 2.
   s = summary(as.factor(postnatal_stress[,i]))
   c = colnames(postnatal_stress)[i]
   postnatal_summary[1:3,c] <- s
@@ -711,7 +730,7 @@ percent_missing <- function(var) { sum(is.na(var)) / length(var) * 100 }
 
 # Apply the percent_missing function to the rows (1) of the entire dataset 
 
-postnatal_stress$post_percent_missing = apply(postnatal_stress[,2:ncol(postnatal_stress)], # Same as above, if not merged with child_id, count from 2.
+postnatal_stress$post_percent_missing = apply(postnatal_stress[,3:ncol(postnatal_stress)], # Same as above, if not merged with child_id, count from 2.
                                             1, percent_missing)
 
 
