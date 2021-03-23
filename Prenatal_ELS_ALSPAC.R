@@ -32,6 +32,7 @@ table(duplicated(alspac.table$aln))
 
 
 Prenatal_LifeEvents <- data.frame(alspac.table[,c("aln", # add mothers ID here (find the equivalent term within ALSPAC)
+                                     "qlet", 
                                      "b570a_rec", # PTNR died since PREG
                                      "b571a_rec", # CH died since PREG
                                      "b572a_rec", # Friend or relative died since PREG
@@ -62,7 +63,8 @@ Prenatal_LifeEvents <- data.frame(alspac.table[,c("aln", # add mothers ID here (
 
 
 Prenatal_ContextualRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID here,
-                                           "b588a_rec", # Income reduced since PREG
+                                                        "qlet",
+                                                        "b588a_rec", # Income reduced since PREG
                                            "b593", # Became homeless since PREG; EW: not b593a_rec, as already binary
                                            "b594a_rec", # Major financial PROB since PREG
                                            "p2", # Housing adequacy 
@@ -78,7 +80,8 @@ Prenatal_ContextualRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID 
 
 
 Prenatal_ParentalRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID here,
-                                         "b577a_rec", # In trouble with the law since PREG
+                                                      "qlet",
+                                                       "b577a_rec", # In trouble with the law since PREG
                                          "b586a_rec", # PTNR in trouble with law since PREG
                                          "b597", # Attempted suicide since PREG; EW: already binary
                                          "b598", # Convicted of an offence since PREG; EW: already binary
@@ -95,7 +98,8 @@ Prenatal_ParentalRisks  <- data.frame(alspac.table[,c("aln", # add mothers ID he
 
                                             
 Prenatal_Parental_NoSubUse <- data.frame(alspac.table[,c("aln", # add mothers ID here,
-                                            "b577a_rec", # In trouble with the law since PREG
+                                                         "qlet",
+                                                         "b577a_rec", # In trouble with the law since PREG
                                             "b586a_rec", # PTNR in trouble with law since PREG
                                             "b597", # Attempted suicide since PREG
                                             "b598", # Convicted of an offence since PREG
@@ -110,6 +114,7 @@ Prenatal_Parental_NoSubUse <- data.frame(alspac.table[,c("aln", # add mothers ID
 
 
 Prenatal_MH_LifestyleRisks_NoMI <- data.frame(alspac.table[,c("aln", # add mothers ID here,
+                                                              "qlet",
                                                  "b577a_rec", # In trouble with the law since PREG
                                                  "b586a_rec", # PTNR in trouble with law since PREG
                                                  "b597", # Attempted suicide since PREG
@@ -130,6 +135,7 @@ Prenatal_MH_LifestyleRisks_NoMI <- data.frame(alspac.table[,c("aln", # add mothe
 
 
 Prenatal_InterpersonalRisks <- data.frame(alspac.table[,c("aln", # add mothers ID here,
+                                                          "qlet",
                                              "b578", # Divorced since PREG; EW: already binary
                                              "b579a_rec", # PTNR rejected PREG
                                              "b585a_rec", # PTNR went away since PREG		
@@ -161,7 +167,7 @@ Prenatal_InterpersonalRisks <- data.frame(alspac.table[,c("aln", # add mothers I
 # results in a dataframe with all relevant items for prenatal stress.
 # tech-tip from Serena: use Reduce because merge can only take two dataframes at a time 
 
-prenatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x = TRUE), 
+prenatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = c('aln','qlet'),  all.x = TRUE), 
                                      list(Prenatal_LifeEvents,
                                           Prenatal_ContextualRisks,
                                           Prenatal_ParentalRisks,
@@ -194,7 +200,7 @@ prenatal_stress <- Reduce(function(x,y) merge(x = x, y = y, by = 'aln',  all.x =
 
 prenatal_summary = data.frame(row.names=c("no risk","risk","NA","%risk","%miss"))
 
-for (i in 2:ncol(prenatal_stress)) { # ATTENTION, if not merged with child_id, count from 2.
+for (i in 3:ncol(prenatal_stress)) { # ATTENTION, if not merged with child_id, count from 2.
   s = summary(as.factor(prenatal_stress[,i]))
   c = colnames(prenatal_stress)[i]
   prenatal_summary[1:3,c] <- s
@@ -212,7 +218,7 @@ percent_missing <- function(var) { sum(is.na(var)) / length(var) * 100 }
 
 # Apply the percent_missing function to the rows (1) of the entire dataset 
 
-prenatal_stress$pre_percent_missing = apply(prenatal_stress[,2:ncol(prenatal_stress)], # Same as above, if not merged with child_id, count from 2.
+prenatal_stress$pre_percent_missing = apply(prenatal_stress[,3:ncol(prenatal_stress)], # Same as above, if not merged with child_id, count from 2.
                                             1, percent_missing)
 
 
